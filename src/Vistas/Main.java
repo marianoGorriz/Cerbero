@@ -7,6 +7,9 @@ public class Main {
 		VentanaPrincipal obj = new VentanaPrincipal();
 		
 		obj.saludo();
+		
+		VentanaPuta obj2 = new VentanaPuta();
+		obj2.VentanaTrola();
 	}
 
 }
