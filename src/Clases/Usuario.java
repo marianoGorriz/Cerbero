@@ -19,13 +19,13 @@ public class Usuario extends Persona {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
-			ResultSet rs = st.executeQuery("SELECT * FROM usuarios WHERE usuario="+"'"+usuario+"'AND contraseña='"+password+"'");
-			
-			if(rs!= null) {
-				bandera = 1;
+			ResultSet rs = st.executeQuery("SELECT * FROM usuarios WHERE usuario='"+usuario+"'AND contraseña='"+password+"'");
+
+			if(rs.first() != false) {
+					bandera = 1;
 			}
 			
-			}
+		}
 			
 		 catch (SQLException e2) {
 			System.out.println("nope2");
