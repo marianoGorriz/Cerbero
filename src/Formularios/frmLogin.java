@@ -54,11 +54,8 @@ public class frmLogin {
 		txtUsuario = new JTextField();
 		txtUsuario.setBounds(125, 27, 172, 20);
 		frame.getContentPane().add(txtUsuario);
-		txtUsuario.setColumns(10);
-		
-		
-		//INGRESAR Y COMPARAR USUARIO
-		
+		txtUsuario.setColumns(10);		
+		//INGRESAR Y COMPARAR USUARIO		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

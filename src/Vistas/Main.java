@@ -18,7 +18,7 @@ public class Main {
 		frmLogin login= new frmLogin();
 		login.mostrarLogin();
 		
-	}
+	}//comentario
 
 	/**
 	 * Create the application.
