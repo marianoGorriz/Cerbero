@@ -11,7 +11,7 @@ public class Conexion {
 		Connection cn = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			cn = DriverManager.getConnection("jdbc:mysql://localhost/cerbero?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT-3", "root", "12345");
+			cn = DriverManager.getConnection("jdbc:mysql://localhost/cerbero?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT-3", "root", "root");
 			//JOptionPane.showMessageDialog(null, "Conexíon realizada con exito");
 
 			
