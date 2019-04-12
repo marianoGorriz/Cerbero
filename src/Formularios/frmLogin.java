@@ -72,6 +72,7 @@ public class frmLogin {
 				if (login == 1) {
 					frmPrincipal window = new frmPrincipal();
 					window.mostrarPrincipal();
+					frame.setVisible(false);
 				
 				}else {
 					System.out.println("ok2");
