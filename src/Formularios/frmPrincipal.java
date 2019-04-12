@@ -1,32 +1,23 @@
-package Vistas;
+package Formularios;
 
 import java.awt.EventQueue;
-import java.sql.Statement;
 
 import javax.swing.JFrame;
 
-import Formularios.frmLogin;
-
-public class Main {
+public class frmPrincipal {
 
 	private JFrame frame;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		frmLogin login= new frmLogin();
-		login.mostrarLogin();
-		
-	}
+
 
 	/**
 	 * Create the application.
 	 */
-	public Main() {
+	public frmPrincipal() {
 		initialize();
-		Conexion gg = new Conexion();
-		gg.conectarDB();
 	}
 
 	/**
@@ -38,6 +29,16 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
+	public void mostrarPrincipal() {
+		try {
+			frmPrincipal window = new frmPrincipal();
+			window.frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
+
 
 }
