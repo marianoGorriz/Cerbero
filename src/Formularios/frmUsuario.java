@@ -67,7 +67,7 @@ public class frmUsuario extends JInternalFrame {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the contents of the frame. dasdsada
 	 */
 	private void initialize() {
 		
