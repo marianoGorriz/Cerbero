@@ -62,12 +62,7 @@ public class frmUsuario extends JInternalFrame {
 	/**
 	 * Create the application.
 	 */
-	public frmUsuario(JFrame frame) {
-		
-		frame = new JFrame();
-		frame.setBounds(100, 100, 561, 398);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+	public frmUsuario() {
 		initialize();
 	}
 
@@ -77,7 +72,11 @@ public class frmUsuario extends JInternalFrame {
 	private void initialize() {
 		
 		
-	
+			
+		frame = new JFrame();
+		frame.setBounds(100, 100, 561, 398);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 		
 		table = new JTable();
 		table.setForeground(new Color(0, 0, 0));

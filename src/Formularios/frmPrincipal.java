@@ -131,7 +131,9 @@ public class frmPrincipal extends JFrame {
 		mnUsuarios.add(mntmAdminUsuarios);
 		frame.getContentPane().setLayout(null);
 		
-		
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 11, 657, 414);
+		frame.getContentPane().add(panel);
 	}
 	
 	public void mostrarPrincipal() {
@@ -145,10 +147,7 @@ public class frmPrincipal extends JFrame {
 	}
 	
 	private void jmItemUsuariosActionPerformed(ActionEvent evt) {
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 657, 414);
-		frame.getContentPane().add(panel);
-		frmUsuario misUsuarios = new frmUsuario(panel);
+		frmUsuario misUsuarios = new frmUsuario();
 		jdpEscritorio.add(misUsuarios);
 		misUsuarios.show();
 	}
