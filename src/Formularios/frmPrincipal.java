@@ -71,6 +71,16 @@ public class frmPrincipal extends JFrame {
 		menuBar.add(mnProductos);
 		
 		JMenuItem mntmAltaDeProductos = new JMenuItem("Alta de Productos");
+		mntmAltaDeProductos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				AltaProductos panel = new AltaProductos();
+				panel.setBounds(10,11,620,413);
+				frame.getContentPane().removeAll();
+				frame.getContentPane().add(panel);
+				frame.repaint();
+			}
+		});
 		mntmAltaDeProductos.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		mnProductos.add(mntmAltaDeProductos);
 		
@@ -112,6 +122,7 @@ public class frmPrincipal extends JFrame {
 
 				PanelUsuarios gg = new PanelUsuarios();
 				gg.setBounds(10,11,620,413);
+				frame.getContentPane().removeAll();
 				frame.getContentPane().add(gg);
 				frame.repaint();
 
