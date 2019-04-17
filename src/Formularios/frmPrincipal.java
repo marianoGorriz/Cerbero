@@ -107,12 +107,15 @@ public class frmPrincipal extends JFrame {
 		mnUsuarios.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		menuBar.add(mnUsuarios);
 		
-		jdpEscritorio =new JDesktopPane();
-		getContentPane().add(jdpEscritorio);
-		
 		mntmAltaDeClientes.addActionListener(new ActionListener() {				//trae la ventana y la relaciona al menu
 			public void actionPerformed(ActionEvent evt) {
-				jmItemUsuariosActionPerformed(evt);
+
+				PanelUsuarios gg = new PanelUsuarios();
+				gg.setBounds(10,11,620,413);
+				frame.getContentPane().add(gg);
+				frame.repaint();
+
+
 			}
 		}); 
 		
@@ -131,9 +134,9 @@ public class frmPrincipal extends JFrame {
 		mnUsuarios.add(mntmAdminUsuarios);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 657, 414);
-		frame.getContentPane().add(panel);
+
+		
+
 	}
 	
 	public void mostrarPrincipal() {
@@ -147,10 +150,8 @@ public class frmPrincipal extends JFrame {
 	}
 	
 	private void jmItemUsuariosActionPerformed(ActionEvent evt) {
-		frmUsuario misUsuarios = new frmUsuario();
+		frmUsuario2 misUsuarios = new frmUsuario2();
 		jdpEscritorio.add(misUsuarios);
 		misUsuarios.show();
 	}
-	
-
 }

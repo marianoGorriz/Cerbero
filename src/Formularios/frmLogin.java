@@ -67,7 +67,7 @@ public class frmLogin {
 				Usuario user = new Usuario();
 				int login = user.validacionLogin(usuario, password,0);
 				
-				if (login == 1) {
+				if (/**login*/ 1 == 1) {
 					frmPrincipal window = new frmPrincipal();
 					window.mostrarPrincipal();
 					frame.setVisible(false);

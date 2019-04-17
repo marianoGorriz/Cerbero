@@ -25,7 +25,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
 
-public class frmUsuario extends JInternalFrame {
+public class frmUsuario2 extends JPanel {
 
 	private JFrame frame;
 	private JTextField txtId;
@@ -62,7 +62,7 @@ public class frmUsuario extends JInternalFrame {
 	/**
 	 * Create the application.
 	 */
-	public frmUsuario() {
+	public frmUsuario2() {
 		initialize();
 	}
 
@@ -169,7 +169,7 @@ public class frmUsuario extends JInternalFrame {
 		}
 	public void mostrarUsuario() {
 		try {
-			frmUsuario window = new frmUsuario();
+			frmUsuario2 window = new frmUsuario2();
 			window.show();
 		} catch (Exception e) {
 			e.printStackTrace();
