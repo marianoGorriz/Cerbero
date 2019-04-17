@@ -13,11 +13,20 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.SwingConstants;
-import java.awt.Font;
 
-public class frmPrincipal {
+
+
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JPanel;
+
+public class frmPrincipal extends JFrame {
 
 	private JFrame frame;
+	private JDesktopPane jdpEscritorio; //permite abrir ventanas 
 
 	/**
 	 * Launch the application.
@@ -98,9 +107,31 @@ public class frmPrincipal {
 		mnUsuarios.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		menuBar.add(mnUsuarios);
 		
+		jdpEscritorio =new JDesktopPane();
+		getContentPane().add(jdpEscritorio);
+		
+		mntmAltaDeClientes.addActionListener(new ActionListener() {				//trae la ventana y la relaciona al menu
+			public void actionPerformed(ActionEvent evt) {
+				jmItemUsuariosActionPerformed(evt);
+			}
+		}); 
+		
+
 		JMenuItem mntmAdminUsuarios = new JMenuItem("Admin Usuarios");
+		/**mntmAdminUsuarios.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				frmUsuario gg = new frmUsuario();
+				jdpEscritorio.add(gg);
+				gg.show();
+
+			} 
+		});*/
 		mntmAdminUsuarios.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		mnUsuarios.add(mntmAdminUsuarios);
+		frame.getContentPane().setLayout(null);
+		
+		
 	}
 	
 	public void mostrarPrincipal() {
@@ -113,6 +144,14 @@ public class frmPrincipal {
 		
 	}
 	
-
+	private void jmItemUsuariosActionPerformed(ActionEvent evt) {
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 11, 657, 414);
+		frame.getContentPane().add(panel);
+		frmUsuario misUsuarios = new frmUsuario(panel);
+		jdpEscritorio.add(misUsuarios);
+		misUsuarios.show();
+	}
+	
 
 }
