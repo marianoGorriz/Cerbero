@@ -1,8 +1,10 @@
 package Clases;
 
-public class Venta {
+public class Venta extends Producto {
 	
 	private int id_ventas_usuarios, id_ventas_tarjetas, total_puntos, cantidad;
+	
+	
 
 	public int getId_ventas_usuarios() {
 		return id_ventas_usuarios;

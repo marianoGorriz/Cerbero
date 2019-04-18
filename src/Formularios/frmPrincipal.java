@@ -59,6 +59,16 @@ public class frmPrincipal extends JFrame {
 		menuBar.add(mnVentas);
 		
 		JMenuItem mntmRealizarVenta = new JMenuItem("Realizar Venta");
+		mntmRealizarVenta.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				RealizarVenta panel = new RealizarVenta();
+				panel.setBounds(10,11,620,413);
+				frame.getContentPane().removeAll();
+				frame.getContentPane().add(panel);
+				frame.repaint();
+			}
+		});
 		mntmRealizarVenta.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		mnVentas.add(mntmRealizarVenta);
 		
