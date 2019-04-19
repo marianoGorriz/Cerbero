@@ -71,6 +71,16 @@ public class frmPrincipal extends JFrame {
 		menuBar.add(mnProductos);
 		
 		JMenuItem mntmAltaDeProductos = new JMenuItem("Alta de Productos");
+		mntmAltaDeProductos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				AltaProductos panel = new AltaProductos();
+				panel.setBounds(10,11,620,413);
+				frame.getContentPane().removeAll();
+				frame.getContentPane().add(panel);
+				frame.repaint();
+			}
+		});
 		mntmAltaDeProductos.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		mnProductos.add(mntmAltaDeProductos);
 		
@@ -107,20 +117,44 @@ public class frmPrincipal extends JFrame {
 		mnUsuarios.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		menuBar.add(mnUsuarios);
 		
-		mntmAltaDeClientes.addActionListener(new ActionListener() {				//trae la ventana y la relaciona al menu
+		/*mntmAltaDeClientes.addActionListener(new ActionListener() {				//trae la ventana y la relaciona al menu
 			public void actionPerformed(ActionEvent evt) {
 
 				PanelUsuarios gg = new PanelUsuarios();
 				gg.setBounds(10,11,620,413);
+				frame.getContentPane().removeAll();
 				frame.getContentPane().add(gg);
 				frame.repaint();
 
 
 			}
-		}); 
+		}); */
 		
 
 		JMenuItem mntmAdminUsuarios = new JMenuItem("Admin Usuarios");
+		mntmAdminUsuarios.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				PanelUsuarios adminUser = new PanelUsuarios();
+				adminUser.setBounds(10, 11, 620, 413);
+				frame.getContentPane().removeAll();
+				frame.getContentPane().add(adminUser);
+				frame.repaint();
+				
+				
+			}
+		});
+		/*mntmAdminUsuarios.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				PanelUsuarios adminUser = new PanelUsuarios();
+				adminUser.setBounds(10,11,620,413);
+				frame.getContentPane().removeAll();
+				frame.getContentPane().add(adminUser);
+				frame.repaint();
+			}
+			
+		});*/
 		/**mntmAdminUsuarios.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
