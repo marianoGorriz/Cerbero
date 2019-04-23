@@ -14,13 +14,18 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
+import java.awt.Choice;
+import java.awt.List;
+import java.awt.ComponentOrientation;
 
 public class PanelUsuarios extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
 	private JTextField textField_4;
+	private JPasswordField passwordField;
+	private JPasswordField passwordField_1;
+	private JTable table;
 
 	/**
 	 * Create the panel.
@@ -63,23 +68,9 @@ public class PanelUsuarios extends JPanel {
 		textField_1.setBounds(158, 81, 130, 20);
 		add(textField_1);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(158, 117, 130, 20);
-		add(textField_2);
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(158, 153, 130, 20);
-		add(textField_3);
-		
 		JList list = new JList();
 		list.setBounds(168, 221, 118, -31);
 		add(list);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(158, 187, 130, 20);
-		add(comboBox);
 		
 		textField_4 = new JTextField();
 		textField_4.setBounds(83, 221, 177, 20);
@@ -105,6 +96,29 @@ public class PanelUsuarios extends JPanel {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(410, 152, 104, 23);
 		add(btnCancelar);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(158, 117, 130, 20);
+		add(passwordField);
+		
+		passwordField_1 = new JPasswordField();
+		passwordField_1.setBounds(158, 153, 130, 20);
+		add(passwordField_1);
+		
+		Choice choice = new Choice();
+		choice.setBounds(158, 184, 130, 20);
+		add(choice);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"ID", "Rol", "Contrase\u00F1a", "Nombre"
+			}
+		));
+		table.setBounds(33, 414, 502, -129);
+		add(table);
 
 	}
 }
