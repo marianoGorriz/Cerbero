@@ -47,6 +47,7 @@ public class frmLogin {
 		frame.setBounds(100, 100, 443, 217);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setTitle("Ingreso al Sistema de Ventas");
 		
 		pwdUsuario = new JPasswordField();
 		pwdUsuario.setBounds(152, 80, 172, 20);
