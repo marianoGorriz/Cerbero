@@ -68,6 +68,7 @@ public class PanelUsuarios extends JPanel {
 		add(lblRol);
 		
 		textField = new JTextField();
+		textField.setEnabled(false);
 		textField.setBounds(154, 23, 130, 20);
 		add(textField);
 		textField.setColumns(10);
@@ -92,20 +93,12 @@ public class PanelUsuarios extends JPanel {
 		add(scrollPane);
 		table = new JTable();
 		
-		JButton btnHabilitar = new JButton("Habilitar");
-		btnHabilitar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnHabilitar.setBounds(410, 132, 104, 23);
-		add(btnHabilitar);
-		
 		JButton btnEliminar = new JButton("Desabilitar");
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnEliminar.setBounds(410, 96, 104, 23);
+		btnEliminar.setBounds(410, 128, 104, 23);
 		add(btnEliminar);
 		
 		
@@ -136,6 +129,10 @@ public class PanelUsuarios extends JPanel {
 		btnActualizar.setBounds(410, 60, 104, 23);
 		add(btnActualizar);
 		
+		JButton btnNewButton = new JButton("Habilitar");
+		btnNewButton.setBounds(410, 92, 104, 23);
+		add(btnNewButton);
+		
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -163,8 +160,8 @@ public class PanelUsuarios extends JPanel {
 					btnEliminar.setText("Deshabilitar");
 					btnEliminar.setEnabled(true);
 				}else {
-					btnHabilitar.setText("Habilitar");
-					btnHabilitar.setEnabled(true);
+					btnNewButton.setText("Habilitar");
+					btnNewButton.setEnabled(false);
 				}
 				
 				
@@ -187,7 +184,7 @@ public class PanelUsuarios extends JPanel {
 					modelo.addColumn("Rol");
 					modelo.addColumn("Estado");
 					table.setModel(modelo);
-					modelo.addRow(new Object[]{"ID", "Usuario", "Contraseña", "Rol","Estado"});
+				//	modelo.addRow(new Object[]{"ID", "Usuario", "Contraseña", "Rol","Estado"});
 					ResultSet rs;
 					Usuario usuario = new Usuario();
 					rs = usuario.buscarUsuario(textField_4.getText());
@@ -237,6 +234,8 @@ public class PanelUsuarios extends JPanel {
 		passwordField_1 = new JPasswordField();
 		passwordField_1.setBounds(154, 129, 130, 20);
 		add(passwordField_1);
+		
+	
 		
 		
 		

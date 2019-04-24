@@ -22,11 +22,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 
 public class frmPrincipal extends JFrame {
 
 	private JFrame frame;
 	private JDesktopPane jdpEscritorio; //permite abrir ventanas 
+	
+
 
 	/**
 	 * Launch the application.
@@ -45,8 +48,9 @@ public class frmPrincipal extends JFrame {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 711, 496);
+		frame.setBounds(100, 100, 944, 596);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("...:Sistema de ventas de puntos:...");
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 23));
@@ -54,6 +58,7 @@ public class frmPrincipal extends JFrame {
 		frame.setJMenuBar(menuBar);
 		
 		JMenu mnVentas = new JMenu("Ventas");
+		mnVentas.setIcon(new ImageIcon("C:\\Users\\faku6\\git\\Cerbero\\bin\\Iconos\\productos.png"));
 		mnVentas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		mnVentas.setHorizontalAlignment(SwingConstants.CENTER);
 		menuBar.add(mnVentas);
@@ -116,6 +121,16 @@ public class frmPrincipal extends JFrame {
 		menuBar.add(mnClientes);
 		
 		JMenuItem mntmAltaDeClientes = new JMenuItem("Alta de Clientes");
+		mntmAltaDeClientes.addMouseListener(new MouseAdapter() {
+				
+			public void mousePressed(MouseEvent arg0) {
+				altaCliente alta = new altaCliente();
+				alta.setBounds(10,11,620,413);
+				frame.getContentPane().removeAll();
+				frame.getContentPane().add(alta);
+				frame.repaint();
+			}
+		});
 		mntmAltaDeClientes.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		mnClientes.add(mntmAltaDeClientes);
 		
@@ -183,6 +198,11 @@ public class frmPrincipal extends JFrame {
 
 	}
 	
+	private void title(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public void mostrarPrincipal() {
 		try {
 			frmPrincipal window = new frmPrincipal();

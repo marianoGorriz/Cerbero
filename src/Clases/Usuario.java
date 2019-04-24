@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 import Formularios.frmPrincipal;
 import Vistas.Conexion;
 
@@ -42,10 +44,11 @@ public class Usuario extends Persona {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
-			st.executeUpdate("INSERT INTO usuarios (`usuario`, `contraseña`,`rol`, estado) VALUES ('" + usuario + "', '" + contraseña + "', '"+rol+"');");
+			st.executeUpdate("INSERT INTO usuarios (`usuario`, `contraseña`,`rol`) VALUES ('" + usuario + "', '" + contraseña + "', '"+rol+"');");
 			
 		}catch(SQLException e2) {
-			System.out.println("nope2");
+			//System.out.println("nope2");
+			JOptionPane.showMessageDialog(null, "Error al dar de alta!");
 			System.out.println("SQLException: " + e2.getMessage());		
 			
 		}
@@ -60,7 +63,8 @@ public class Usuario extends Persona {
 
 		}		 
 		catch (SQLException e2) {
-			System.out.println("nope2");
+			//System.out.println("nope2");
+			JOptionPane.showMessageDialog(null, "Error al buscar usuario!");
 			System.out.println("SQLException: " + e2.getMessage());
 		}
 		return null;
@@ -75,7 +79,8 @@ public class Usuario extends Persona {
 			
 		}		 
 		catch (SQLException e2) {
-			System.out.println("nope2");
+			//System.out.println("nope2");
+			JOptionPane.showMessageDialog(null, "Error al modificar el usuario!");
 			System.out.println("SQLException: " + e2.getMessage());
 		}
 	}
