@@ -26,7 +26,7 @@ public class RealizarVenta extends JPanel {
 	private JTextField textField;
 	private JTable table;
 	private JTable table_1;
-	private JTextField textField_1;
+	private JTextField txtCantidad;
 
 	/**
 	 * Create the panel.
@@ -35,16 +35,17 @@ public class RealizarVenta extends JPanel {
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Productos:");
-		lblNewLabel.setBounds(26, 23, 59, 14);
+		lblNewLabel.setBounds(10, 23, 75, 14);
 		add(lblNewLabel);
 		
 		textField = new JTextField();
-		textField.setBounds(95, 20, 96, 20);
+		textField.setBounds(80, 20, 96, 20);
 		add(textField);
 		textField.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 48, 259, 92);
+		scrollPane.setBounds(10, 48, 264, 151);		
+
 		add(scrollPane);
 		
 		table = new JTable();
@@ -52,7 +53,7 @@ public class RealizarVenta extends JPanel {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
 		JButton btnNewButton = new JButton("Buscar");
-		btnNewButton.setBounds(201, 19, 89, 23);
+		btnNewButton.setBounds(186, 19, 88, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DefaultTableModel modelo;
@@ -77,8 +78,8 @@ public class RealizarVenta extends JPanel {
 		});
 		add(btnNewButton);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(330, 43, 68, 14);
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(284, 49, 184, 14);
 		add(lblNewLabel_1);
 
 		table.addMouseListener(new MouseAdapter() {
@@ -88,22 +89,23 @@ public class RealizarVenta extends JPanel {
 				int column2 = 1;
 				int column3 = 2;
 				int row = table.getSelectedRow();
+				
 				String value1 = table.getModel().getValueAt(row, column1).toString();
 				String value2 = table.getModel().getValueAt(row, column2).toString();
 				String value3 = table.getModel().getValueAt(row, column3).toString();
-				System.out.println(value1);
-				System.out.println(value2);
-				lblNewLabel_1.setText(value2); 
-				System.out.println(value3);
 
+				lblNewLabel_1.setText(value2); 
 				
 			}
 		});
 		
+		JScrollPane scrollPane2 = new JScrollPane();
+		scrollPane2.setBounds(10, 210, 264, 149);
+		add(scrollPane2);
 				
 		table_1 = new JTable();
-		table_1.setBounds(5, 210, 264, 79);
-		add(table_1);
+		scrollPane2.setViewportView(table_1);
+		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		DefaultTableModel modelo;
 		modelo = new DefaultTableModel();
 		modelo.addColumn("Producto");
@@ -113,30 +115,47 @@ public class RealizarVenta extends JPanel {
 		modelo.addRow(new Object[]{"Producto", "Cantidad", "Puntos"});
 
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(408, 40, 96, 20);
-		add(textField_1);
-		textField_1.setColumns(10);
+		txtCantidad = new JTextField();
+		txtCantidad.setBounds(284, 74, 96, 20);
+		add(txtCantidad);
+		txtCantidad.setColumns(10);
 		
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int row = table.getSelectedRow();
-				modelo.addRow(new Object[]{table.getModel().getValueAt(row, 1).toString(),textField_1.getText(), "Puntos"});
+				
+				int puntos = (int) table.getModel().getValueAt(row, 2);
+				int cantidad = Integer.parseInt(txtCantidad.getText());
+				modelo.addRow(new Object[]{table.getModel().getValueAt(row, 1).toString(),txtCantidad.getText(), puntos*cantidad});
 			}
 		});
 		
 
-		btnAgregar.setBounds(320, 68, 78, 23);
+		btnAgregar.setBounds(390, 73, 96, 23);
 		add(btnAgregar);
 		
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setBounds(332, 191, 48, 14);
+		JLabel lblNewLabel_2 = new JLabel("Total puntos:");
+		lblNewLabel_2.setBounds(284, 211, 184, 14);
 		add(lblNewLabel_2);
 		
 		JButton btnRealizarVenta = new JButton("Realizar venta");
-		btnRealizarVenta.setBounds(320, 216, 116, 23);
+		btnRealizarVenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int filas_tabla_1 = modelo.getRowCount();
+				int puntos_total = 0;
+				for(int i = 1; i < filas_tabla_1;i++)
+				{
+					puntos_total = puntos_total + Integer.parseInt(table_1.getModel().getValueAt(i, 2).toString()) ;
+				}
+				lblNewLabel_2.setText("Total puntos: ");
+				System.out.println(puntos_total);
+				lblNewLabel_2.setText(lblNewLabel_2.getText() + puntos_total);
+
+			}
+		});
+		btnRealizarVenta.setBounds(284, 276, 116, 23);
 		add(btnRealizarVenta);
 	}
 }
