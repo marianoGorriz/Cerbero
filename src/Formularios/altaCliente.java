@@ -28,7 +28,7 @@ public class altaCliente extends JPanel {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
-	private JTextField textField_7;
+	private JTextField txtFecha;
 	
 	private JTextField textField_6;
 	private JTable table_1;
@@ -60,22 +60,22 @@ public class altaCliente extends JPanel {
 		add(lblDni);
 		
 		JLabel lblCorreo = new JLabel("Correo");
-		lblCorreo.setBounds(433, 31, 114, 25);
+		lblCorreo.setBounds(415, 31, 132, 25);
 		lblCorreo.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblCorreo);
 		
 		JLabel lblTelfono = new JLabel("Tel\u00E9fono");
-		lblTelfono.setBounds(433, 67, 102, 25);
+		lblTelfono.setBounds(415, 67, 120, 25);
 		lblTelfono.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblTelfono);
 		
 		JLabel lblSexo = new JLabel("Sexo");
-		lblSexo.setBounds(433, 103, 102, 25);
+		lblSexo.setBounds(415, 103, 120, 25);
 		lblSexo.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblSexo);
 		
-		JLabel lblEdad = new JLabel("Edad:");
-		lblEdad.setBounds(433, 139, 114, 25);
+		JLabel lblEdad = new JLabel("Fecha de Nacimiento:");
+		lblEdad.setBounds(415, 139, 132, 25);
 		lblEdad.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblEdad);
 		
@@ -110,10 +110,11 @@ public class altaCliente extends JPanel {
 		add(textField_5);
 		textField_5.setColumns(10);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(545, 142, 136, 20);
-		add(textField_7);
-		textField_7.setColumns(10);
+		txtFecha = new JTextField();
+		txtFecha.setToolTipText("DD/MM/AAAA");
+		txtFecha.setBounds(545, 142, 136, 20);
+		add(txtFecha);
+		txtFecha.setColumns(10);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(82, 251, 599, 166);
@@ -135,7 +136,7 @@ public class altaCliente extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				Cliente cliente = new Cliente();
 				cliente.altaCliente(textField_1.getText(), textField_2.getText(), textField_3.getText(), textField_4.getText(),
-						textField_5.getText(),choice.getSelectedItem(),Integer.parseInt(textField_7.getText()));
+						textField_5.getText(),choice.getSelectedItem(),txtFecha.getText());
 			}
 		});
 		btnNuevo.setBounds(204, 173, 89, 23);
@@ -190,7 +191,7 @@ public class altaCliente extends JPanel {
 				textField_5.setText(value6);
 				choice.select(value7);
 				choice.repaint();
-				textField_7.setText(value8);	
+				txtFecha.setText(value8);	
 				
 			}
 		});
@@ -212,7 +213,7 @@ public class altaCliente extends JPanel {
 				modelo.addColumn("Correo");
 				modelo.addColumn("Telefono");
 				modelo.addColumn("Sexo");
-				modelo.addColumn("Edad");
+				modelo.addColumn("Fecha Nacimiento");
 				table_1.setModel(modelo);
 			//	modelo.addRow(new Object[]{"ID", "Usuario", "Contraseña", "Rol","Estado"});
 				ResultSet rs;
@@ -222,7 +223,7 @@ public class altaCliente extends JPanel {
 					while(rs.next()) {
 						modelo.addRow(new Object[]{rs.getObject("id"), 
 								rs.getObject("nombre"), rs.getObject("apellido"), rs.getObject("DNI"), rs.getObject("correo"),
-								rs.getObject("telefono"),rs.getObject("sexo"),rs.getObject("edad")});
+								rs.getObject("telefono"),rs.getObject("sexo"),rs.getObject("fecha_nacimiento")});
 					}
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block

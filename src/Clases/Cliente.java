@@ -11,8 +11,8 @@ import Vistas.Conexion;
 
 public class Cliente {
 
-	private int id_persona_cliente,id,edad;
-	private String nombre, apellido, DNI, correo, telefono, sexo;
+	private int id;
+	private String nombre, apellido, DNI, correo, telefono, fecha;
 	
 	
 	
@@ -21,7 +21,7 @@ public class Cliente {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
-		    ResultSet rs = st.executeQuery("SELECT * FROM personas WHERE nombre LIKE '%" + nombre +"%';");
+		    ResultSet rs = st.executeQuery("SELECT * FROM clientes WHERE nombre LIKE '%" + nombre +"%';");
 			return rs;
 
 		}		 
@@ -32,14 +32,14 @@ public class Cliente {
 		}
 		return null;
 	}
-	public void altaCliente(String nombre,String apellido, String dni, String correo, String telefono, String sexo, int edad) {
+	public void altaCliente(String nombre,String apellido, String dni, String correo, String telefono, String sexo, String fecha) {
+	
 		
 		try {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
-			st.executeUpdate("INSERT INTO personas (`nombre`, `apellido`,`dni`,`correo`,`telefono`,`sexo`) VALUES ('" + nombre + "', '" + apellido + "', '"+dni+"',"
-					+ " '" + correo + "','" + telefono + "','"+ sexo +"',"+edad+");");
+			st.executeUpdate("INSERT INTO clientes (`nombre`, `apellido`,`dni`,`correo`,`telefono`,`sexo`) VALUES ('"+nombre+"','"+apellido +"','"+dni+"','"+correo+"','" +telefono+"','"+sexo+"','"+fecha+"');");
 			
 		}catch(SQLException e2) {
 			//System.out.println("nope2");
