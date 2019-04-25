@@ -20,6 +20,12 @@ import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionListener;
+import java.awt.Rectangle;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Component;
+import java.awt.ComponentOrientation;
 
 public class altaCliente extends JPanel {
 	private JTextField textField;
@@ -37,92 +43,93 @@ public class altaCliente extends JPanel {
 	 * Create the panel.
 	 */
 	public altaCliente() {
+		setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		setLayout(null);
 		
 		JLabel lblIdDeCliente = new JLabel("ID de Cliente:");
-		lblIdDeCliente.setBounds(72, 31, 102, 25);
+		lblIdDeCliente.setBounds(10, 23, 102, 25);
 		lblIdDeCliente.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblIdDeCliente);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(72, 67, 102, 25);
+		lblNombre.setBounds(10, 59, 102, 25);
 		lblNombre.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblNombre);
 		
 		JLabel lblApellido = new JLabel("Apellido:");
-		lblApellido.setBounds(72, 103, 102, 25);
+		lblApellido.setBounds(10, 95, 102, 25);
 		lblApellido.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblApellido);
 		
 		JLabel lblDni = new JLabel("D.N.I");
-		lblDni.setBounds(72, 139, 102, 25);
+		lblDni.setBounds(10, 131, 102, 25);
 		lblDni.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblDni);
 		
 		JLabel lblCorreo = new JLabel("Correo");
-		lblCorreo.setBounds(415, 31, 132, 25);
+		lblCorreo.setBounds(353, 23, 132, 25);
 		lblCorreo.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblCorreo);
 		
 		JLabel lblTelfono = new JLabel("Tel\u00E9fono");
-		lblTelfono.setBounds(415, 67, 120, 25);
+		lblTelfono.setBounds(353, 59, 120, 25);
 		lblTelfono.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblTelfono);
 		
 		JLabel lblSexo = new JLabel("Sexo");
-		lblSexo.setBounds(415, 103, 120, 25);
+		lblSexo.setBounds(353, 95, 120, 25);
 		lblSexo.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblSexo);
 		
 		JLabel lblEdad = new JLabel("Fecha de Nacimiento:");
-		lblEdad.setBounds(415, 139, 132, 25);
+		lblEdad.setBounds(353, 131, 132, 25);
 		lblEdad.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblEdad);
 		
 		textField = new JTextField();
-		textField.setBounds(184, 34, 136, 20);
+		textField.setBounds(122, 26, 136, 20);
 		textField.setEditable(false);
 		add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(184, 70, 136, 20);
+		textField_1.setBounds(122, 62, 136, 20);
 		add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(184, 106, 136, 20);
+		textField_2.setBounds(122, 98, 136, 20);
 		add(textField_2);
 		textField_2.setColumns(10);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(184, 142, 136, 20);
+		textField_3.setBounds(122, 134, 136, 20);
 		add(textField_3);
 		textField_3.setColumns(10);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(545, 34, 136, 20);
+		textField_4.setBounds(483, 26, 136, 20);
 		add(textField_4);
 		textField_4.setColumns(10);
 		
 		textField_5 = new JTextField();
-		textField_5.setBounds(545, 70, 136, 20);
+		textField_5.setBounds(483, 62, 136, 20);
 		add(textField_5);
 		textField_5.setColumns(10);
 		
 		txtFecha = new JTextField();
 		txtFecha.setToolTipText("DD/MM/AAAA");
-		txtFecha.setBounds(545, 142, 136, 20);
+		txtFecha.setBounds(483, 134, 136, 20);
 		add(txtFecha);
 		txtFecha.setColumns(10);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(82, 251, 599, 166);
+		scrollPane_1.setBounds(20, 243, 599, 166);
 		add(scrollPane_1);
 		table_1 = new JTable();
 		
 		Choice choice = new Choice();
-		choice.setBounds(545, 103, 136, 20);
+		choice.setBounds(483, 95, 136, 20);
 		add(choice);
 		choice.add("Masculino");
 		choice.add("Femenino");
@@ -139,24 +146,24 @@ public class altaCliente extends JPanel {
 						textField_5.getText(),choice.getSelectedItem(),txtFecha.getText());
 			}
 		});
-		btnNuevo.setBounds(204, 173, 89, 23);
+		btnNuevo.setBounds(142, 165, 89, 23);
 		add(btnNuevo);
 		
 		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.setBounds(328, 173, 89, 23);
+		btnGuardar.setBounds(266, 165, 89, 23);
 		add(btnGuardar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(458, 173, 89, 23);
+		btnCancelar.setBounds(396, 165, 89, 23);
 		add(btnCancelar);
 		
 		JLabel lblBuscar = new JLabel("Buscar:");
-		lblBuscar.setBounds(149, 215, 47, 20);
+		lblBuscar.setBounds(87, 207, 47, 20);
 		lblBuscar.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblBuscar);
 		
 		textField_6 = new JTextField();
-		textField_6.setBounds(200, 216, 284, 20);
+		textField_6.setBounds(138, 208, 284, 20);
 		add(textField_6);
 		textField_6.setColumns(10);
 		
@@ -201,7 +208,7 @@ public class altaCliente extends JPanel {
 		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
 		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(503, 217, 89, 23);
+		btnBuscar.setBounds(441, 209, 89, 23);
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DefaultTableModel modelo;

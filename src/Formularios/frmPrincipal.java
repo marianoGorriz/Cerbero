@@ -23,6 +23,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
+import java.awt.Dimension;
+import java.awt.Point;
 
 public class frmPrincipal extends JFrame {
 
@@ -48,7 +50,7 @@ public class frmPrincipal extends JFrame {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 944, 596);
+		frame.setBounds(100, 100, 780, 596);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("...:Sistema de ventas de puntos:...");
 		

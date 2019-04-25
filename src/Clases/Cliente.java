@@ -21,7 +21,7 @@ public class Cliente {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
-		    ResultSet rs = st.executeQuery("SELECT * FROM clientes WHERE nombre LIKE '%" + nombre +"%';");
+		    ResultSet rs = st.executeQuery("SELECT * FROM clientes WHERE `nombre` LIKE '%" + nombre +"%';");
 			return rs;
 
 		}		 
@@ -39,7 +39,7 @@ public class Cliente {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
-			st.executeUpdate("INSERT INTO clientes (`nombre`, `apellido`,`dni`,`correo`,`telefono`,`sexo`) VALUES ('"+nombre+"','"+apellido +"','"+dni+"','"+correo+"','" +telefono+"','"+sexo+"','"+fecha+"');");
+			st.executeUpdate("INSERT INTO clientes (`nombre`, `apellido`,`dni`,`correo`,`telefono`,`sexo`,`fecha_nacimiento` ) VALUES ('"+nombre+"','"+apellido +"','"+dni+"','"+correo+"','" +telefono+"','"+sexo+"','"+fecha+"');");
 			
 		}catch(SQLException e2) {
 			//System.out.println("nope2");
