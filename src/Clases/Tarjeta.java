@@ -1,5 +1,12 @@
 package Clases;
 
+import java.sql.Connection;
+import java.sql.Statement;
+
+import javax.swing.JOptionPane;
+
+import Vistas.Conexion;
+
 public class Tarjeta {
 
 	private String ultima_tarjeta, n_tarjeta, fecha_alta,ultima_compraa;
@@ -53,6 +60,20 @@ public class Tarjeta {
 		this.id_tarjeta_cliente = id_tarjeta_cliente;
 	}
 	
+	public void altaTarjeta(int id, String tarjeta)
+	{
+		
+		try {
+			String fecha2 = "02/02/2018";
+			Conexion cn = new Conexion();
+			Connection con = cn.conectarDB();
+			Statement st =con.createStatement();
+			st.executeUpdate("INSERT INTO tarjetas (cantidad_tarjeta,`ultima_tarjeta`,`n_tarjeta`,`puntos_acumulados`,`fecha_alta`,estado,`ultima_compra`, id_tarjeta_cliente) VALUES ("+1+",'"+tarjeta+"','"+tarjeta+"',"+0+",'"+fecha2+"',"+1+",'"+fecha2+"',"+id+");");	
+		} catch (Exception e2) {
+			JOptionPane.showMessageDialog(null, "Error al dar de alta tarjeta!");
+			System.out.println("SQLException: " + e2.getMessage());	
+		}
+	}
 	
 	
 	

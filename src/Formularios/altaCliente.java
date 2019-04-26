@@ -7,7 +7,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import Clases.Cliente;
-
+import Clases.Tarjeta;
 
 import java.awt.Choice;
 import javax.swing.JScrollPane;
@@ -38,7 +38,7 @@ public class altaCliente extends JPanel {
 	
 	private JTextField textField_6;
 	private JTable table_1;
-	private JTextField textField_7;
+	private JTextField txtTarjeta;
 
 	/**
 	 * Create the panel.
@@ -143,8 +143,12 @@ public class altaCliente extends JPanel {
 		btnNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Cliente cliente = new Cliente();
-				cliente.altaCliente(textField_1.getText(), textField_2.getText(), textField_3.getText(), textField_4.getText(),
-						textField_5.getText(),choice.getSelectedItem(),txtFecha.getText());
+			int id = cliente.altaCliente(textField_1.getText(), textField_2.getText(), textField_3.getText(), textField_4.getText(),
+						textField_5.getText(),choice.getSelectedItem(),txtFecha.getText(),txtTarjeta.getText());
+			Tarjeta tarjeta = new Tarjeta();
+			String t = txtTarjeta.getText();
+			tarjeta.altaTarjeta(id, t);
+			
 			}
 		});
 		btnNuevo.setBounds(142, 205, 89, 23);
@@ -246,10 +250,10 @@ public class altaCliente extends JPanel {
 		lblNDeTarjeta.setBounds(10, 171, 102, 25);
 		add(lblNDeTarjeta);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(122, 174, 136, 20);
-		add(textField_7);
-		textField_7.setColumns(10);
+		txtTarjeta = new JTextField();
+		txtTarjeta.setBounds(122, 174, 136, 20);
+		add(txtTarjeta);
+		txtTarjeta.setColumns(10);
 		
 	
 		
