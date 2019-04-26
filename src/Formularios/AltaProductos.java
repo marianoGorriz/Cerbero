@@ -1,6 +1,7 @@
 package Formularios;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -17,6 +18,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.border.EmptyBorder;
 
 public class AltaProductos extends JPanel {
 	private JTextField textField;
@@ -69,11 +73,15 @@ public class AltaProductos extends JPanel {
 		btnCargar.setBounds(10, 36, 96, 23);
 		add(btnCargar);
 		
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 104, 331, 185);
+		add(scrollPane);
+		
 		table = new JTable();
 
-
-		table.setBounds(10, 104, 331, 185);
-		add(table);
+		scrollPane.setViewportView(table);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
 		textField_2 = new JTextField();
 		textField_2.setBounds(10, 70, 271, 20);
