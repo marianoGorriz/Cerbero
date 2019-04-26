@@ -38,6 +38,7 @@ public class altaCliente extends JPanel {
 	
 	private JTextField textField_6;
 	private JTable table_1;
+	private JTextField textField_7;
 
 	/**
 	 * Create the panel.
@@ -124,7 +125,7 @@ public class altaCliente extends JPanel {
 		txtFecha.setColumns(10);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(20, 243, 599, 166);
+		scrollPane_1.setBounds(10, 269, 618, 166);
 		add(scrollPane_1);
 		table_1 = new JTable();
 		
@@ -146,24 +147,24 @@ public class altaCliente extends JPanel {
 						textField_5.getText(),choice.getSelectedItem(),txtFecha.getText());
 			}
 		});
-		btnNuevo.setBounds(142, 165, 89, 23);
+		btnNuevo.setBounds(142, 205, 89, 23);
 		add(btnNuevo);
 		
 		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.setBounds(266, 165, 89, 23);
+		btnGuardar.setBounds(266, 205, 89, 23);
 		add(btnGuardar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(396, 165, 89, 23);
+		btnCancelar.setBounds(396, 205, 89, 23);
 		add(btnCancelar);
 		
 		JLabel lblBuscar = new JLabel("Buscar:");
-		lblBuscar.setBounds(87, 207, 47, 20);
+		lblBuscar.setBounds(87, 238, 47, 20);
 		lblBuscar.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblBuscar);
 		
 		textField_6 = new JTextField();
-		textField_6.setBounds(138, 208, 284, 20);
+		textField_6.setBounds(138, 239, 284, 20);
 		add(textField_6);
 		textField_6.setColumns(10);
 		
@@ -208,7 +209,7 @@ public class altaCliente extends JPanel {
 		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
 		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(441, 209, 89, 23);
+		btnBuscar.setBounds(441, 240, 89, 23);
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DefaultTableModel modelo;
@@ -239,6 +240,16 @@ public class altaCliente extends JPanel {
 			}
 		});
 		add(btnBuscar);
+		
+		JLabel lblNDeTarjeta = new JLabel("N\u00BA de tarjeta:");
+		lblNDeTarjeta.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblNDeTarjeta.setBounds(10, 171, 102, 25);
+		add(lblNDeTarjeta);
+		
+		textField_7 = new JTextField();
+		textField_7.setBounds(122, 174, 136, 20);
+		add(textField_7);
+		textField_7.setColumns(10);
 		
 	
 		
