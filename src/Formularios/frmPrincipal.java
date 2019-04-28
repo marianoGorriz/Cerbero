@@ -168,7 +168,6 @@ public class frmPrincipal extends JFrame {
 				frame.getContentPane().add(adminUser);
 				frame.repaint();
 				
-				
 			}
 			
 		});

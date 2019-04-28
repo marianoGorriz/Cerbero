@@ -6,10 +6,12 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.AbstractListModel;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,6 +29,8 @@ import java.awt.ComponentOrientation;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class PanelUsuarios extends JPanel {
 	private JTextField textField;
@@ -35,11 +39,17 @@ public class PanelUsuarios extends JPanel {
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
 	private JTable table;
+	private JButton btnEliminar,btnNuevo,btnCancelar,btnActualizar,btnNewButton;
+
 
 	/**
 	 * Create the panel.
 	 */
 	public PanelUsuarios() {
+	
+		addComponentListener(new ComponentAdapter() {
+			
+		});
 		setLayout(null);
 		
 		JLabel lblIdDelUsuario = new JLabel("Id del Usuario:");
@@ -83,7 +93,7 @@ public class PanelUsuarios extends JPanel {
 		add(list);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(79, 197, 177, 20);
+		textField_4.setBounds(119, 206, 201, 20);
 		add(textField_4);
 		textField_4.setColumns(10);
 		
@@ -92,21 +102,65 @@ public class PanelUsuarios extends JPanel {
 		scrollPane.setBounds(25, 239, 489, 155);
 		add(scrollPane);
 		table = new JTable();
-		
-		JButton btnEliminar = new JButton("Desabilitar");
-		btnEliminar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnEliminar.setBounds(410, 128, 104, 23);
-		add(btnEliminar);
-		
+
 		
 		Choice choice = new Choice();
 		choice.setBounds(154, 160, 130, 20);
 		add(choice);
 		choice.add("Administrador");
 		choice.add("Moza");
+		
+		JButton btnEliminar = new JButton("Guardar");
+		btnEliminar.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if(textField_1.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Falta el campo Usuario");
+					textField_1.requestFocusInWindow();
+					return;
+				}
+				
+				String con = new String (passwordField.getPassword());
+				String conpass = new String(passwordField_1.getPassword());
+				
+				if(con.contentEquals("") ) {
+					JOptionPane.showMessageDialog(null, "Falta ingresar el campo Contraseña");
+					passwordField.requestFocusInWindow();
+					return;
+				}
+				if(conpass.equals("") ) {
+					JOptionPane.showMessageDialog(null, "Falta confirmar la Contraseña");
+					passwordField_1.requestFocusInWindow();
+					return;
+				}
+				
+				if(!con.equals(conpass)) {
+					JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+					passwordField.setText("");
+					passwordField_1.setText("");
+					passwordField.requestFocusInWindow();
+					return;
+				}
+				
+				
+				Usuario usuario = new Usuario();
+				
+				
+				char [] array = passwordField.getPassword();
+				String pass = new String(array);
+				usuario.altaUsuario(textField_1.getText(), pass, choice.getSelectedItem() );
+				
+			
+				
+			
+				
+			}
+		});
+		
+		btnEliminar.setBounds(410, 56, 104, 23);
+		add(btnEliminar);
+		
 		
 		JButton btnActualizar = new JButton("Actualizar");
 		btnActualizar.addActionListener(new ActionListener() {
@@ -126,11 +180,27 @@ public class PanelUsuarios extends JPanel {
 			}
 		});
 		
-		btnActualizar.setBounds(410, 60, 104, 23);
+		btnActualizar.setBounds(410, 123, 104, 23);
 		add(btnActualizar);
 		
 		JButton btnNewButton = new JButton("Habilitar");
-		btnNewButton.setBounds(410, 92, 104, 23);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+					int column = 0;
+					int row = table.getSelectedRow();
+					int id = Integer.parseInt(table.getModel().getValueAt(row, column).toString());
+					String valor = btnNewButton.getText();
+					Usuario habilitar = new Usuario();				
+					if(valor == "Deshabilitar") {
+						habilitar.habilitarUsuario(valor, id);
+					} else {
+						habilitar.habilitarUsuario(valor, id);
+					}
+				}
+			
+		});
+		btnNewButton.setBounds(410, 157, 104, 23);
 		add(btnNewButton);
 		
 		table.addMouseListener(new MouseAdapter() {
@@ -157,11 +227,11 @@ public class PanelUsuarios extends JPanel {
 				
 				
 				if(value5 == "true") {
-					btnEliminar.setText("Deshabilitar");
-					btnEliminar.setEnabled(true);
+					btnNewButton.setText("Deshabilitar");
+					btnNewButton.setEnabled(true);
 				}else {
 					btnNewButton.setText("Habilitar");
-					btnNewButton.setEnabled(false);
+					btnNewButton.setEnabled(true);
 				}
 				
 				
@@ -199,31 +269,59 @@ public class PanelUsuarios extends JPanel {
 				}
 			
 		});
-		btnBuscar.setBounds(296, 197, 89, 23);
+		btnBuscar.setBounds(351, 205, 89, 23);
 		add(btnBuscar);
 		
-
-
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent evt) {
+				textField_1.setEnabled(false);
+				passwordField.setEnabled(false);
+				passwordField_1.setEnabled(false);
+				
+				//btnNuevo.setEnabled(true);
+				btnCancelar.setEnabled(false);
+				btnActualizar.setEnabled(false);
+				btnEliminar.setEnabled(false);
+				btnNewButton.setEnabled(false);
+				
+				textField_1.setText("");
+				passwordField.setText("");
+				passwordField_1.setText("");
+				
+				
+				
+			}
+		});
+		btnCancelar.setBounds(410, 90, 104, 23);
+		add(btnCancelar);
 		
 		JButton btnNuevo = new JButton("Nuevo");
 		btnNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Usuario usuario = new Usuario();
+				textField_1.setEnabled(true);
+				passwordField.setEnabled(true);
+				passwordField_1.setEnabled(true);
+				
+				btnNuevo.setEnabled(true);
+			
+				btnCancelar.setEnabled(true);
+				btnActualizar.setEnabled(false);
+				btnEliminar.setEnabled(true);
+				btnNewButton.setEnabled(false);
+				textField_1.setText("");
+				passwordField.setText("");
+				passwordField_1.setText("");
 				
 				
-					char [] array = passwordField.getPassword();
-					String pass = new String(array);
-					usuario.altaUsuario(textField_1.getText(), pass, choice.getSelectedItem() );
-					
-				
-					
-				
-			}
-		});
+		}});
+		
+		
 		btnNuevo.setBounds(410, 26, 104, 23);
 		add(btnNuevo);
-		
-		
+
+				
 		
 
 		
@@ -235,13 +333,17 @@ public class PanelUsuarios extends JPanel {
 		passwordField_1.setBounds(154, 129, 130, 20);
 		add(passwordField_1);
 		
-	
-		
-		
-		
-		
-		
 
+		
+		JLabel lblBuscar = new JLabel("Buscar:");
+		lblBuscar.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblBuscar.setBounds(58, 207, 53, 17);
+		add(lblBuscar);
+		
+	
 
 	}
+
+	
+
 }

@@ -68,22 +68,22 @@ public class altaCliente extends JPanel {
 		add(lblDni);
 		
 		JLabel lblCorreo = new JLabel("Correo");
-		lblCorreo.setBounds(353, 23, 132, 25);
+		lblCorreo.setBounds(343, 59, 132, 25);
 		lblCorreo.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblCorreo);
 		
 		JLabel lblTelfono = new JLabel("Tel\u00E9fono");
-		lblTelfono.setBounds(353, 59, 120, 25);
+		lblTelfono.setBounds(343, 95, 120, 25);
 		lblTelfono.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblTelfono);
 		
 		JLabel lblSexo = new JLabel("Sexo");
-		lblSexo.setBounds(353, 95, 120, 25);
+		lblSexo.setBounds(343, 131, 120, 25);
 		lblSexo.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblSexo);
 		
 		JLabel lblEdad = new JLabel("Fecha de Nacimiento:");
-		lblEdad.setBounds(353, 131, 132, 25);
+		lblEdad.setBounds(343, 167, 132, 25);
 		lblEdad.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblEdad);
 		
@@ -109,28 +109,28 @@ public class altaCliente extends JPanel {
 		textField_3.setColumns(10);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(483, 26, 136, 20);
+		textField_4.setBounds(473, 62, 136, 20);
 		add(textField_4);
 		textField_4.setColumns(10);
 		
 		textField_5 = new JTextField();
-		textField_5.setBounds(483, 62, 136, 20);
+		textField_5.setBounds(473, 98, 136, 20);
 		add(textField_5);
 		textField_5.setColumns(10);
 		
 		txtFecha = new JTextField();
 		txtFecha.setToolTipText("DD/MM/AAAA");
-		txtFecha.setBounds(483, 134, 136, 20);
+		txtFecha.setBounds(473, 170, 136, 20);
 		add(txtFecha);
 		txtFecha.setColumns(10);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 269, 618, 166);
+		scrollPane_1.setBounds(10, 269, 599, 151);
 		add(scrollPane_1);
 		table_1 = new JTable();
 		
 		Choice choice = new Choice();
-		choice.setBounds(483, 95, 136, 20);
+		choice.setBounds(473, 131, 136, 20);
 		add(choice);
 		choice.add("Masculino");
 		choice.add("Femenino");
@@ -151,15 +151,15 @@ public class altaCliente extends JPanel {
 			
 			}
 		});
-		btnNuevo.setBounds(142, 205, 89, 23);
+		btnNuevo.setBounds(103, 204, 89, 23);
 		add(btnNuevo);
 		
 		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.setBounds(266, 205, 89, 23);
+		btnGuardar.setBounds(222, 204, 89, 23);
 		add(btnGuardar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(396, 205, 89, 23);
+		btnCancelar.setBounds(353, 204, 89, 23);
 		add(btnCancelar);
 		
 		JLabel lblBuscar = new JLabel("Buscar:");
@@ -254,6 +254,10 @@ public class altaCliente extends JPanel {
 		txtTarjeta.setBounds(122, 174, 136, 20);
 		add(txtTarjeta);
 		txtTarjeta.setColumns(10);
+		
+		JButton btnActualizar = new JButton("Actualizar");
+		btnActualizar.setBounds(483, 204, 89, 23);
+		add(btnActualizar);
 		
 	
 		
