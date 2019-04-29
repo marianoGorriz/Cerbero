@@ -52,6 +52,7 @@ public class PanelUsuarios extends JPanel {
 		});
 		setLayout(null);
 		
+		
 		JLabel lblIdDelUsuario = new JLabel("Id del Usuario:");
 		lblIdDelUsuario.setFont(new Font("Tw Cen MT Condensed", Font.BOLD, 13));
 		lblIdDelUsuario.setBounds(29, 26, 82, 14);
@@ -211,6 +212,7 @@ public class PanelUsuarios extends JPanel {
 				int column3 = 2;
 				int column4 = 3;
 				int column5 = 4;
+				
 				btnActualizar.setText("Actualizar");
 				int row = table.getSelectedRow();
 				String value1 = table.getModel().getValueAt(row, column1).toString();
@@ -224,6 +226,12 @@ public class PanelUsuarios extends JPanel {
 				passwordField.setText(value3);
 				choice.select(value4);
 				choice.repaint();
+				
+				btnActualizar.setEnabled(true);
+				textField_1.setEnabled(true);
+				passwordField.setEnabled(true);
+				passwordField_1.setEnabled(true);
+				
 				
 				
 				if(value5 == "true") {
@@ -256,6 +264,8 @@ public class PanelUsuarios extends JPanel {
 					table.setModel(modelo);
 				//	modelo.addRow(new Object[]{"ID", "Usuario", "Contraseña", "Rol","Estado"});
 					ResultSet rs;
+					
+					
 					Usuario usuario = new Usuario();
 					rs = usuario.buscarUsuario(textField_4.getText());
 					try {
@@ -343,7 +353,6 @@ public class PanelUsuarios extends JPanel {
 	
 
 	}
-
 	
 
 }
