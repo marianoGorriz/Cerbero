@@ -40,7 +40,7 @@ public class PanelUsuarios extends JPanel {
 	private JPasswordField passwordField_1;
 	private JTable table;
 	private JButton btnEliminar,btnNuevo,btnCancelar,btnActualizar,btnNewButton;
-
+	
 
 	/**
 	 * Create the panel.
@@ -166,14 +166,67 @@ public class PanelUsuarios extends JPanel {
 		JButton btnActualizar = new JButton("Actualizar");
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int column = 0;
-				int row = table.getSelectedRow();
 
-				int id = Integer.parseInt(table.getModel().getValueAt(row, column).toString());
-				Usuario usuario= new Usuario();
-				char [] array = passwordField.getPassword();
-				String pass = new String(array);
-				usuario.modificarUsuario(textField_1.getText(), pass, id, choice.getSelectedItem());
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to Save your Previous Note First?","Warning",dialogButton);
+				if(dialogResult == JOptionPane.YES_OPTION){
+				  // Saving code here
+					int column = 0;
+					int row = table.getSelectedRow();
+
+					int id = Integer.parseInt(table.getModel().getValueAt(row, column).toString());
+					Usuario usuario= new Usuario();
+					char [] array = passwordField.getPassword();
+					String pass = new String(array);
+					usuario.modificarUsuario(textField_1.getText(), pass, id, choice.getSelectedItem());
+					
+					
+					DefaultTableModel modelo;
+					modelo = new DefaultTableModel();
+					modelo.addColumn("ID");
+					modelo.addColumn("Usuario");
+					modelo.addColumn("Contraseña");
+					modelo.addColumn("Rol");
+					modelo.addColumn("Estado");
+					table.setModel(modelo);
+				//	modelo.addRow(new Object[]{"ID", "Usuario", "Contraseña", "Rol","Estado"});
+					ResultSet rs;
+					
+					
+					Usuario usuario2 = new Usuario();
+					rs = usuario.buscarUsuario(textField_4.getText());
+					try {
+						while(rs.next()) {
+							modelo.addRow(new Object[]{rs.getObject("id"), rs.getObject("usuario"), rs.getObject("contraseña"), rs.getObject("rol"), rs.getObject("Estado")});
+						}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+				}
+				if(dialogResult == JOptionPane.NO_OPTION) {
+						
+							textField_1.setEnabled(false);
+							passwordField.setEnabled(false);
+							passwordField_1.setEnabled(false);
+							
+							//btnNuevo.setEnabled(true);
+							//btnCancelar.setEnabled(false);
+							//btnActualizar.setEnabled(false);
+							//btnEliminar.setEnabled(false);
+							//btnNewButton.setEnabled(false);
+							
+							textField_1.setText("");
+							passwordField.setText("");
+							passwordField_1.setText("");
+							
+						
+							
+						
+					
+				}
+
 				
 				//btnActualizar.setText("Nuevo");
 				//textField.setText("");
@@ -350,9 +403,44 @@ public class PanelUsuarios extends JPanel {
 		lblBuscar.setBounds(58, 207, 53, 17);
 		add(lblBuscar);
 		
-	
+		
+		DefaultTableModel modelo;
+		modelo = new DefaultTableModel();
+		modelo.addColumn("ID");
+		modelo.addColumn("Usuario");
+		modelo.addColumn("Contraseña");
+		modelo.addColumn("Rol");
+		modelo.addColumn("Estado");
+		table.setModel(modelo);
+	//	modelo.addRow(new Object[]{"ID", "Usuario", "Contraseña", "Rol","Estado"});
+		ResultSet rs;
+		
+		
+		Usuario usuario = new Usuario();
+		rs = usuario.buscarUsuario(textField_4.getText());
+		try {
+			while(rs.next()) {
+				modelo.addRow(new Object[]{rs.getObject("id"), rs.getObject("usuario"), rs.getObject("contraseña"), rs.getObject("rol"), rs.getObject("Estado")});
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
+		textField_1.setEnabled(false);
+		passwordField.setEnabled(false);
+		passwordField_1.setEnabled(false);
+		
+		//btnNuevo.setEnabled(true);
+		btnCancelar.setEnabled(false);
+		btnActualizar.setEnabled(false);
+		btnEliminar.setEnabled(false);
+		btnNewButton.setEnabled(false);
+		
+		textField_1.setText("");
+		passwordField.setText("");
+		passwordField_1.setText("");
 	}
-	
+
 
 }

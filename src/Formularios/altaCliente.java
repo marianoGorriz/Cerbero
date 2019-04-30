@@ -260,9 +260,34 @@ public class altaCliente extends JPanel {
 		add(btnActualizar);
 		
 	
-		
+		DefaultTableModel modelo;
+		modelo = new DefaultTableModel();
+		modelo.addColumn("ID");
+		modelo.addColumn("Nombre");
+		modelo.addColumn("Apellido");
+		modelo.addColumn("DNI");
+		modelo.addColumn("Correo");
+		modelo.addColumn("Telefono");
+		modelo.addColumn("Sexo");
+		modelo.addColumn("Fecha Nacimiento");
+		table_1.setModel(modelo);
+	//	modelo.addRow(new Object[]{"ID", "Usuario", "Contraseña", "Rol","Estado"});
+		ResultSet rs;
+		Cliente cliente = new Cliente();
+		rs = cliente.buscarCliente(textField_6.getText());
+		try {
+			while(rs.next()) {
+				modelo.addRow(new Object[]{rs.getObject("id"), 
+						rs.getObject("nombre"), rs.getObject("apellido"), rs.getObject("DNI"), rs.getObject("correo"),
+						rs.getObject("telefono"),rs.getObject("sexo"),rs.getObject("fecha_nacimiento")});
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	
 	
 
 	}
+	
 }
