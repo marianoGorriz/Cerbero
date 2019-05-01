@@ -115,6 +115,9 @@ public class PanelUsuarios extends JPanel {
 		btnEliminar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent arg0) {
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea agregar un nuevo usuario?","Precaución",dialogButton);
+				if(dialogResult == JOptionPane.YES_OPTION){
 				
 				if(textField_1.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "Falta el campo Usuario");
@@ -151,10 +154,50 @@ public class PanelUsuarios extends JPanel {
 				char [] array = passwordField.getPassword();
 				String pass = new String(array);
 				usuario.altaUsuario(textField_1.getText(), pass, choice.getSelectedItem() );
-				
+				}
+				textField_1.setText("");
+				passwordField.setText("");
+				passwordField_1.setText("");
 			
+				if(dialogResult == JOptionPane.NO_OPTION) {
+						
+							textField_1.setEnabled(false);
+							passwordField.setEnabled(false);
+							passwordField_1.setEnabled(false);
+							
+							
+							textField_1.setText("");
+							passwordField.setText("");
+							passwordField_1.setText("");
+							
+						
+				}
 				
-			
+		
+					DefaultTableModel modelo;
+					modelo = new DefaultTableModel();
+					modelo.addColumn("ID");
+					modelo.addColumn("Usuario");
+					modelo.addColumn("Contraseña");
+					modelo.addColumn("Rol");
+					modelo.addColumn("Estado");
+					table.setModel(modelo);
+				//	modelo.addRow(new Object[]{"ID", "Usuario", "Contraseña", "Rol","Estado"});
+					ResultSet rs;
+					
+					
+					Usuario usuario = new Usuario();
+					rs = usuario.buscarUsuario(textField_4.getText());
+					try {
+						while(rs.next()) {
+							modelo.addRow(new Object[]{rs.getObject("id"), rs.getObject("usuario"), rs.getObject("contraseña"), rs.getObject("rol"), rs.getObject("Estado")});
+						}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				
+		
 				
 			}
 		});
@@ -166,9 +209,10 @@ public class PanelUsuarios extends JPanel {
 		JButton btnActualizar = new JButton("Actualizar");
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 
 				int dialogButton = JOptionPane.YES_NO_OPTION;
-				int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to Save your Previous Note First?","Warning",dialogButton);
+				int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea actualizar este usuario?","Precaución",dialogButton);
 				if(dialogResult == JOptionPane.YES_OPTION){
 				  // Saving code here
 					int column = 0;
@@ -203,7 +247,13 @@ public class PanelUsuarios extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					textField_1.setText("");
+					passwordField.setText("");
+					passwordField_1.setText("");
+						gg();
 					
+						
+			
 				}
 				if(dialogResult == JOptionPane.NO_OPTION) {
 						
@@ -211,11 +261,6 @@ public class PanelUsuarios extends JPanel {
 							passwordField.setEnabled(false);
 							passwordField_1.setEnabled(false);
 							
-							//btnNuevo.setEnabled(true);
-							//btnCancelar.setEnabled(false);
-							//btnActualizar.setEnabled(false);
-							//btnEliminar.setEnabled(false);
-							//btnNewButton.setEnabled(false);
 							
 							textField_1.setText("");
 							passwordField.setText("");
@@ -283,7 +328,7 @@ public class PanelUsuarios extends JPanel {
 				btnActualizar.setEnabled(true);
 				textField_1.setEnabled(true);
 				passwordField.setEnabled(true);
-				passwordField_1.setEnabled(true);
+				passwordField_1.setEnabled(false);
 				
 				
 				
@@ -440,7 +485,13 @@ public class PanelUsuarios extends JPanel {
 		textField_1.setText("");
 		passwordField.setText("");
 		passwordField_1.setText("");
+	
 	}
-
+	private void gg() {
+		btnCancelar.setEnabled(false);
+		btnActualizar.setEnabled(false);
+		btnEliminar.setEnabled(false);
+		btnNewButton.setEnabled(false);
+	}
 
 }

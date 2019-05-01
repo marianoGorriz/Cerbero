@@ -39,6 +39,7 @@ public class altaCliente extends JPanel {
 	private JTextField textField_6;
 	private JTable table_1;
 	private JTextField txtTarjeta;
+	public JButton btnCancelar, btnNuevo, btnActualizar, btnGuardar;
 
 	/**
 	 * Create the panel.
@@ -137,30 +138,24 @@ public class altaCliente extends JPanel {
 		
 	
 		
-	
+
 		
-		JButton btnNuevo = new JButton("Nuevo");
-		btnNuevo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Cliente cliente = new Cliente();
-			int id = cliente.altaCliente(textField_1.getText(), textField_2.getText(), textField_3.getText(), textField_4.getText(),
+		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener(new ActionListener() {
+			Cliente cliente = new Cliente();
+			public void actionPerformed(ActionEvent arg0) {
+				int id = cliente.altaCliente(textField_1.getText(), textField_2.getText(), textField_3.getText(), textField_4.getText(),
 						textField_5.getText(),choice.getSelectedItem(),txtFecha.getText(),txtTarjeta.getText());
 			Tarjeta tarjeta = new Tarjeta();
 			String t = txtTarjeta.getText();
 			tarjeta.altaTarjeta(id, t);
-			
+				
 			}
 		});
-		btnNuevo.setBounds(103, 204, 89, 23);
-		add(btnNuevo);
-		
-		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.setBounds(222, 204, 89, 23);
 		add(btnGuardar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(353, 204, 89, 23);
-		add(btnCancelar);
+	
 		
 		JLabel lblBuscar = new JLabel("Buscar:");
 		lblBuscar.setBounds(87, 238, 47, 20);
@@ -256,7 +251,7 @@ public class altaCliente extends JPanel {
 		txtTarjeta.setColumns(10);
 		
 		JButton btnActualizar = new JButton("Actualizar");
-		btnActualizar.setBounds(483, 204, 89, 23);
+		btnActualizar.setBounds(483, 204, 102, 23);
 		add(btnActualizar);
 		
 	
@@ -285,9 +280,73 @@ public class altaCliente extends JPanel {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+
+				btnActualizar.setEnabled(false);
+				btnCancelar.setEnabled(false);
+				btnGuardar.setEnabled(false);
+			
+				textField_1.setEnabled(true);
+				textField_2.setEnabled(true);
+				textField_3.setEnabled(true);
+				txtTarjeta.setEnabled(true);
+				textField_4.setEnabled(true);
+				textField_5.setEnabled(true);
+				textField_6.setEnabled(true);
+				txtFecha.setEnabled(true);
+			}
+		});
+		btnCancelar.setBounds(353, 204, 89, 23);
+		add(btnCancelar);
+		
+		
+		
+		JButton btnNuevo = new JButton("Nuevo");
+		btnNuevo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+		
+				btnActualizar.setEnabled(false);
+				btnCancelar.setEnabled(true);
+				btnGuardar.setEnabled(true);
+				btnNuevo.setEnabled(false);
+				textField_1.setEnabled(true);
+				textField_2.setEnabled(true);
+				textField_3.setEnabled(true);
+				txtTarjeta.setEnabled(true);
+				textField_4.setEnabled(true);
+				textField_5.setEnabled(true);
+				textField_6.setEnabled(true);
+				txtFecha.setEnabled(true);
+				
+			}
+		});
+		btnNuevo.setBounds(103, 204, 89, 23);
+		add(btnNuevo);
+		
+		btnNuevo.setEnabled(true);
+		btnActualizar.setEnabled(false);
+		btnCancelar.setEnabled(false);
+		btnGuardar.setEnabled(false);
+		textField_1.setEnabled(false);
+		textField_2.setEnabled(false);
+		textField_3.setEnabled(false);
+		txtTarjeta.setEnabled(false);
+		textField_4.setEnabled(false);
+		textField_5.setEnabled(false);
+		textField_6.setEnabled(false);
+		txtFecha.setEnabled(false);
+		
+		
+		
+		
+		
+		
 	
 
 	}
-	
+
 }
