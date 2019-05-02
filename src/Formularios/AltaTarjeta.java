@@ -6,6 +6,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class AltaTarjeta extends JPanel {
 	private JTextField textField;
@@ -32,7 +33,7 @@ public class AltaTarjeta extends JPanel {
 		add(lblNewLabel);
 		
 		textField = new JTextField();
-		textField.setBounds(33, 9, 86, 17);
+		textField.setBounds(47, 9, 86, 17);
 		add(textField);
 		textField.setColumns(10);
 		
@@ -41,7 +42,7 @@ public class AltaTarjeta extends JPanel {
 		add(lblCantidadDeTarjetas);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(129, 39, 86, 20);
+		textField_1.setBounds(145, 39, 86, 20);
 		add(textField_1);
 		textField_1.setColumns(10);
 		
@@ -50,7 +51,7 @@ public class AltaTarjeta extends JPanel {
 		add(lblNewLabel_1);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(106, 67, 86, 20);
+		textField_2.setBounds(145, 68, 86, 20);
 		add(textField_2);
 		textField_2.setColumns(10);
 		
@@ -64,12 +65,12 @@ public class AltaTarjeta extends JPanel {
 		textField_3.setColumns(10);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(106, 129, 86, 20);
+		textField_4.setBounds(106, 136, 86, 20);
 		add(textField_4);
 		textField_4.setColumns(10);
 		
 		textField_5 = new JTextField();
-		textField_5.setBounds(106, 160, 86, 20);
+		textField_5.setBounds(106, 167, 86, 20);
 		add(textField_5);
 		textField_5.setColumns(10);
 		
@@ -82,22 +83,34 @@ public class AltaTarjeta extends JPanel {
 		add(lblNewLabel_3);
 		
 		JLabel lblEstado = new JLabel("Estado:");
-		lblEstado.setBounds(291, 11, 46, 14);
+		lblEstado.setBounds(429, 11, 46, 14);
 		add(lblEstado);
 		
 		textField_6 = new JTextField();
-		textField_6.setBounds(429, 8, 86, 20);
+		textField_6.setBounds(513, 8, 86, 20);
 		add(textField_6);
 		textField_6.setColumns(10);
 		
 		textField_7 = new JTextField();
-		textField_7.setBounds(429, 39, 86, 20);
+		textField_7.setBounds(513, 39, 86, 20);
 		add(textField_7);
 		textField_7.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("Ultima compra:");
-		lblNewLabel_4.setBounds(291, 42, 83, 14);
+		lblNewLabel_4.setBounds(408, 42, 83, 14);
 		add(lblNewLabel_4);
+		
+		JButton btnNuevo = new JButton("Nuevo");
+		btnNuevo.setBounds(25, 223, 89, 23);
+		add(btnNuevo);
+		
+		JButton btnModificar = new JButton("Modificar");
+		btnModificar.setBounds(25, 273, 89, 23);
+		add(btnModificar);
+		
+		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.setBounds(25, 322, 89, 23);
+		add(btnGuardar);
 
 	}
 }

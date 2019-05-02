@@ -9,11 +9,14 @@ import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
 
 public class Pedido extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTable table;
+	private JButton btnGenerarCodigo;
+	private JButton btnImprimir;
 
 	
 	
@@ -40,7 +43,7 @@ public class Pedido extends JPanel {
 		textField_1.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 69, 557, 330);
+		scrollPane.setBounds(10, 69, 560, 330);
 		add(scrollPane);
 		
 		table = new JTable();
@@ -52,6 +55,14 @@ public class Pedido extends JPanel {
 			}
 		));
 		scrollPane.setViewportView(table);
+		
+		btnGenerarCodigo = new JButton("Generar Codigo");
+		btnGenerarCodigo.setBounds(291, 7, 122, 23);
+		add(btnGenerarCodigo);
+		
+		btnImprimir = new JButton("Imprimir");
+		btnImprimir.setBounds(291, 40, 122, 23);
+		add(btnImprimir);
 
 	}
 }

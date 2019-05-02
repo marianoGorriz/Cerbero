@@ -17,7 +17,7 @@ public class TarjetasActivas extends JPanel{
 		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 24, 442, 258);
+		scrollPane.setBounds(10, 11, 560, 397);
 		add(scrollPane);
 		
 		table = new JTable();
