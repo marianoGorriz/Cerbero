@@ -250,7 +250,7 @@ public class PanelUsuarios extends JPanel {
 					textField_1.setText("");
 					passwordField.setText("");
 					passwordField_1.setText("");
-						gg();
+				
 					
 						
 			
@@ -273,9 +273,7 @@ public class PanelUsuarios extends JPanel {
 				}
 
 				
-				//btnActualizar.setText("Nuevo");
-				//textField.setText("");
-				//textField_1.setText("");
+			
 			}
 		});
 		

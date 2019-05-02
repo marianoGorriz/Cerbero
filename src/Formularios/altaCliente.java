@@ -237,10 +237,122 @@ public class altaCliente extends JPanel {
 		JButton btnActualizar = new JButton("Actualizar");
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 
+				
+				
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea actualizar a este cliente?","Precaución",dialogButton);
+				if(dialogResult == JOptionPane.YES_OPTION){
+					
+					if(textField_1.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "Falta el campo Nombre");
+						textField_1.requestFocusInWindow();
+						return;
+					}
+					if(textField_2.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "Falta el campo Apellido");
+						textField_2.requestFocusInWindow();
+						return;
+					}
+					if(textField_3.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "Falta el campo DNI");
+						textField_3.requestFocusInWindow();
+						return;
+					}
+				
+					if(textField_4.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "Falta el campo Correo");
+						textField_4.requestFocusInWindow();
+						return;
+					}
+					if(textField_5.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "Falta el campo TELEFONO");
+						textField_5.requestFocusInWindow();
+						return;
+					}
+					if(txtFecha.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "Falta el campo Ingrese la FECHA DE NACIMIENTO");
+						txtFecha.requestFocusInWindow();
+						return;
+					}
+					
+					Cliente cliente = new Cliente();
+					int id = Integer.parseInt(textField.getText());
+					
+					cliente.modificarCliente(id, textField_1.getText(), textField_2.getText(), textField_3.getText(), textField_4.getText(),
+								textField_5.getText(),choice.getSelectedItem(),txtFecha.getText());
+					
+					DefaultTableModel modelo;
+					modelo = new DefaultTableModel();
+					modelo.addColumn("ID");
+					modelo.addColumn("Nombre");
+					modelo.addColumn("Apellido");
+					modelo.addColumn("DNI");
+					modelo.addColumn("Correo");
+					modelo.addColumn("Telefono");
+					modelo.addColumn("Sexo");
+					modelo.addColumn("Fecha Nacimiento");
+					table_1.setModel(modelo);
+				//	modelo.addRow(new Object[]{"ID", "Usuario", "Contraseña", "Rol","Estado"});
+					ResultSet rs;
+					Cliente clientes = new Cliente();
+					rs = cliente.buscarCliente(textField_6.getText());
+					try {
+						while(rs.next()) {
+							modelo.addRow(new Object[]{rs.getObject("id"), 
+									rs.getObject("nombre"), rs.getObject("apellido"), rs.getObject("DNI"), rs.getObject("correo"),
+									rs.getObject("telefono"),rs.getObject("sexo"),rs.getObject("fecha_nacimiento")});
+						}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					textField.setText("");
+					textField_1.setText("");
+					textField_2.setText("");
+					textField_3.setText("");
+					textField_4.setText("");
+					textField_5.setText("");
+					txtFecha.setText("");
+					txtTarjeta.setText("");
+					textField_1.setEnabled(false);
+					textField_2.setEnabled(false);
+					textField_3.setEnabled(false);
+					txtTarjeta.setEnabled(false);
+					textField_4.setEnabled(false);
+					textField_5.setEnabled(false);
+					textField_6.setEnabled(false);
+					txtFecha.setEnabled(false);
+					
+				}
+				if(dialogResult == JOptionPane.NO_OPTION) {
+					
+					textField.setText("");
+					textField_1.setText("");
+					textField_2.setText("");
+					textField_3.setText("");
+					textField_4.setText("");
+					textField_5.setText("");
+					txtFecha.setText("");
+					txtTarjeta.setText("");
+					textField_1.setEnabled(false);
+					textField_2.setEnabled(false);
+					textField_3.setEnabled(false);
+					txtTarjeta.setEnabled(false);
+					textField_4.setEnabled(false);
+					textField_5.setEnabled(false);
+					textField_6.setEnabled(false);
+					txtFecha.setEnabled(false);
+					 
+					JOptionPane.showMessageDialog(null,"Modificacion de usuario Cancelada");
+		
+					
+				
+				}
+			}
 			}
 			
-		});
+		);
 		
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
@@ -251,11 +363,12 @@ public class altaCliente extends JPanel {
 				textField_1.setEnabled(true);
 				textField_2.setEnabled(true);
 				textField_3.setEnabled(true);
-				txtTarjeta.setEnabled(true);
+				txtTarjeta.setEnabled(false);
 				textField_4.setEnabled(true);
 				textField_5.setEnabled(true);
 				textField_6.setEnabled(true);
 				txtFecha.setEnabled(true);
+				
 				
 				btnActualizar.setEnabled(true);
 				
