@@ -2,6 +2,8 @@ package Formularios;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -39,7 +41,7 @@ public class altaCliente extends JPanel {
 	private JTextField textField_6;
 	private JTable table_1;
 	private JTextField txtTarjeta;
-	public JButton btnCancelar, btnNuevo, btnActualizar, btnGuardar;
+	public JButton  btnNuevo, btnActualizar, btnGuardar;
 
 	/**
 	 * Create the panel.
@@ -105,11 +107,13 @@ public class altaCliente extends JPanel {
 		textField_2.setColumns(10);
 		
 		textField_3 = new JTextField();
+		textField_3.setToolTipText("NN.NNN.NNN");
 		textField_3.setBounds(122, 134, 136, 20);
 		add(textField_3);
 		textField_3.setColumns(10);
 		
 		textField_4 = new JTextField();
+		textField_4.setToolTipText("ejemplo@ejemplo.com");
 		textField_4.setBounds(473, 62, 136, 20);
 		add(textField_4);
 		textField_4.setColumns(10);
@@ -130,6 +134,8 @@ public class altaCliente extends JPanel {
 		add(scrollPane_1);
 		table_1 = new JTable();
 		
+	
+		
 		Choice choice = new Choice();
 		choice.setBounds(473, 131, 136, 20);
 		add(choice);
@@ -142,18 +148,123 @@ public class altaCliente extends JPanel {
 		
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
-			Cliente cliente = new Cliente();
 			public void actionPerformed(ActionEvent arg0) {
+			
+			int dialogButton = JOptionPane.YES_NO_OPTION;
+			int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea agregar un nuevo Cliente?","Precaución",dialogButton);
+			if(dialogResult == JOptionPane.YES_OPTION){
+				
+				if(textField_1.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Falta el campo Nombre");
+					textField_1.requestFocusInWindow();
+					return;
+				}
+				if(textField_2.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Falta el campo Apellido");
+					textField_2.requestFocusInWindow();
+					return;
+				}
+				if(textField_3.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Falta el campo DNI");
+					textField_3.requestFocusInWindow();
+					return;
+				}
+				if(txtTarjeta.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Falta agregar la Tarjeta");
+					txtTarjeta.requestFocusInWindow();
+					return;
+				}
+				if(textField_4.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Falta el campo Correo");
+					textField_4.requestFocusInWindow();
+					return;
+				}
+				if(textField_5.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Falta el campo TELEFONO");
+					textField_5.requestFocusInWindow();
+					return;
+				}
+				if(txtFecha.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Falta el campo Ingrese la FECHA DE NACIMIENTO");
+					txtFecha.requestFocusInWindow();
+					return;
+				}
+			
+			Cliente cliente = new Cliente();
+			
 				int id = cliente.altaCliente(textField_1.getText(), textField_2.getText(), textField_3.getText(), textField_4.getText(),
 						textField_5.getText(),choice.getSelectedItem(),txtFecha.getText(),txtTarjeta.getText());
 			Tarjeta tarjeta = new Tarjeta();
 			String t = txtTarjeta.getText();
 			tarjeta.altaTarjeta(id, t);
 				
+			
 			}
-		});
+			
+			if(dialogResult == JOptionPane.NO_OPTION) {
+				
+				textField.setText("");
+				textField_1.setText("");
+				textField_2.setText("");
+				textField_3.setText("");
+				textField_4.setText("");
+				textField_5.setText("");
+				txtFecha.setText("");
+				txtTarjeta.setText("");
+				textField_1.setEnabled(false);
+				textField_2.setEnabled(false);
+				textField_3.setEnabled(false);
+				txtTarjeta.setEnabled(false);
+				textField_4.setEnabled(false);
+				textField_5.setEnabled(false);
+				textField_6.setEnabled(false);
+				txtFecha.setEnabled(false);
+				 
+				JOptionPane.showMessageDialog(null,"Alta de usuario CANCELADA");
+				
+				btnGuardar.setEnabled(false);
+				
+				
+			
+	
+			}
+		
+			
+		}});
 		btnGuardar.setBounds(222, 204, 89, 23);
 		add(btnGuardar);
+		
+		JButton btnActualizar = new JButton("Actualizar");
+		btnActualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 
+			}
+			
+		});
+		
+		JButton btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				btnModificar.setEnabled(false);
+				
+				textField_1.setEnabled(true);
+				textField_2.setEnabled(true);
+				textField_3.setEnabled(true);
+				txtTarjeta.setEnabled(true);
+				textField_4.setEnabled(true);
+				textField_5.setEnabled(true);
+				textField_6.setEnabled(true);
+				txtFecha.setEnabled(true);
+				
+				btnActualizar.setEnabled(true);
+				
+			
+				
+			}
+		});
+		btnModificar.setBounds(333, 203, 89, 23);
+		add(btnModificar);
 		
 	
 		
@@ -199,6 +310,7 @@ public class altaCliente extends JPanel {
 				choice.select(value7);
 				choice.repaint();
 				txtFecha.setText(value8);	
+				btnModificar.setEnabled(true);
 				
 			}
 		});
@@ -250,8 +362,8 @@ public class altaCliente extends JPanel {
 		add(txtTarjeta);
 		txtTarjeta.setColumns(10);
 		
-		JButton btnActualizar = new JButton("Actualizar");
-		btnActualizar.setBounds(483, 204, 102, 23);
+	
+		btnActualizar.setBounds(442, 203, 102, 23);
 		add(btnActualizar);
 		
 	
@@ -280,27 +392,6 @@ public class altaCliente extends JPanel {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-
-				btnActualizar.setEnabled(false);
-				btnCancelar.setEnabled(false);
-				btnGuardar.setEnabled(false);
-			
-				textField_1.setEnabled(true);
-				textField_2.setEnabled(true);
-				textField_3.setEnabled(true);
-				txtTarjeta.setEnabled(true);
-				textField_4.setEnabled(true);
-				textField_5.setEnabled(true);
-				textField_6.setEnabled(true);
-				txtFecha.setEnabled(true);
-			}
-		});
-		btnCancelar.setBounds(353, 204, 89, 23);
-		add(btnCancelar);
 		
 		
 		
@@ -310,9 +401,9 @@ public class altaCliente extends JPanel {
 				
 		
 				btnActualizar.setEnabled(false);
-				btnCancelar.setEnabled(true);
+
 				btnGuardar.setEnabled(true);
-				btnNuevo.setEnabled(false);
+				btnNuevo.setEnabled(true);
 				textField_1.setEnabled(true);
 				textField_2.setEnabled(true);
 				textField_3.setEnabled(true);
@@ -322,14 +413,22 @@ public class altaCliente extends JPanel {
 				textField_6.setEnabled(true);
 				txtFecha.setEnabled(true);
 				
+				textField_1.setText("");
+				textField_2.setText("");
+				textField_3.setText("");
+				textField_4.setText("");
+				textField_5.setText("");
+				txtFecha.setText("");
+				txtTarjeta.setText("");
+				
 			}
 		});
 		btnNuevo.setBounds(103, 204, 89, 23);
 		add(btnNuevo);
 		
 		btnNuevo.setEnabled(true);
+		btnModificar.setEnabled(false);
 		btnActualizar.setEnabled(false);
-		btnCancelar.setEnabled(false);
 		btnGuardar.setEnabled(false);
 		textField_1.setEnabled(false);
 		textField_2.setEnabled(false);
@@ -340,6 +439,8 @@ public class altaCliente extends JPanel {
 		textField_6.setEnabled(false);
 		txtFecha.setEnabled(false);
 		
+	
+		
 		
 		
 		
@@ -348,5 +449,4 @@ public class altaCliente extends JPanel {
 	
 
 	}
-
 }
