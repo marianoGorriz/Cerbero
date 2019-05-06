@@ -2,6 +2,7 @@ package Formularios;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
@@ -30,6 +31,7 @@ public class frmPrincipal extends JFrame {
 
 	private JFrame frame;
 	private JDesktopPane jdpEscritorio; //permite abrir ventanas 
+
 	
 
 

@@ -54,27 +54,27 @@ public class PanelUsuarios extends JPanel {
 		
 		
 		JLabel lblIdDelUsuario = new JLabel("Id del Usuario:");
-		lblIdDelUsuario.setFont(new Font("Tw Cen MT Condensed", Font.BOLD, 13));
-		lblIdDelUsuario.setBounds(29, 26, 82, 14);
+		lblIdDelUsuario.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblIdDelUsuario.setBounds(29, 26, 98, 14);
 		add(lblIdDelUsuario);
 		
 		JLabel lblNombre = new JLabel("Usuario:");
-		lblNombre.setFont(new Font("Tw Cen MT Condensed", Font.BOLD, 13));
+		lblNombre.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNombre.setBounds(29, 60, 82, 14);
 		add(lblNombre);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
-		lblContrasea.setFont(new Font("Tw Cen MT Condensed", Font.BOLD, 13));
+		lblContrasea.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblContrasea.setBounds(29, 96, 82, 14);
 		add(lblContrasea);
 		
 		JLabel lblRepetirContrasea = new JLabel("Repetir Contrase\u00F1a:");
-		lblRepetirContrasea.setFont(new Font("Tw Cen MT Condensed", Font.BOLD, 13));
-		lblRepetirContrasea.setBounds(29, 132, 98, 14);
+		lblRepetirContrasea.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblRepetirContrasea.setBounds(29, 132, 130, 14);
 		add(lblRepetirContrasea);
 		
 		JLabel lblRol = new JLabel("Rol:");
-		lblRol.setFont(new Font("Tw Cen MT Condensed", Font.BOLD, 13));
+		lblRol.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblRol.setBounds(29, 166, 82, 14);
 		add(lblRol);
 		

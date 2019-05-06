@@ -7,6 +7,9 @@ import java.awt.Canvas;
 import java.awt.Color;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+
 
 import Clases.Usuario;
 import Vistas.Conexion;
@@ -31,7 +34,7 @@ public class frmLogin {
 	private JPasswordField pwdUsuario;
 	private JTextField txtUsuario;
 
-
+	
 	/**
 	 * Create the application.
 	 */
@@ -98,6 +101,11 @@ public class frmLogin {
 		frame.getContentPane().add(lblContrasea);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
 		btnCancelar.setBounds(235, 121, 89, 23);
 		frame.getContentPane().add(btnCancelar);
 	}
