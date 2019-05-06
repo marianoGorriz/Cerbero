@@ -2,6 +2,7 @@ package Formularios;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
@@ -30,6 +31,7 @@ public class frmPrincipal extends JFrame {
 
 	private JFrame frame;
 	private JDesktopPane jdpEscritorio; //permite abrir ventanas 
+
 	
 
 
@@ -107,14 +109,45 @@ public class frmPrincipal extends JFrame {
 		menuBar.add(mnTarjetas);
 		
 		JMenuItem mntmAltasDeTarjetas = new JMenuItem("Altas de Tarjetas");
+		mntmAltasDeTarjetas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				AltaTarjeta alta = new AltaTarjeta();
+				alta.setBounds(10, 11, 620, 413);
+				frame.getContentPane().removeAll();
+				frame.getContentPane().add(alta);
+				frame.repaint();
+			}
+		});
 		mntmAltasDeTarjetas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		mnTarjetas.add(mntmAltasDeTarjetas);
 		
 		JMenuItem mntmTarjetasActivas = new JMenuItem("Tarjetas Activas");
+		mntmTarjetasActivas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				TarjetasActivas activas = new TarjetasActivas();
+				activas.setBounds(10, 11, 620, 413);
+				frame.getContentPane().removeAll();
+				frame.getContentPane().add(activas);
+				frame.repaint();
+			}
+		});
 		mntmTarjetasActivas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		mnTarjetas.add(mntmTarjetasActivas);
 		
 		JMenuItem mntmPedidoDeTarjetas = new JMenuItem("Pedido de Tarjetas");
+		mntmPedidoDeTarjetas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				Pedido pedido = new Pedido();
+				pedido.setBounds(10, 11, 620, 413);
+				frame.getContentPane().removeAll();
+				frame.getContentPane().add(pedido);
+				frame.repaint();
+				
+			}
+		});
 		mntmPedidoDeTarjetas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		mnTarjetas.add(mntmPedidoDeTarjetas);
 		
@@ -167,7 +200,6 @@ public class frmPrincipal extends JFrame {
 				frame.getContentPane().removeAll();
 				frame.getContentPane().add(adminUser);
 				frame.repaint();
-				
 				
 			}
 			

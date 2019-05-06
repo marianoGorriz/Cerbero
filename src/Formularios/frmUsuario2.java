@@ -19,11 +19,14 @@ import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
 import java.awt.Choice;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class frmUsuario2 extends JPanel {
 
@@ -136,6 +139,9 @@ public class frmUsuario2 extends JPanel {
 		panel.add(choice);
 		
 		JButton btnNewButton = new JButton("Nuevo");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			
+		});
 		btnNewButton.setBounds(0, 175, 89, 23);
 		panel.add(btnNewButton);
 		
@@ -167,6 +173,13 @@ public class frmUsuario2 extends JPanel {
 		choice.add("Mozo");
 		choice.add("Depsosito");
 		}
+	private void btnGuardarActionPerformed(ActionEvent evt) {
+		if (txtUsuario.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Falta ingresar el campo NOMBRE");
+			txtUsuario.requestFocusInWindow();
+			return;
+		}
+	}
 	public void mostrarUsuario() {
 		try {
 			frmUsuario2 window = new frmUsuario2();

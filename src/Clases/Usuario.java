@@ -84,6 +84,26 @@ public class Usuario extends Persona {
 			System.out.println("SQLException: " + e2.getMessage());
 		}
 	}
+	public void habilitarUsuario(String estado, int id) {
+		int bandera;
+		if (estado == "Deshabilitar") {
+			bandera = 0;
+		} else {
+			bandera = 1;
+		}
+		try {
+			Conexion cn = new Conexion();
+			Connection con = cn.conectarDB();
+			Statement st =con.createStatement();
+			st.executeUpdate("UPDATE usuarios SET `estado` = " + bandera + " WHERE id = " + id + ";");
+			
+		}		 
+		catch (SQLException e2) {
+		//	System.out.println("nope2");
+			JOptionPane.showMessageDialog(null, "Error al realizar lo solicitado");
+			System.out.println("SQLException: " + e2.getMessage());
+		}
+	}
     
 	
 
