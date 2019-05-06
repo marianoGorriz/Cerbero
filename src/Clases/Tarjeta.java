@@ -64,7 +64,7 @@ public class Tarjeta {
 	{
 		
 		try {
-			String fecha2 = "02/02/2018";
+			String fecha2 = "2018-02-02";
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
@@ -74,7 +74,6 @@ public class Tarjeta {
 			System.out.println("SQLException: " + e2.getMessage());	
 		}
 	}
-	
 	
 	
 	

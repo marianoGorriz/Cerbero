@@ -141,10 +141,9 @@ public class altaCliente extends JPanel {
 		add(choice);
 		choice.add("Masculino");
 		choice.add("Femenino");
-		
 	
-		
-
+		JButton btnNuevo = new JButton("Nuevo");
+		btnNuevo.setBounds(103, 204, 89, 23);
 		
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
@@ -197,7 +196,28 @@ public class altaCliente extends JPanel {
 			Tarjeta tarjeta = new Tarjeta();
 			String t = txtTarjeta.getText();
 			tarjeta.altaTarjeta(id, t);
-				
+			
+			textField.setText("");
+			textField_1.setText("");
+			textField_2.setText("");
+			textField_3.setText("");
+			textField_4.setText("");
+			textField_5.setText("");
+			txtFecha.setText("");
+			txtTarjeta.setText("");
+			textField_1.setEnabled(false);
+			textField_2.setEnabled(false);
+			textField_3.setEnabled(false);
+			txtTarjeta.setEnabled(false);
+			textField_4.setEnabled(false);
+			textField_5.setEnabled(false);
+			textField_6.setEnabled(false);
+			txtFecha.setEnabled(false);
+			 
+			JOptionPane.showMessageDialog(null,"Alta de usuario REALIZADA");
+			
+			btnGuardar.setEnabled(false);
+			
 			
 			}
 			
@@ -356,26 +376,25 @@ public class altaCliente extends JPanel {
 		
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				btnModificar.setEnabled(false);
-				
-				textField_1.setEnabled(true);
-				textField_2.setEnabled(true);
-				textField_3.setEnabled(true);
-				txtTarjeta.setEnabled(false);
-				textField_4.setEnabled(true);
-				textField_5.setEnabled(true);
-				textField_6.setEnabled(true);
-				txtFecha.setEnabled(true);
-				
-				
-				btnActualizar.setEnabled(true);
-				
 			
-				
+			public void actionPerformed(ActionEvent e) {
+														
+					btnModificar.setEnabled(false);
+					textField_1.setEnabled(true);
+					textField_2.setEnabled(true);
+					textField_3.setEnabled(true);
+					txtTarjeta.setEnabled(false);
+					textField_4.setEnabled(true);
+					textField_5.setEnabled(true);
+					textField_6.setEnabled(true);
+					txtFecha.setEnabled(true);			
+					btnActualizar.setEnabled(true);
+					btnNuevo.setEnabled(false);							
 			}
+			
 		});
+		
+		
 		btnModificar.setBounds(333, 203, 89, 23);
 		add(btnModificar);
 		
@@ -394,6 +413,16 @@ public class altaCliente extends JPanel {
 		table_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				btnNuevo.setEnabled(true);
+				textField_1.setEnabled(false);
+				textField_2.setEnabled(false);
+				textField_3.setEnabled(false);
+				txtTarjeta.setEnabled(false);
+				textField_4.setEnabled(false);
+				textField_5.setEnabled(false);
+				textField_6.setEnabled(false);
+				txtFecha.setEnabled(false);		
+				
 				int column1 = 0;
 				int column2 = 1;
 				int column3 = 2;
@@ -413,7 +442,7 @@ public class altaCliente extends JPanel {
 				String value7 = table_1.getModel().getValueAt(row, column7).toString();
 				String value8 = table_1.getModel().getValueAt(row, column8).toString();
 				
-
+				
 				textField.setText(value1);
 				textField_1.setText(value2);
 				textField_2.setText(value3);
@@ -422,7 +451,7 @@ public class altaCliente extends JPanel {
 				textField_5.setText(value6);
 				choice.select(value7);
 				choice.repaint();
-				txtFecha.setText(value8);	
+				txtFecha.setText(value8);
 				btnModificar.setEnabled(true);
 				
 			}
@@ -436,6 +465,7 @@ public class altaCliente extends JPanel {
 		btnBuscar.setBounds(441, 240, 89, 23);
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				DefaultTableModel modelo;
 				modelo = new DefaultTableModel();
 				modelo.addColumn("ID");
@@ -508,15 +538,11 @@ public class altaCliente extends JPanel {
 		
 		
 		
-		JButton btnNuevo = new JButton("Nuevo");
+		
 		btnNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-		
-				btnActualizar.setEnabled(false);
-
-				btnGuardar.setEnabled(true);
-				btnNuevo.setEnabled(true);
+							
+				btnGuardar.setEnabled(true);			
 				textField_1.setEnabled(true);
 				textField_2.setEnabled(true);
 				textField_3.setEnabled(true);
@@ -533,10 +559,12 @@ public class altaCliente extends JPanel {
 				textField_5.setText("");
 				txtFecha.setText("");
 				txtTarjeta.setText("");
-				
+				btnNuevo.setEnabled(false);
+				btnModificar.setEnabled(false);
+				btnActualizar.setEnabled(false);
 			}
 		});
-		btnNuevo.setBounds(103, 204, 89, 23);
+		
 		add(btnNuevo);
 		
 		btnNuevo.setEnabled(true);
@@ -549,17 +577,10 @@ public class altaCliente extends JPanel {
 		txtTarjeta.setEnabled(false);
 		textField_4.setEnabled(false);
 		textField_5.setEnabled(false);
-		textField_6.setEnabled(false);
+		textField_6.setEnabled(true);
 		txtFecha.setEnabled(false);
 		
-	
-		
-		
-		
-		
-		
-		
-	
+
 
 	}
 }
