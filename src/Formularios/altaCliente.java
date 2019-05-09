@@ -117,7 +117,7 @@ public class altaCliente extends JPanel {
 				
 				char c = e.getKeyChar();
 				
-				if (c<'0' || c>'9') e.consume();  //validacion de que solo se escriban números 
+				if (c<'0' || c>'9') e.consume();  //validacion de que solo se escriban número 
 			}
 		});
 		
