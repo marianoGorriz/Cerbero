@@ -31,6 +31,11 @@ import java.awt.ComponentOrientation;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JFormattedTextField;
+import com.toedter.calendar.JDayChooser;
+import com.toedter.components.JLocaleChooser;
+import com.toedter.calendar.JCalendar;
+import javax.swing.border.BevelBorder;
+import com.toedter.calendar.JDateChooser;
 
 public class altaCliente extends JPanel {
 	private JTextField textField;
@@ -46,10 +51,7 @@ public class altaCliente extends JPanel {
 	private JTextField txtTarjeta;
 	public JButton  btnNuevo, btnActualizar, btnGuardar, btnCancelar;
 
-	/**
-	 * Create the panel.
-	 */
-	public altaCliente() {
+		public altaCliente() {
 		setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		setLayout(null);
 		
@@ -58,6 +60,12 @@ public class altaCliente extends JPanel {
 		lblIdDeCliente.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblIdDeCliente);
 		
+		JLabel lblNDeTarjeta = new JLabel("N\u00BA de tarjeta:");
+		lblNDeTarjeta.setBounds(10, 174, 102, 25);
+		lblNDeTarjeta.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		add(lblNDeTarjeta);
+		
+				
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setBounds(10, 62, 102, 25);
 		lblNombre.setFont(new Font("Times New Roman", Font.BOLD, 14));
@@ -119,7 +127,8 @@ public class altaCliente extends JPanel {
 				
 				if (c<'0' || c>'9') e.consume();  //validacion de que solo se escriban número 
 			}
-		});
+		}
+	);
 		
 		textField_3.setToolTipText("NN.NNN.NNN");
 		add(textField_3);
@@ -140,7 +149,8 @@ public class altaCliente extends JPanel {
 				char c = e.getKeyChar();
 						if ( c<'0' || c>'9') e.consume(); // solo numero en en campo telefono
 			}
-		});
+		}
+	);
 		txtTarjeta = new JTextField();
 		txtTarjeta.setBounds(122, 177, 136, 20);
 		txtTarjeta.addKeyListener(new KeyAdapter() {
@@ -148,10 +158,10 @@ public class altaCliente extends JPanel {
 			public void keyTyped(KeyEvent e) {
 				
 				char c = e.getKeyChar();
-				if ( c<'0' || c>'9') e.consume(); // solo numero en tarjeta
-				
+				if ( c<'0' || c>'9') e.consume(); // solo numero en en caampo tarjeta
 			}
-		});
+		}
+	);
 		add(txtTarjeta);
 		txtTarjeta.setColumns(10);
 		add(textField_5);
@@ -168,20 +178,14 @@ public class altaCliente extends JPanel {
 		scrollPane_1.setBounds(10, 272, 599, 151);
 		add(scrollPane_1);
 		table_1 = new JTable();
-		
-	
-		
+				
 		Choice choice = new Choice();
 		choice.setBounds(473, 134, 136, 20);
 		add(choice);
+		
 		choice.add("Masculino");
 		choice.add("Femenino");
-		
-
-	
-		
-
-		
+				
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.setBounds(231, 207, 89, 23);
 		btnGuardar.addActionListener(new ActionListener() {
@@ -229,13 +233,19 @@ public class altaCliente extends JPanel {
 			
 			Cliente cliente = new Cliente();
 			
-				int id = cliente.altaCliente(textField_1.getText(), textField_2.getText(), textField_3.getText(), textField_4.getText(),
-						textField_5.getText(),choice.getSelectedItem(),txtFecha.getText(),txtTarjeta.getText());
+				int id = cliente.altaCliente(textField_1.getText(),
+						textField_2.getText(),
+						textField_3.getText(),
+						textField_4.getText(),
+						textField_5.getText(),
+						choice.getSelectedItem(),
+						txtFecha.getText(),
+						txtTarjeta.getText());
+				
 			Tarjeta tarjeta = new Tarjeta();
 			String t = txtTarjeta.getText();
 			tarjeta.altaTarjeta(id, t);
-				
-			
+						
 			}
 			
 			if(dialogResult == JOptionPane.NO_OPTION) {
@@ -260,22 +270,17 @@ public class altaCliente extends JPanel {
 				JOptionPane.showMessageDialog(null,"Alta de usuario CANCELADA");
 				
 				btnGuardar.setEnabled(false);
-				
-				
-			
-	
+					}
+				}
 			}
-		
-			
-		}});
+		);
 		add(btnGuardar);
 		
 		JButton btnActualizar = new JButton("Actualizar");
 		btnActualizar.setBounds(430, 207, 102, 23);
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
+								
 				int dialogButton = JOptionPane.YES_NO_OPTION;
 				int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea actualizar a este cliente?","Precaución",dialogButton); //pregunta 
 				if(dialogResult == JOptionPane.YES_OPTION){
@@ -315,8 +320,15 @@ public class altaCliente extends JPanel {
 					Cliente cliente = new Cliente();
 					int id = Integer.parseInt(textField.getText());
 					
-					cliente.modificarCliente(id, textField_1.getText(), textField_2.getText(), textField_3.getText(), textField_4.getText(),
-								textField_5.getText(),choice.getSelectedItem(),txtFecha.getText()); //envio de los datos 
+					cliente.modificarCliente(
+							id,
+							textField_1.getText(),
+							textField_2.getText(),
+							textField_3.getText(),
+							textField_4.getText(),
+							textField_5.getText(),
+						    choice.getSelectedItem(),
+							txtFecha.getText());			 //envio de los datos 
 					
 					DefaultTableModel modelo;
 					modelo = new DefaultTableModel();
@@ -329,6 +341,7 @@ public class altaCliente extends JPanel {
 					modelo.addColumn("Sexo");
 					modelo.addColumn("Fecha Nacimiento");
 					table_1.setModel(modelo);
+					
 				//	recarga de los datos de la tabla
 					ResultSet rs;
 					Cliente clientes = new Cliente();
@@ -336,12 +349,16 @@ public class altaCliente extends JPanel {
 					try {
 						while(rs.next()) {
 							modelo.addRow(new Object[]{rs.getObject("id"), 
-									rs.getObject("nombre"), rs.getObject("apellido"), rs.getObject("DNI"), rs.getObject("correo"),
-									rs.getObject("telefono"),rs.getObject("sexo"),rs.getObject("fecha_nacimiento")});
+									rs.getObject("nombre"),
+									rs.getObject("apellido"),
+									rs.getObject("DNI"),
+									rs.getObject("correo"),
+									rs.getObject("telefono"),
+									rs.getObject("sexo"),
+									rs.getObject("fecha_nacimiento")});
 						}
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+					e1.printStackTrace();
 					}
 					
 					textField.setText("");
@@ -360,6 +377,9 @@ public class altaCliente extends JPanel {
 					textField_5.setEnabled(false);
 					textField_6.setEnabled(false);
 					txtFecha.setEnabled(false);
+					btnActualizar.setEnabled(false);
+					choice.setEnabled(false);
+					
 					
 				}
 				if(dialogResult == JOptionPane.NO_OPTION) {
@@ -380,15 +400,13 @@ public class altaCliente extends JPanel {
 					textField_5.setEnabled(false);
 					textField_6.setEnabled(false);
 					txtFecha.setEnabled(false);
+					choice.setEnabled(false);
 					 
 					JOptionPane.showMessageDialog(null,"Modificacion de usuario Cancelada");
-		
-					
-				
+						
+					}
 				}
 			}
-			}
-			
 		);
 		
 		JButton btnModificar = new JButton("Modificar");
@@ -406,18 +424,14 @@ public class altaCliente extends JPanel {
 				textField_5.setEnabled(true);
 				textField_6.setEnabled(true);
 				txtFecha.setEnabled(true);
-				
-				
+				choice.setEnabled(true);
+								
 				btnActualizar.setEnabled(true);
-				
-			
-				
 			}
-		});
+		}
+	);
 		add(btnModificar);
-		
-	
-		
+				
 		JLabel lblBuscar = new JLabel("Buscar:");
 		lblBuscar.setBounds(80, 236, 47, 20);
 		lblBuscar.setFont(new Font("Times New Roman", Font.BOLD, 14));
@@ -461,10 +475,9 @@ public class altaCliente extends JPanel {
 				choice.repaint();
 				txtFecha.setText(value8);	
 				btnModificar.setEnabled(true);
-				
+				}
 			}
-		});
-		
+		);
 		
 		scrollPane_1.setViewportView(table_1);
 		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -473,6 +486,7 @@ public class altaCliente extends JPanel {
 		btnBuscar.setBounds(441, 243, 89, 23);
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				DefaultTableModel modelo;
 				modelo = new DefaultTableModel();
 				modelo.addColumn("ID");
@@ -484,29 +498,28 @@ public class altaCliente extends JPanel {
 				modelo.addColumn("Sexo");
 				modelo.addColumn("Fecha Nacimiento");
 				table_1.setModel(modelo);
-			//	modelo.addRow(new Object[]{"ID", "Usuario", "Contraseña", "Rol","Estado"});
+			
 				ResultSet rs;
 				Cliente cliente = new Cliente();
 				rs = cliente.buscarCliente(textField_6.getText());
 				try {
 					while(rs.next()) {
-						modelo.addRow(new Object[]{rs.getObject("id"), 
-								rs.getObject("nombre"), rs.getObject("apellido"), rs.getObject("DNI"), rs.getObject("correo"),
-								rs.getObject("telefono"),rs.getObject("sexo"),rs.getObject("fecha_nacimiento")});
+						modelo.addRow(new Object[]{
+								rs.getObject("id"), 
+								rs.getObject("nombre"),
+								rs.getObject("apellido"),
+								rs.getObject("DNI"), 
+								rs.getObject("correo"),
+								rs.getObject("telefono"),
+								rs.getObject("sexo"),
+								rs.getObject("fecha_nacimiento")});
 					}
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
 		add(btnBuscar);
-		
-		JLabel lblNDeTarjeta = new JLabel("N\u00BA de tarjeta:");
-		lblNDeTarjeta.setBounds(10, 174, 102, 25);
-		lblNDeTarjeta.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		add(lblNDeTarjeta);
-		add(btnActualizar);
 		
 	
 		DefaultTableModel modelo;
@@ -520,20 +533,26 @@ public class altaCliente extends JPanel {
 		modelo.addColumn("Sexo");
 		modelo.addColumn("Fecha Nacimiento");
 		table_1.setModel(modelo);
-	//	modelo.addRow(new Object[]{"ID", "Usuario", "Contraseña", "Rol","Estado"});
 		ResultSet rs;
 		Cliente cliente = new Cliente();
 		rs = cliente.buscarCliente(textField_6.getText());
 		try {
 			while(rs.next()) {
-				modelo.addRow(new Object[]{rs.getObject("id"), 
-						rs.getObject("nombre"), rs.getObject("apellido"), rs.getObject("DNI"), rs.getObject("correo"),
-						rs.getObject("telefono"),rs.getObject("sexo"),rs.getObject("fecha_nacimiento")});
+				modelo.addRow(new Object[]{
+						rs.getObject("id"), 
+						rs.getObject("nombre"),
+						rs.getObject("apellido"),
+						rs.getObject("DNI"),
+						rs.getObject("correo"),
+						rs.getObject("telefono"),
+						rs.getObject("sexo"),
+						rs.getObject("fecha_nacimiento")
+					}
+				);
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
+			}
 		
 		
 		
@@ -555,6 +574,7 @@ public class altaCliente extends JPanel {
 				textField_5.setEnabled(true);
 				textField_6.setEnabled(true); //habilitacion de los botones 
 				txtFecha.setEnabled(true);
+				choice.setEnabled(true);
 				
 				textField_1.setText("");
 				textField_2.setText("");
@@ -564,10 +584,11 @@ public class altaCliente extends JPanel {
 				txtFecha.setText("");
 				txtTarjeta.setText("");
 				
+				}
 			}
-		});
+		);
 		add(btnNuevo);
-		
+		add(btnActualizar);
 		btnNuevo.setEnabled(true);
 		btnModificar.setEnabled(false);
 		btnActualizar.setEnabled(false);
@@ -580,16 +601,7 @@ public class altaCliente extends JPanel {
 		textField_5.setEnabled(false);
 		textField_6.setEnabled(false);
 		txtFecha.setEnabled(false);
+		choice.setEnabled(false);
 		
-	
-	
-		
-		
-		
-		
-		
-		
-	
-
+		}
 	}
-}

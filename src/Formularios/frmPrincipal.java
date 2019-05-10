@@ -27,6 +27,7 @@ import javax.swing.ImageIcon;
 import java.awt.Dimension;
 import java.awt.Point;
 import javax.swing.JLabel;
+import java.awt.Toolkit;
 
 public class frmPrincipal extends JFrame {
 
@@ -53,6 +54,7 @@ public class frmPrincipal extends JFrame {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\faku6\\Documents\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\reserva.png"));
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 811, 502);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -41,10 +41,6 @@ public class PanelUsuarios extends JPanel {
 	private JTable table;
 	private JButton btnEliminar,btnNuevo,btnCancelar,btnActualizar,btnNewButton;
 	
-
-	/**
-	 * Create the panel.
-	 */
 	public PanelUsuarios() {
 	
 		addComponentListener(new ComponentAdapter() {
@@ -77,6 +73,20 @@ public class PanelUsuarios extends JPanel {
 		lblRol.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblRol.setBounds(29, 166, 82, 14);
 		add(lblRol);
+
+				
+		JLabel lblBuscar = new JLabel("Buscar:");
+		lblBuscar.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblBuscar.setBounds(58, 207, 53, 17);
+		add(lblBuscar);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(154, 93, 130, 20);
+		add(passwordField);
+		
+		passwordField_1 = new JPasswordField();
+		passwordField_1.setBounds(154, 129, 130, 20);
+		add(passwordField_1);
 		
 		textField = new JTextField();
 		textField.setEnabled(false);
@@ -108,6 +118,7 @@ public class PanelUsuarios extends JPanel {
 		Choice choice = new Choice();
 		choice.setBounds(154, 160, 130, 20);
 		add(choice);
+		
 		choice.add("Administrador");
 		choice.add("Moza");
 		
@@ -116,11 +127,12 @@ public class PanelUsuarios extends JPanel {
 			
 			public void actionPerformed(ActionEvent arg0) {
 				int dialogButton = JOptionPane.YES_NO_OPTION;
-				int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea agregar un nuevo usuario?","Precaución",dialogButton);
+				int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea agregar un nuevo usuario?","Precaución",dialogButton); //pregunta 
+				
 				if(dialogResult == JOptionPane.YES_OPTION){
 				
 				if(textField_1.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Falta el campo Usuario");
+					JOptionPane.showMessageDialog(null, "Falta el campo Usuario"); //validacion de campo
 					textField_1.requestFocusInWindow();
 					return;
 				}
@@ -129,18 +141,18 @@ public class PanelUsuarios extends JPanel {
 				String conpass = new String(passwordField_1.getPassword());
 				
 				if(con.contentEquals("") ) {
-					JOptionPane.showMessageDialog(null, "Falta ingresar el campo Contraseña");
+					JOptionPane.showMessageDialog(null, "Falta ingresar el campo Contraseña");//validacion de campo
 					passwordField.requestFocusInWindow();
 					return;
 				}
 				if(conpass.equals("") ) {
-					JOptionPane.showMessageDialog(null, "Falta confirmar la Contraseña");
+					JOptionPane.showMessageDialog(null, "Falta confirmar la Contraseña");//validacion de campo
 					passwordField_1.requestFocusInWindow();
 					return;
 				}
 				
 				if(!con.equals(conpass)) {
-					JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+					JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");//validacion de campo
 					passwordField.setText("");
 					passwordField_1.setText("");
 					passwordField.requestFocusInWindow();
@@ -153,27 +165,32 @@ public class PanelUsuarios extends JPanel {
 				
 				char [] array = passwordField.getPassword();
 				String pass = new String(array);
-				usuario.altaUsuario(textField_1.getText(), pass, choice.getSelectedItem() );
+				usuario.altaUsuario(
+						textField_1.getText(),
+						pass,
+						choice.getSelectedItem() 
+						);
 				}
 				textField_1.setText("");
-				passwordField.setText("");
+				passwordField.setText("");  //limpieza de los campos
 				passwordField_1.setText("");
+				btnEliminar.setEnabled(false);
+				//btnCancelar.setEnabled(false);
+				
 			
 				if(dialogResult == JOptionPane.NO_OPTION) {
 						
 							textField_1.setEnabled(false);
-							passwordField.setEnabled(false);
+							passwordField.setEnabled(false);  //bloqueo de los botones
 							passwordField_1.setEnabled(false);
-							
+							choice.setEnabled(false);
 							
 							textField_1.setText("");
-							passwordField.setText("");
+							passwordField.setText("");  //limpieza de los campos
 							passwordField_1.setText("");
-							
-						
+												
 				}
-				
-		
+						
 					DefaultTableModel modelo;
 					modelo = new DefaultTableModel();
 					modelo.addColumn("ID");
@@ -182,39 +199,38 @@ public class PanelUsuarios extends JPanel {
 					modelo.addColumn("Rol");
 					modelo.addColumn("Estado");
 					table.setModel(modelo);
-				//	modelo.addRow(new Object[]{"ID", "Usuario", "Contraseña", "Rol","Estado"});
+				
 					ResultSet rs;
-					
-					
+										
 					Usuario usuario = new Usuario();
 					rs = usuario.buscarUsuario(textField_4.getText());
 					try {
 						while(rs.next()) {
-							modelo.addRow(new Object[]{rs.getObject("id"), rs.getObject("usuario"), rs.getObject("contraseña"), rs.getObject("rol"), rs.getObject("Estado")});
+							modelo.addRow(new Object[]{
+									rs.getObject("id"),
+									rs.getObject("usuario"),
+									rs.getObject("contraseña"),
+									rs.getObject("rol"),
+									rs.getObject("Estado")});
 						}
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				
-		
-				
+					e1.printStackTrace();
+				}
 			}
 		});
 		
 		btnEliminar.setBounds(410, 56, 104, 23);
 		add(btnEliminar);
-		
-		
+				
 		JButton btnActualizar = new JButton("Actualizar");
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-
 				int dialogButton = JOptionPane.YES_NO_OPTION;
-				int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea actualizar este usuario?","Precaución",dialogButton);
+				int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea actualizar este usuario?","Precaución",dialogButton); //pregunta
+				
 				if(dialogResult == JOptionPane.YES_OPTION){
-				  // Saving code here
+				  
 					int column = 0;
 					int row = table.getSelectedRow();
 
@@ -233,7 +249,7 @@ public class PanelUsuarios extends JPanel {
 					modelo.addColumn("Rol");
 					modelo.addColumn("Estado");
 					table.setModel(modelo);
-				//	modelo.addRow(new Object[]{"ID", "Usuario", "Contraseña", "Rol","Estado"});
+				
 					ResultSet rs;
 					
 					
@@ -241,41 +257,36 @@ public class PanelUsuarios extends JPanel {
 					rs = usuario.buscarUsuario(textField_4.getText());
 					try {
 						while(rs.next()) {
-							modelo.addRow(new Object[]{rs.getObject("id"), rs.getObject("usuario"), rs.getObject("contraseña"), rs.getObject("rol"), rs.getObject("Estado")});
+							modelo.addRow(new Object[]{
+									rs.getObject("id"),
+									rs.getObject("usuario"),
+									rs.getObject("contraseña"),
+									rs.getObject("rol"), 
+									rs.getObject("Estado")});
 						}
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
+						
 						e1.printStackTrace();
 					}
 					textField_1.setText("");
-					passwordField.setText("");
+					passwordField.setText(""); //limpieza del formulario
 					passwordField_1.setText("");
-				
-					
-						
-			
 				}
+				
 				if(dialogResult == JOptionPane.NO_OPTION) {
 						
 							textField_1.setEnabled(false);
-							passwordField.setEnabled(false);
+							passwordField.setEnabled(false); //bloqueo de los botones
 							passwordField_1.setEnabled(false);
-							
-							
+							choice.setEnabled(false);
+														
 							textField_1.setText("");
-							passwordField.setText("");
+							passwordField.setText("");//limpieza del formulario
 							passwordField_1.setText("");
-							
-						
-							
-						
-					
+						}
 				}
-
-				
-			
-			}
-		});
+		}
+		);
 		
 		btnActualizar.setBounds(410, 123, 104, 23);
 		add(btnActualizar);
@@ -288,15 +299,17 @@ public class PanelUsuarios extends JPanel {
 					int row = table.getSelectedRow();
 					int id = Integer.parseInt(table.getModel().getValueAt(row, column).toString());
 					String valor = btnNewButton.getText();
-					Usuario habilitar = new Usuario();				
+					Usuario habilitar = new Usuario();	
+					
 					if(valor == "Deshabilitar") {
-						habilitar.habilitarUsuario(valor, id);
+						habilitar.habilitarUsuario(valor, id);					//habilitacion del usario 
+						
 					} else {
 						habilitar.habilitarUsuario(valor, id);
 					}
 				}
-			
-		});
+			}
+		);
 		btnNewButton.setBounds(410, 157, 104, 23);
 		add(btnNewButton);
 		
@@ -313,7 +326,7 @@ public class PanelUsuarios extends JPanel {
 				int row = table.getSelectedRow();
 				String value1 = table.getModel().getValueAt(row, column1).toString();
 				String value2 = table.getModel().getValueAt(row, column2).toString();
-				String value3 = table.getModel().getValueAt(row, column3).toString();
+				String value3 = table.getModel().getValueAt(row, column3).toString();    //carga de los datos
 				String value4 = table.getModel().getValueAt(row, column4).toString();
 				String value5 = table.getModel().getValueAt(row, column5).toString();
 
@@ -328,8 +341,7 @@ public class PanelUsuarios extends JPanel {
 				passwordField.setEnabled(true);
 				passwordField_1.setEnabled(false);
 				
-				
-				
+												
 				if(value5 == "true") {
 					btnNewButton.setText("Deshabilitar");
 					btnNewButton.setEnabled(true);
@@ -337,13 +349,10 @@ public class PanelUsuarios extends JPanel {
 					btnNewButton.setText("Habilitar");
 					btnNewButton.setEnabled(true);
 				}
-				
-				
 			}
-		});
-		
-		
-		
+		}
+		);
+				
 		scrollPane.setViewportView(table);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		JButton btnBuscar = new JButton("Buscar");
@@ -358,23 +367,26 @@ public class PanelUsuarios extends JPanel {
 					modelo.addColumn("Rol");
 					modelo.addColumn("Estado");
 					table.setModel(modelo);
-				//	modelo.addRow(new Object[]{"ID", "Usuario", "Contraseña", "Rol","Estado"});
+			
 					ResultSet rs;
-					
-					
+										
 					Usuario usuario = new Usuario();
 					rs = usuario.buscarUsuario(textField_4.getText());
 					try {
 						while(rs.next()) {
-							modelo.addRow(new Object[]{rs.getObject("id"), rs.getObject("usuario"), rs.getObject("contraseña"), rs.getObject("rol"), rs.getObject("Estado")});
+							modelo.addRow(new Object[]{
+									rs.getObject("id"), 
+									rs.getObject("usuario"),
+									rs.getObject("contraseña"),
+									rs.getObject("rol"), 
+									rs.getObject("Estado")});
 						}
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
-			
-		});
+			}
+		);
 		btnBuscar.setBounds(351, 205, 89, 23);
 		add(btnBuscar);
 		
@@ -389,17 +401,16 @@ public class PanelUsuarios extends JPanel {
 				//btnNuevo.setEnabled(true);
 				btnCancelar.setEnabled(false);
 				btnActualizar.setEnabled(false);
-				btnEliminar.setEnabled(false);
+				btnEliminar.setEnabled(false); 	//bloqueo de los botones
 				btnNewButton.setEnabled(false);
+				choice.setEnabled(false);
 				
 				textField_1.setText("");
-				passwordField.setText("");
+				passwordField.setText("");  //limpieza del formulario
 				passwordField_1.setText("");
-				
-				
-				
+				}
 			}
-		});
+		);
 		btnCancelar.setBounds(410, 90, 104, 23);
 		add(btnCancelar);
 		
@@ -407,8 +418,9 @@ public class PanelUsuarios extends JPanel {
 		btnNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textField_1.setEnabled(true);
-				passwordField.setEnabled(true);
+				passwordField.setEnabled(true);			//habilitacion de los botones
 				passwordField_1.setEnabled(true);
+				choice.setEnabled(true);
 				
 				btnNuevo.setEnabled(true);
 			
@@ -417,36 +429,15 @@ public class PanelUsuarios extends JPanel {
 				btnEliminar.setEnabled(true);
 				btnNewButton.setEnabled(false);
 				textField_1.setText("");
-				passwordField.setText("");
+				passwordField.setText("");			//limpieza del formulario
 				passwordField_1.setText("");
-				
-				
-		}});
-		
+				}
+			}
+		);
 		
 		btnNuevo.setBounds(410, 26, 104, 23);
 		add(btnNuevo);
-
 				
-		
-
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(154, 93, 130, 20);
-		add(passwordField);
-		
-		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(154, 129, 130, 20);
-		add(passwordField_1);
-		
-
-		
-		JLabel lblBuscar = new JLabel("Buscar:");
-		lblBuscar.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblBuscar.setBounds(58, 207, 53, 17);
-		add(lblBuscar);
-		
-		
 		DefaultTableModel modelo;
 		modelo = new DefaultTableModel();
 		modelo.addColumn("ID");
@@ -455,41 +446,42 @@ public class PanelUsuarios extends JPanel {
 		modelo.addColumn("Rol");
 		modelo.addColumn("Estado");
 		table.setModel(modelo);
-	//	modelo.addRow(new Object[]{"ID", "Usuario", "Contraseña", "Rol","Estado"});
+
 		ResultSet rs;
-		
 		
 		Usuario usuario = new Usuario();
 		rs = usuario.buscarUsuario(textField_4.getText());
 		try {
 			while(rs.next()) {
-				modelo.addRow(new Object[]{rs.getObject("id"), rs.getObject("usuario"), rs.getObject("contraseña"), rs.getObject("rol"), rs.getObject("Estado")});
+				modelo.addRow(new Object[]{
+						rs.getObject("id"),
+						rs.getObject("usuario"),
+						rs.getObject("contraseña"),
+						rs.getObject("rol"),
+						rs.getObject("Estado")
+						}
+				);
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
 		textField_1.setEnabled(false);
 		passwordField.setEnabled(false);
 		passwordField_1.setEnabled(false);
+		choice.setEnabled(false);
 		
 		//btnNuevo.setEnabled(true);
 		btnCancelar.setEnabled(false);
 		btnActualizar.setEnabled(false);
 		btnEliminar.setEnabled(false);
 		btnNewButton.setEnabled(false);
+		choice.setEnabled(false);
 		
 		textField_1.setText("");
 		passwordField.setText("");
 		passwordField_1.setText("");
 	
-	}
-	private void gg() {
-		btnCancelar.setEnabled(false);
-		btnActualizar.setEnabled(false);
-		btnEliminar.setEnabled(false);
-		btnNewButton.setEnabled(false);
 	}
 
 }
