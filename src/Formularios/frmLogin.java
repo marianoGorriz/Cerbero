@@ -25,6 +25,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 
 
 
@@ -47,17 +49,18 @@ public class frmLogin {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 443, 217);
+		frame.setResizable(false);
+		frame.setBounds(100, 100, 425, 207);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Ingreso al Sistema de Ventas");
 		
 		pwdUsuario = new JPasswordField();
-		pwdUsuario.setBounds(152, 80, 172, 20);
+		pwdUsuario.setBounds(261, 81, 128, 20);
 		frame.getContentPane().add(pwdUsuario);
 		
 		txtUsuario = new JTextField();
-		txtUsuario.setBounds(152, 27, 172, 20);
+		txtUsuario.setBounds(261, 27, 128, 20);
 		frame.getContentPane().add(txtUsuario);
 		txtUsuario.setColumns(10);		
 		//INGRESAR Y COMPARAR USUARIO		
@@ -87,17 +90,17 @@ public class frmLogin {
 			}
 		});
 		
-		btnLogin.setBounds(120, 121, 89, 23);
+		btnLogin.setBounds(190, 121, 89, 23);
 		frame.getContentPane().add(btnLogin);
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblUsuario.setBounds(55, 29, 75, 14);
+		lblUsuario.setBounds(176, 29, 75, 14);
 		frame.getContentPane().add(lblUsuario);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
 		lblContrasea.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblContrasea.setBounds(55, 83, 87, 14);
+		lblContrasea.setBounds(176, 83, 87, 14);
 		frame.getContentPane().add(lblContrasea);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -106,8 +109,13 @@ public class frmLogin {
 				System.exit(0);
 			}
 		});
-		btnCancelar.setBounds(235, 121, 89, 23);
+		btnCancelar.setBounds(289, 121, 89, 23);
 		frame.getContentPane().add(btnCancelar);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("C:\\Users\\faku6\\Documents\\Proyectos JAVA\\prue\\bin\\Imgenes\\login.png"));
+		label.setBounds(38, 27, 128, 129);
+		frame.getContentPane().add(label);
 	}
 	
 		public void mostrarLogin() {
