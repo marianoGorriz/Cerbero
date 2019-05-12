@@ -1,6 +1,7 @@
 package Clases;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -32,13 +33,13 @@ public class Cliente {
 		}
 		return null;
 	}
-	public int altaCliente(String nombre,String apellido, String dni, String correo, String telefono, String sexo, String fecha, String tarjeta) {
+	public int altaCliente(String nombre,String apellido, String dni, String correo, String telefono, String sexo, Date fecha) {
 		int id = 0;
 		try {	
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
-			st.executeUpdate("INSERT INTO clientes (`nombre`, `apellido`,`dni`,`correo`,`telefono`,`sexo`,`fecha_nacimiento` ) VALUES ('"+nombre+"','"+apellido +"','"+dni+"','"+correo+"','" +telefono+"','"+sexo+"','"+fecha+"');");
+			st.executeUpdate("INSERT INTO clientes (`nombre`, `apellido`,`dni`,`correo`,`telefono`,`sexo`,`fecha_nacimiento` ) VALUES ('"+nombre+"','"+apellido +"','"+dni+"','"+correo+"','" +telefono+"','"+sexo+"','+fecha+');");
 			ResultSet rs =st.executeQuery("SELECT * FROM clientes WHERE `dni`='"+dni+"';");
 			if (rs.next()) {
 			id = rs.getInt("id");
@@ -54,7 +55,7 @@ public class Cliente {
 		}
 		return id;
 	}
-	public void modificarCliente(int id, String nombre,String apellido, String dni, String correo, String telefono, String sexo, String fecha) {
+	public void modificarCliente(int id, String nombre,String apellido, String dni, String correo, String telefono, String sexo, java.sql.Date fecha) {
 		try {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();

@@ -21,6 +21,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.awt.event.ActionListener;
 import java.awt.Rectangle;
 import javax.swing.border.LineBorder;
@@ -32,6 +33,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JFormattedTextField;
 import com.toedter.calendar.JDayChooser;
+import com.toedter.calendar.demo.DateChooserPanel;
 import com.toedter.components.JLocaleChooser;
 import com.toedter.calendar.JCalendar;
 import javax.swing.border.BevelBorder;
@@ -44,7 +46,6 @@ public class altaCliente extends JPanel {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
-	private JTextField txtFecha;
 	
 	private JTextField textField_6;
 	private JTable table_1;
@@ -100,6 +101,11 @@ public class altaCliente extends JPanel {
 		lblEdad.setBounds(343, 170, 132, 25);
 		lblEdad.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblEdad);
+		
+		JDateChooser jdcFechaNacimiento = new JDateChooser();
+		jdcFechaNacimiento.setDateFormatString("dd,MM,yyyy");
+		jdcFechaNacimiento.setBounds(473, 174, 136, 25);
+		add(jdcFechaNacimiento);
 		
 		textField = new JTextField();
 		textField.setBounds(122, 29, 136, 20);
@@ -167,13 +173,6 @@ public class altaCliente extends JPanel {
 		add(textField_5);
 		textField_5.setColumns(10);
 		
-		txtFecha = new JTextField();
-		txtFecha.setBounds(473, 173, 136, 20);
-		
-		txtFecha.setToolTipText("DD/MM/AAAA");
-		add(txtFecha);
-		txtFecha.setColumns(10);
-		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(10, 272, 599, 151);
 		add(scrollPane_1);
@@ -190,6 +189,11 @@ public class altaCliente extends JPanel {
 		btnGuardar.setBounds(231, 207, 89, 23);
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				//Date fecha = jdcFechaNacimiento.getDate();
+				//long d = fecha.getTime();
+				//java.sql.Date formatoFecha = new java.sql.Date(d);
+				
 			
 			int dialogButton = JOptionPane.YES_NO_OPTION;
 			int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea agregar un nuevo Cliente?","Precaución",dialogButton);
@@ -225,11 +229,7 @@ public class altaCliente extends JPanel {
 					textField_5.requestFocusInWindow();
 					return;
 				}
-				if(txtFecha.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Falta el campo Ingrese la FECHA DE NACIMIENTO");//validacion de formulario
-					txtFecha.requestFocusInWindow();
-					return;
-				}
+				
 			
 			Cliente cliente = new Cliente();
 			
@@ -239,8 +239,10 @@ public class altaCliente extends JPanel {
 						textField_4.getText(),
 						textField_5.getText(),
 						choice.getSelectedItem(),
-						txtFecha.getText(),
-						txtTarjeta.getText());
+						jdcFechaNacimiento.getDate()
+					//	formatoFecha
+						
+						);
 				
 			Tarjeta tarjeta = new Tarjeta();
 			String t = txtTarjeta.getText();
@@ -256,7 +258,6 @@ public class altaCliente extends JPanel {
 				textField_3.setText("");    //limpieza del formulario en opcion "no"
 				textField_4.setText("");
 				textField_5.setText("");
-				txtFecha.setText("");
 				txtTarjeta.setText("");
 				textField_1.setEnabled(false);
 				textField_2.setEnabled(false);
@@ -265,7 +266,7 @@ public class altaCliente extends JPanel {
 				textField_4.setEnabled(false);
 				textField_5.setEnabled(false);
 				textField_6.setEnabled(false);
-				txtFecha.setEnabled(false);
+				jdcFechaNacimiento.setEnabled(true);
 				 
 				JOptionPane.showMessageDialog(null,"Alta de usuario CANCELADA");
 				
@@ -280,6 +281,10 @@ public class altaCliente extends JPanel {
 		btnActualizar.setBounds(430, 207, 102, 23);
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				Date fecha = jdcFechaNacimiento.getDate();
+				long d = fecha.getTime();
+				java.sql.Date formatoFecha = new java.sql.Date(d);
 								
 				int dialogButton = JOptionPane.YES_NO_OPTION;
 				int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea actualizar a este cliente?","Precaución",dialogButton); //pregunta 
@@ -311,9 +316,9 @@ public class altaCliente extends JPanel {
 						textField_5.requestFocusInWindow();
 						return;
 					}
-					if(txtFecha.getText().equals("")) {
+					if(jdcFechaNacimiento.equals("")) {
 						JOptionPane.showMessageDialog(null, "Falta el campo Ingrese la FECHA DE NACIMIENTO"); //validacion de formulario
-						txtFecha.requestFocusInWindow();
+						jdcFechaNacimiento.requestFocusInWindow();
 						return;
 					}
 					
@@ -324,11 +329,12 @@ public class altaCliente extends JPanel {
 							id,
 							textField_1.getText(),
 							textField_2.getText(),
-							textField_3.getText(),
+							textField_3.getText(),						//envio de los datos 
 							textField_4.getText(),
 							textField_5.getText(),
 						    choice.getSelectedItem(),
-							txtFecha.getText());			 //envio de los datos 
+							formatoFecha
+							);			 
 					
 					DefaultTableModel modelo;
 					modelo = new DefaultTableModel();
@@ -367,7 +373,7 @@ public class altaCliente extends JPanel {
 					textField_3.setText(""); //limpieza del formulario
 					textField_4.setText("");
 					textField_5.setText("");
-					txtFecha.setText("");
+					//jdcFechaNacimiento.setText("");
 					txtTarjeta.setText("");
 					textField_1.setEnabled(false);
 					textField_2.setEnabled(false);
@@ -376,7 +382,7 @@ public class altaCliente extends JPanel {
 					textField_4.setEnabled(false);
 					textField_5.setEnabled(false);
 					textField_6.setEnabled(false);
-					txtFecha.setEnabled(false);
+					jdcFechaNacimiento.setEnabled(true);
 					btnActualizar.setEnabled(false);
 					choice.setEnabled(false);
 					
@@ -390,7 +396,7 @@ public class altaCliente extends JPanel {
 					textField_3.setText("");
 					textField_4.setText("");
 					textField_5.setText("");
-					txtFecha.setText("");
+					//txtFecha.setText("");
 					txtTarjeta.setText("");
 					textField_1.setEnabled(false); //bloque de los btn cuando la opcion  es no
 					textField_2.setEnabled(false);
@@ -399,7 +405,7 @@ public class altaCliente extends JPanel {
 					textField_4.setEnabled(false);
 					textField_5.setEnabled(false);
 					textField_6.setEnabled(false);
-					txtFecha.setEnabled(false);
+					jdcFechaNacimiento.setEnabled(true);
 					choice.setEnabled(false);
 					 
 					JOptionPane.showMessageDialog(null,"Modificacion de usuario Cancelada");
@@ -423,7 +429,7 @@ public class altaCliente extends JPanel {
 				textField_4.setEnabled(true);
 				textField_5.setEnabled(true);
 				textField_6.setEnabled(true);
-				txtFecha.setEnabled(true);
+				jdcFechaNacimiento.setEnabled(true);
 				choice.setEnabled(true);
 								
 				btnActualizar.setEnabled(true);
@@ -473,7 +479,7 @@ public class altaCliente extends JPanel {
 				textField_5.setText(value6);
 				choice.select(value7);
 				choice.repaint();
-				txtFecha.setText(value8);	
+				//jdcFechaNacimiento.setText(value8);	
 				btnModificar.setEnabled(true);
 				}
 			}
@@ -573,7 +579,7 @@ public class altaCliente extends JPanel {
 				textField_4.setEnabled(true);
 				textField_5.setEnabled(true);
 				textField_6.setEnabled(true); //habilitacion de los botones 
-				txtFecha.setEnabled(true);
+				jdcFechaNacimiento.setEnabled(true);
 				choice.setEnabled(true);
 				
 				textField_1.setText("");
@@ -581,7 +587,7 @@ public class altaCliente extends JPanel {
 				textField_3.setText("");
 				textField_4.setText("");
 				textField_5.setText("");
-				txtFecha.setText("");
+				//jdcFechaNacimiento.setText("");
 				txtTarjeta.setText("");
 				
 				}
@@ -600,8 +606,13 @@ public class altaCliente extends JPanel {
 		textField_4.setEnabled(false);
 		textField_5.setEnabled(false);
 		textField_6.setEnabled(false);
-		txtFecha.setEnabled(false);
+		jdcFechaNacimiento.setEnabled(true);
 		choice.setEnabled(false);
+		
+		//jdcFechaNacimiento.setEnabled(false);
+	//	jdcFechaNacimiento.getCalendarButton().setEnabled(true);
+		
+		
 		
 		}
 	}
