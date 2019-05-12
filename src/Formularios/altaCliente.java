@@ -98,14 +98,16 @@ public class altaCliente extends JPanel {
 		add(lblSexo);
 		
 		JLabel lblEdad = new JLabel("Fecha de Nacimiento:");
-		lblEdad.setBounds(343, 170, 132, 25);
+		lblEdad.setBounds(339, 170, 136, 25);
 		lblEdad.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblEdad);
 		
 		JDateChooser jdcFechaNacimiento = new JDateChooser();
-		jdcFechaNacimiento.setDateFormatString("dd,MM,yyyy");
-		jdcFechaNacimiento.setBounds(473, 174, 136, 25);
+		jdcFechaNacimiento.setDateFormatString("dd,MM,yyyy");		//JCalender
+		jdcFechaNacimiento.setBounds(473, 170, 136, 25);
 		add(jdcFechaNacimiento);
+	
+	
 		
 		textField = new JTextField();
 		textField.setBounds(122, 29, 136, 20);
@@ -606,8 +608,8 @@ public class altaCliente extends JPanel {
 		textField_4.setEnabled(false);
 		textField_5.setEnabled(false);
 		textField_6.setEnabled(false);
-		jdcFechaNacimiento.setEnabled(true);
 		choice.setEnabled(false);
+	
 		
 		//jdcFechaNacimiento.setEnabled(false);
 	//	jdcFechaNacimiento.getCalendarButton().setEnabled(true);

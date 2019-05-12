@@ -33,13 +33,13 @@ public class Cliente {
 		}
 		return null;
 	}
-	public int altaCliente(String nombre,String apellido, String dni, String correo, String telefono, String sexo, Date fecha) {
+	public int altaCliente(String nombre,String apellido, String dni, String correo, String telefono, String sexo, java.util.Date fecha) {
 		int id = 0;
 		try {	
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
-			st.executeUpdate("INSERT INTO clientes (`nombre`, `apellido`,`dni`,`correo`,`telefono`,`sexo`,`fecha_nacimiento` ) VALUES ('"+nombre+"','"+apellido +"','"+dni+"','"+correo+"','" +telefono+"','"+sexo+"','+fecha+');");
+			st.executeUpdate("INSERT INTO clientes (`nombre`, `apellido`,`dni`,`correo`,`telefono`,`sexo`,`fecha_nacimiento` ) VALUES ('"+nombre+"','"+apellido +"','"+dni+"','"+correo+"','" +telefono+"','"+sexo+"','" + fecha + "');");
 			ResultSet rs =st.executeQuery("SELECT * FROM clientes WHERE `dni`='"+dni+"';");
 			if (rs.next()) {
 			id = rs.getInt("id");

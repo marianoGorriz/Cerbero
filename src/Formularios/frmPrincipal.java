@@ -67,7 +67,7 @@ public class frmPrincipal extends JFrame {
 		
 		JMenu mnVentas = new JMenu("Ventas");
 		mnVentas.setIcon(new ImageIcon("C:\\Users\\faku6\\git\\Cerbero\\bin\\Iconos\\productos.png"));
-		mnVentas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+		mnVentas.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));
 		mnVentas.setHorizontalAlignment(SwingConstants.CENTER);
 		menuBar.add(mnVentas);
 		
@@ -90,7 +90,7 @@ public class frmPrincipal extends JFrame {
 		mnVentas.add(mntmVentasRealizadas);
 		
 		JMenu mnProductos = new JMenu("Productos");
-		mnProductos.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+		mnProductos.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));
 		menuBar.add(mnProductos);
 		
 		JMenuItem mntmAltaDeProductos = new JMenuItem("Alta de Productos");
@@ -108,7 +108,7 @@ public class frmPrincipal extends JFrame {
 		mnProductos.add(mntmAltaDeProductos);
 		
 		JMenu mnTarjetas = new JMenu("Tarjetas");
-		mnTarjetas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+		mnTarjetas.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));
 		mnTarjetas.setHorizontalAlignment(SwingConstants.CENTER);
 		menuBar.add(mnTarjetas);
 		
@@ -156,7 +156,7 @@ public class frmPrincipal extends JFrame {
 		mnTarjetas.add(mntmPedidoDeTarjetas);
 		
 		JMenu mnClientes = new JMenu("Clientes");
-		mnClientes.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+		mnClientes.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));
 		menuBar.add(mnClientes);
 		
 		JMenuItem mntmAltaDeClientes = new JMenuItem("Alta de Clientes");
@@ -174,11 +174,22 @@ public class frmPrincipal extends JFrame {
 		mnClientes.add(mntmAltaDeClientes);
 		
 		JMenuItem mntmClientesInactivos = new JMenuItem("Clientes Inactivos");
+		mntmClientesInactivos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				Clientes_inactivos clientes = new Clientes_inactivos();
+				clientes.setBounds(10,11,620,413);
+				frame.getContentPane().removeAll();
+				frame.getContentPane().add(clientes);
+				frame.repaint();
+					
+			}
+		});
 		mntmClientesInactivos.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		mnClientes.add(mntmClientesInactivos);
 		
 		JMenu mnUsuarios = new JMenu("Usuarios");
-		mnUsuarios.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+		mnUsuarios.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));
 		menuBar.add(mnUsuarios);
 		
 		/*mntmAltaDeClientes.addActionListener(new ActionListener() {				//trae la ventana y la relaciona al menu
@@ -230,6 +241,26 @@ public class frmPrincipal extends JFrame {
 		});*/
 		mntmAdminUsuarios.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		mnUsuarios.add(mntmAdminUsuarios);
+		
+		JMenu mnMantenimiento = new JMenu("Mantenimiento");
+		mnMantenimiento.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));
+		menuBar.add(mnMantenimiento);
+		
+		JMenuItem mntmCambiosDeDias = new JMenuItem("Cambios de dias de bajas");
+		mntmCambiosDeDias.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));
+		mnMantenimiento.add(mntmCambiosDeDias);
+		
+		JMenuItem mntmCambiosDePorsentaje = new JMenuItem("Cambios de porsentaje de puntos");
+		mntmCambiosDePorsentaje.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));
+		mnMantenimiento.add(mntmCambiosDePorsentaje);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Backup de los datos");
+		mntmNewMenuItem.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));
+		mnMantenimiento.add(mntmNewMenuItem);
+		
+		JMenu mnSalir = new JMenu("Cerrar Sesion");
+		mnSalir.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));
+		menuBar.add(mnSalir);
 		frame.getContentPane().setLayout(null);
 		
 
