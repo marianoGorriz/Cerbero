@@ -21,6 +21,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.ActionListener;
 import java.awt.Rectangle;
@@ -38,6 +39,13 @@ import com.toedter.components.JLocaleChooser;
 import com.toedter.calendar.JCalendar;
 import javax.swing.border.BevelBorder;
 import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JMonthChooser;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public class altaCliente extends JPanel {
 	private JTextField textField;
@@ -102,12 +110,21 @@ public class altaCliente extends JPanel {
 		lblEdad.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblEdad);
 		
-		JDateChooser jdcFechaNacimiento = new JDateChooser();
-		jdcFechaNacimiento.setDateFormatString("dd,MM,yyyy");		//JCalender
-		jdcFechaNacimiento.setBounds(473, 170, 136, 25);
-		add(jdcFechaNacimiento);
+		JDateChooser dateChooser = new JDateChooser();	
+		
+		String fechaEstatica = "Seleccionar";
+		dateChooser.getCalendarButton().setText(fechaEstatica);
 	
-	
+		dateChooser.getCalendarButton().setBounds(0, 0, 136, 20);
+		dateChooser.setBounds(473, 174, 136, 20);
+		add(dateChooser);
+		dateChooser.setLayout(null);
+		
+		String a = "";
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(343, 26, 67, 14);
+		add(lblNewLabel);
+		lblNewLabel.setEnabled(false);
 		
 		textField = new JTextField();
 		textField.setBounds(122, 29, 136, 20);
@@ -166,7 +183,7 @@ public class altaCliente extends JPanel {
 			public void keyTyped(KeyEvent e) {
 				
 				char c = e.getKeyChar();
-				if ( c<'0' || c>'9') e.consume(); // solo numero en en caampo tarjeta
+				if ( c<'0' || c>'9') e.consume(); // solo numero en en campo tarjeta
 			}
 		}
 	);
@@ -192,11 +209,12 @@ public class altaCliente extends JPanel {
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				//Date fecha = jdcFechaNacimiento.getDate();
-				//long d = fecha.getTime();
-				//java.sql.Date formatoFecha = new java.sql.Date(d);
-				
-			
+			Date fecha = dateChooser.getDate();
+			long d = fecha.getTime();
+			java.sql.Date formatoFecha = new java.sql.Date(d);	
+			String fecha2 = formatoFecha.toString();
+			//dateChooser.getCalendarButton().setText(fecha2);	
+	
 			int dialogButton = JOptionPane.YES_NO_OPTION;
 			int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea agregar un nuevo Cliente?","Precaución",dialogButton);
 			if(dialogResult == JOptionPane.YES_OPTION){
@@ -240,10 +258,8 @@ public class altaCliente extends JPanel {
 						textField_3.getText(),
 						textField_4.getText(),
 						textField_5.getText(),
-						choice.getSelectedItem(),
-						jdcFechaNacimiento.getDate()
-					//	formatoFecha
-						
+						choice.getSelectedItem()
+					//	formatoFecha		
 						);
 				
 			Tarjeta tarjeta = new Tarjeta();
@@ -268,7 +284,7 @@ public class altaCliente extends JPanel {
 				textField_4.setEnabled(false);
 				textField_5.setEnabled(false);
 				textField_6.setEnabled(false);
-				jdcFechaNacimiento.setEnabled(true);
+				
 				 
 				JOptionPane.showMessageDialog(null,"Alta de usuario CANCELADA");
 				
@@ -284,9 +300,9 @@ public class altaCliente extends JPanel {
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Date fecha = jdcFechaNacimiento.getDate();
-				long d = fecha.getTime();
-				java.sql.Date formatoFecha = new java.sql.Date(d);
+				//Date fecha = jdcFechaNacimiento.getDate();
+				//long d = fecha.getTime();
+				//java.sql.Date formatoFecha = new java.sql.Date(d);
 								
 				int dialogButton = JOptionPane.YES_NO_OPTION;
 				int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea actualizar a este cliente?","Precaución",dialogButton); //pregunta 
@@ -318,15 +334,11 @@ public class altaCliente extends JPanel {
 						textField_5.requestFocusInWindow();
 						return;
 					}
-					if(jdcFechaNacimiento.equals("")) {
-						JOptionPane.showMessageDialog(null, "Falta el campo Ingrese la FECHA DE NACIMIENTO"); //validacion de formulario
-						jdcFechaNacimiento.requestFocusInWindow();
-						return;
-					}
+				
 					
 					Cliente cliente = new Cliente();
 					int id = Integer.parseInt(textField.getText());
-					
+					//MODIFICAR FUNCION
 					cliente.modificarCliente(
 							id,
 							textField_1.getText(),
@@ -334,8 +346,7 @@ public class altaCliente extends JPanel {
 							textField_3.getText(),						//envio de los datos 
 							textField_4.getText(),
 							textField_5.getText(),
-						    choice.getSelectedItem(),
-							formatoFecha
+						    choice.getSelectedItem() //sexo persona
 							);			 
 					
 					DefaultTableModel modelo;
@@ -384,7 +395,7 @@ public class altaCliente extends JPanel {
 					textField_4.setEnabled(false);
 					textField_5.setEnabled(false);
 					textField_6.setEnabled(false);
-					jdcFechaNacimiento.setEnabled(true);
+					
 					btnActualizar.setEnabled(false);
 					choice.setEnabled(false);
 					
@@ -407,7 +418,7 @@ public class altaCliente extends JPanel {
 					textField_4.setEnabled(false);
 					textField_5.setEnabled(false);
 					textField_6.setEnabled(false);
-					jdcFechaNacimiento.setEnabled(true);
+					
 					choice.setEnabled(false);
 					 
 					JOptionPane.showMessageDialog(null,"Modificacion de usuario Cancelada");
@@ -430,9 +441,9 @@ public class altaCliente extends JPanel {
 				txtTarjeta.setEnabled(false); //habilitacion de los btn 
 				textField_4.setEnabled(true);
 				textField_5.setEnabled(true);
-				textField_6.setEnabled(true);
-				jdcFechaNacimiento.setEnabled(true);
+				textField_6.setEnabled(true);		
 				choice.setEnabled(true);
+				dateChooser.setEnabled(true);
 								
 				btnActualizar.setEnabled(true);
 			}
@@ -483,6 +494,17 @@ public class altaCliente extends JPanel {
 				choice.repaint();
 				//jdcFechaNacimiento.setText(value8);	
 				btnModificar.setEnabled(true);
+				btnGuardar.setEnabled(false);
+				textField_1.setEnabled(false);
+				textField_2.setEnabled(false);
+				textField_3.setEnabled(false); // comienzo de la ventana
+				txtTarjeta.setEnabled(false);
+				textField_4.setEnabled(false);
+				textField_5.setEnabled(false);
+				textField_6.setEnabled(false);
+				choice.setEnabled(false);
+				dateChooser.setEnabled(false);
+			
 				}
 			}
 		);
@@ -573,7 +595,7 @@ public class altaCliente extends JPanel {
 				btnActualizar.setEnabled(false);
 
 				btnGuardar.setEnabled(true);
-				btnNuevo.setEnabled(true);
+				btnNuevo.setEnabled(false);
 				textField_1.setEnabled(true);
 				textField_2.setEnabled(true);
 				textField_3.setEnabled(true);
@@ -581,8 +603,8 @@ public class altaCliente extends JPanel {
 				textField_4.setEnabled(true);
 				textField_5.setEnabled(true);
 				textField_6.setEnabled(true); //habilitacion de los botones 
-				jdcFechaNacimiento.setEnabled(true);
 				choice.setEnabled(true);
+				dateChooser.setEnabled(true);
 				
 				textField_1.setText("");
 				textField_2.setText("");
@@ -609,6 +631,13 @@ public class altaCliente extends JPanel {
 		textField_5.setEnabled(false);
 		textField_6.setEnabled(false);
 		choice.setEnabled(false);
+		dateChooser.setEnabled(false);
+	
+		
+		
+		
+		
+		
 	
 		
 		//jdcFechaNacimiento.setEnabled(false);

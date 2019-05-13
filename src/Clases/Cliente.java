@@ -33,13 +33,16 @@ public class Cliente {
 		}
 		return null;
 	}
-	public int altaCliente(String nombre,String apellido, String dni, String correo, String telefono, String sexo, java.util.Date fecha) {
+	
+	
+	public int altaCliente(String nombre,String apellido, String dni, String correo, String telefono, String sexo) {
 		int id = 0;
 		try {	
+			
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
-			st.executeUpdate("INSERT INTO clientes (`nombre`, `apellido`,`dni`,`correo`,`telefono`,`sexo`,`fecha_nacimiento` ) VALUES ('"+nombre+"','"+apellido +"','"+dni+"','"+correo+"','" +telefono+"','"+sexo+"','" + fecha + "');");
+			st.executeUpdate("INSERT INTO clientes (`nombre`, `apellido`,`dni`,`correo`,`telefono`,`sexo`,`fecha_nacimiento` ) VALUES ('"+nombre+"','"+apellido +"','"+dni+"','"+correo+"','" +telefono+"','"+sexo+"');");
 			ResultSet rs =st.executeQuery("SELECT * FROM clientes WHERE `dni`='"+dni+"';");
 			if (rs.next()) {
 			id = rs.getInt("id");
@@ -55,13 +58,13 @@ public class Cliente {
 		}
 		return id;
 	}
-	public void modificarCliente(int id, String nombre,String apellido, String dni, String correo, String telefono, String sexo, java.sql.Date fecha) {
+	public void modificarCliente(int id, String nombre,String apellido, String dni, String correo, String telefono, String sexo) {
 		try {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
 			st.executeUpdate("UPDATE clientes SET `nombre` = '" + nombre + "', `apellido` = '" + apellido + 
-							 "',`dni` = '" + dni + "',`correo` = '" + correo + "',`sexo` = '" + sexo + "',`fecha_nacimiento` = '" + fecha + "' WHERE id = " + id + ";");
+							 "',`dni` = '" + dni + "',`correo` = '" + correo + "',`sexo` = '" + sexo + "' WHERE id = " + id + ";");
 			
 		}		 
 		catch (SQLException e2) {
@@ -70,6 +73,8 @@ public class Cliente {
 			System.out.println("SQLException: " + e2.getMessage());
 		}
 	}
+	
+	
 
 	
 	
