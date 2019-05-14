@@ -104,7 +104,7 @@ public class altaCliente extends JPanel {
 		
 		JDateChooser jdcFechaNacimiento = new JDateChooser();
 		jdcFechaNacimiento.setDateFormatString("dd,MM,yyyy");		//JCalender
-		jdcFechaNacimiento.setBounds(473, 170, 136, 25);
+		jdcFechaNacimiento.setBounds(507, 170, 136, 25);
 		add(jdcFechaNacimiento);
 	
 	

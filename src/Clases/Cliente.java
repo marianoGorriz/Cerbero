@@ -17,12 +17,12 @@ public class Cliente {
 	
 	
 	
-	public ResultSet buscarCliente(String nombre) {
+	public ResultSet buscarCliente(Object object) {
 		try {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
-		    ResultSet rs = st.executeQuery("SELECT * FROM clientes WHERE `nombre` LIKE '%" + nombre +"%';");
+		    ResultSet rs = st.executeQuery("SELECT * FROM clientes WHERE `nombre` LIKE '%" + object +"%';");
 			return rs;
 
 		}		 
@@ -33,6 +33,25 @@ public class Cliente {
 		}
 		return null;
 	}
+		
+		public ResultSet buscarCliente11(Object object) {
+			try {
+				Conexion cn = new Conexion();
+				Connection con = cn.conectarDB();
+				Statement st =con.createStatement();
+			    ResultSet rs = st.executeQuery("SELECT * FROM clientes WHERE `nombre` LIKE '%" + object +"%';");
+				return rs;
+
+			}		 
+			catch (SQLException e2) {
+				//System.out.println("nope2");
+				JOptionPane.showMessageDialog(null, "Error al buscar usuario!");
+				System.out.println("SQLException: " + e2.getMessage());
+			}
+			return null;
+		}
+		
+
 	public int altaCliente(String nombre,String apellido, String dni, String correo, String telefono, String sexo, java.util.Date fecha) {
 		int id = 0;
 		try {	
@@ -70,7 +89,30 @@ public class Cliente {
 			System.out.println("SQLException: " + e2.getMessage());
 		}
 	}
+	public ResultSet buscarCliente1(Object JtextField) {
+		// TODO Auto-generated method stub
+		return null;
+		
+	
+	}
+	public ResultSet clientesInactivos() {
+		try{ 
+			Conexion cn = new Conexion();
+			Connection con = cn.conectarDB();
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery( "SELECT * FROM clientes INNER JOIN tarjetas ON clientes.id = tarjetas.id_tarjeta_cliente WHERE tarjetas.estado = 1");
+			return rs;
+		}
+		catch (SQLException e2) {
+			//System.out.println("nope2");
+			JOptionPane.showMessageDialog(null, "Error");
+			System.out.println("SQLException: " + e2.getMessage());
+			
+	}
+		return null;
+	}
+}
+  
+
 
 	
-	
-}
