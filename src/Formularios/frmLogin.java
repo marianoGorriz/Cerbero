@@ -64,9 +64,21 @@ public class frmLogin {
 		frame.getContentPane().add(txtUsuario);
 		txtUsuario.setColumns(10);		
 		//INGRESAR Y COMPARAR USUARIO		
+		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				if(txtUsuario.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Falta el campo USUARIO");  //validacion de USUARIO
+					txtUsuario.requestFocusInWindow();
+					return;
+				}
+				if(pwdUsuario.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Falta el campo CONTRASEÑA");  //validacion de USUARIO
+					pwdUsuario.requestFocusInWindow();
+					return;
+				}
 				
 				String usuario = txtUsuario.getText();
 				String password = new String (pwdUsuario.getPassword());
@@ -74,13 +86,13 @@ public class frmLogin {
 				Usuario user = new Usuario();
 				int login = user.validacionLogin(usuario, password,0);
 				
-				if (/**login*/ 1 == 1) {
+				if (login  == 1) {
 					frmPrincipal window = new frmPrincipal();
 					window.mostrarPrincipal();
 					frame.setVisible(false);
 				
 				}else {
-					System.out.println("ok2");
+					JOptionPane.showMessageDialog(null, "ERROR en Usuario o Contraseña");
 				}
 				
 				
