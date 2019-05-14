@@ -213,7 +213,7 @@ public class altaCliente extends JPanel {
 			long d = fecha.getTime();
 			java.sql.Date formatoFecha = new java.sql.Date(d);	
 			String fecha2 = formatoFecha.toString();
-			//dateChooser.getCalendarButton().setText(fecha2);	
+			dateChooser.getCalendarButton().setText(fecha2);	
 	
 			int dialogButton = JOptionPane.YES_NO_OPTION;
 			int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea agregar un nuevo Cliente?","Precaución",dialogButton);
