@@ -111,6 +111,9 @@ public class altaCliente extends JPanel {
 		add(lblEdad);
 		
 		JDateChooser dateChooser = new JDateChooser();	
+
+
+	
 		
 		String fechaEstatica = "Seleccionar";
 		dateChooser.getCalendarButton().setText(fechaEstatica);
@@ -119,7 +122,6 @@ public class altaCliente extends JPanel {
 		dateChooser.setBounds(473, 174, 136, 20);
 		add(dateChooser);
 		dateChooser.setLayout(null);
-		
 		String a = "";
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(343, 26, 67, 14);
@@ -213,7 +215,7 @@ public class altaCliente extends JPanel {
 			long d = fecha.getTime();
 			java.sql.Date formatoFecha = new java.sql.Date(d);	
 			String fecha2 = formatoFecha.toString();
-			//dateChooser.getCalendarButton().setText(fecha2);	
+			dateChooser.getCalendarButton().setText(fecha2);	
 	
 			int dialogButton = JOptionPane.YES_NO_OPTION;
 			int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea agregar un nuevo Cliente?","Precaución",dialogButton);
@@ -247,6 +249,13 @@ public class altaCliente extends JPanel {
 				if(textField_5.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "Falta el campo TELEFONO");//validacion de formulario
 					textField_5.requestFocusInWindow();
+					return;
+				}
+				if(dateChooser.getDate().equals(null)) {
+					
+
+					JOptionPane.showMessageDialog(null, "Falta el campo dat");//validacion de formulario
+					dateChooser.requestFocusInWindow();
 					return;
 				}
 				
@@ -595,7 +604,7 @@ public class altaCliente extends JPanel {
 				btnActualizar.setEnabled(false);
 
 				btnGuardar.setEnabled(true);
-				btnNuevo.setEnabled(false);
+				btnNuevo.setEnabled(true);
 				textField_1.setEnabled(true);
 				textField_2.setEnabled(true);
 				textField_3.setEnabled(true);

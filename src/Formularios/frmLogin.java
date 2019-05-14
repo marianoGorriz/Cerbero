@@ -92,7 +92,7 @@ public class frmLogin {
 					frame.setVisible(false);
 				
 				}else {
-					//System.out.println("ok2");
+					JOptionPane.showMessageDialog(null, "ERROR en Usuario o Contraseña");
 				}
 				
 				
