@@ -103,6 +103,23 @@ public class Tarjeta {
 	}
 		return null;
 	}
+	
+	public ResultSet tarjetasActivas() {
+		try{ 
+			Conexion cn = new Conexion();
+			Connection con = cn.conectarDB();
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery( "SELECT * FROM clientes INNER JOIN tarjetas ON clientes.id = tarjetas.id_tarjeta_cliente WHERE tarjetas.estado = 0");
+			return rs;
+		}
+		catch (SQLException e2) {
+			//System.out.println("nope2");
+			JOptionPane.showMessageDialog(null, "Error");
+			System.out.println("SQLException: " + e2.getMessage());
+			
+	}
+		return null;
+	}
 }
 	
 	
