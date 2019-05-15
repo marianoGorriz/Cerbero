@@ -112,7 +112,7 @@ public class frmPrincipal extends JFrame {
 		mnTarjetas.setHorizontalAlignment(SwingConstants.CENTER);
 		menuBar.add(mnTarjetas);
 		
-		JMenuItem mntmAltasDeTarjetas = new JMenuItem("Altas de Tarjetas"); 	//mntmALTAS- submenu de menu TARJETAS
+		JMenuItem mntmAltasDeTarjetas = new JMenuItem("Perdida De Tarjeta"); 	//mntmALTAS- submenu de menu TARJETAS
 		mntmAltasDeTarjetas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {							//Eventos para abrir el panel 
