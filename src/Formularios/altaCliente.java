@@ -267,8 +267,8 @@ public class altaCliente extends JPanel {
 						textField_3.getText(),
 						textField_4.getText(),
 						textField_5.getText(),
-						choice.getSelectedItem()
-					//	formatoFecha		
+						choice.getSelectedItem(),
+						formatoFecha		
 						);
 				
 			Tarjeta tarjeta = new Tarjeta();

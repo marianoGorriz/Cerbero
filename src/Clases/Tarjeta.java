@@ -2,8 +2,13 @@ package Clases;
 
 import java.sql.Connection;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
+
+import com.toedter.calendar.JDateChooser;
 
 import Vistas.Conexion;
 
@@ -64,11 +69,17 @@ public class Tarjeta {
 	{
 		
 		try {
-			String fecha2 = "02/02/2018";
+			
+			//Logica para obtener la fecha actual.
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = new Date();
+			String fechaActual = dateFormat.format(date);
+			//Fin logica
+	
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
-			st.executeUpdate("INSERT INTO tarjetas (cantidad_tarjeta,`ultima_tarjeta`,`n_tarjeta`,`puntos_acumulados`,`fecha_alta`,estado,`ultima_compra`, id_tarjeta_cliente) VALUES ("+1+",'"+tarjeta+"','"+tarjeta+"',"+0+",'"+fecha2+"',"+1+",'"+fecha2+"',"+id+");");	
+			st.executeUpdate("INSERT INTO tarjetas (cantidad_tarjeta,`ultima_tarjeta`,`n_tarjeta`,`puntos_acumulados`,`fecha_alta`,estado,`ultima_compra`, id_tarjeta_cliente) VALUES ("+1+",'"+tarjeta+"','"+tarjeta+"',"+0+",'"+fechaActual+"',"+1+",'"+fechaActual+"',"+id+");");	
 		} catch (Exception e2) {
 			JOptionPane.showMessageDialog(null, "Error al dar de alta tarjeta!");
 			System.out.println("SQLException: " + e2.getMessage());	
