@@ -20,6 +20,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class perdidaTarjeta extends JPanel {
 	private JTextField txtCantidadTarjetas;
@@ -40,6 +42,24 @@ public class perdidaTarjeta extends JPanel {
 	public perdidaTarjeta() {
 		setBounds(100, 100, 677, 550);
 		setLayout(null);
+		
+		JButton btnModificarTarjeta = new JButton("Modificar Tarjeta");
+		btnModificarTarjeta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+			}
+		});
+		btnModificarTarjeta.setBounds(166, 148, 132, 23);
+		add(btnModificarTarjeta);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(337, 148, 132, 23);
+		add(btnCancelar);
+		
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setBounds(474, 185, 89, 23);
+		add(btnBuscar);
 		
 		JLabel lblCantidadDeTarjetas = new JLabel("Cantidad de Tarjetas:");
 		lblCantidadDeTarjetas.setBounds(10, 42, 147, 14);
@@ -124,14 +144,6 @@ public class perdidaTarjeta extends JPanel {
 		lblPerdidasDeTarjetas.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblPerdidasDeTarjetas);
 		
-		JButton btnModificarTarjeta = new JButton("Modificar Tarjeta");
-		btnModificarTarjeta.setBounds(166, 148, 132, 23);
-		add(btnModificarTarjeta);
-		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(337, 148, 132, 23);
-		add(btnCancelar);
-		
 		JLabel lblBucarClientePor = new JLabel("Buscar cliente con DNI:");
 		lblBucarClientePor.setBounds(25, 188, 155, 14);
 		lblBucarClientePor.setFont(new Font("Times New Roman", Font.BOLD, 14));
@@ -141,10 +153,6 @@ public class perdidaTarjeta extends JPanel {
 		txtBuscar.setBounds(192, 186, 274, 20);
 		add(txtBuscar);
 		txtBuscar.setColumns(10);
-		
-		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(474, 185, 89, 23);
-		add(btnBuscar);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(25, 219, 556, 179);
