@@ -17,12 +17,12 @@ public class Cliente {
 	
 	
 	
-	public ResultSet buscarCliente(String nombre) {
+	public ResultSet buscarCliente(Object object) {
 		try {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
-		    ResultSet rs = st.executeQuery("SELECT * FROM clientes WHERE `nombre` LIKE '%" + nombre +"%';");
+		    ResultSet rs = st.executeQuery("SELECT * FROM clientes WHERE `nombre` LIKE '%" + object +"%';");
 			return rs;
 
 		}		 
@@ -33,9 +33,10 @@ public class Cliente {
 		}
 		return null;
 	}
-	
-	
-	public int altaCliente(String nombre,String apellido, String dni, String correo, String telefono, String sexo, java.sql.Date fecha) {
+		
+
+	public int altaCliente(String nombre,String apellido, String dni, String correo, String telefono, String sexo, java.util.Date fecha) {
+
 		int id = 0;
 		try {	
 			
@@ -73,9 +74,26 @@ public class Cliente {
 			System.out.println("SQLException: " + e2.getMessage());
 		}
 	}
-	
-	
+
+	public ResultSet clientesInactivos() {
+		try{ 
+			Conexion cn = new Conexion();
+			Connection con = cn.conectarDB();
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery( "SELECT * FROM clientes INNER JOIN tarjetas ON clientes.id = tarjetas.id_tarjeta_cliente WHERE tarjetas.estado = 0");
+			return rs;
+		}
+		catch (SQLException e2) {
+			//System.out.println("nope2");
+			JOptionPane.showMessageDialog(null, "Error");
+			System.out.println("SQLException: " + e2.getMessage());
+			
+	}
+		return null;
+	}
+}
+  
+
+
 
 	
-	
-}

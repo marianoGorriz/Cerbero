@@ -110,10 +110,9 @@ public class altaCliente extends JPanel {
 		lblEdad.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblEdad);
 		
-		JDateChooser dateChooser = new JDateChooser();	
 
+		JDateChooser dateChooser = new JDateChooser();
 
-	
 		
 		String fechaEstatica = "Seleccionar";
 		dateChooser.getCalendarButton().setText(fechaEstatica);
