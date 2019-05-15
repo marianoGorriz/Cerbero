@@ -273,6 +273,22 @@ public class altaCliente extends JPanel {
 			Tarjeta tarjeta = new Tarjeta();
 			String t = txtTarjeta.getText();
 			tarjeta.altaTarjeta(id, t);
+			
+			textField.setText("");
+			textField_1.setText("");
+			textField_2.setText("");
+			textField_3.setText("");    //limpieza del formulario en opcion "no"
+			textField_4.setText("");
+			textField_5.setText("");
+			txtTarjeta.setText("");
+			textField_1.setEnabled(false);
+			textField_2.setEnabled(false);
+			textField_3.setEnabled(false);
+			txtTarjeta.setEnabled(false);
+			textField_4.setEnabled(false);
+			textField_5.setEnabled(false);
+			textField_6.setEnabled(false);
+			btnGuardar.setEnabled(false);
 						
 			}
 			
@@ -508,7 +524,7 @@ public class altaCliente extends JPanel {
 				choice.select(value7);
 				choice.repaint();
 				dateChooser.getCalendarButton().setText(fecha);
-				System.out.println(dateChooser.getDateEditor());
+				//System.out.println(dateChooser.getDateEditor());
 				btnModificar.setEnabled(true);
 				btnGuardar.setEnabled(false);
 				textField_1.setEnabled(false);
@@ -639,6 +655,39 @@ public class altaCliente extends JPanel {
 		);
 		add(btnNuevo);
 		add(btnActualizar);
+		
+		DefaultTableModel modelo2;
+		modelo = new DefaultTableModel();
+		modelo.addColumn("ID");
+		modelo.addColumn("Nombre");
+		modelo.addColumn("Apellido");
+		modelo.addColumn("DNI");
+		modelo.addColumn("Correo");
+		modelo.addColumn("Telefono");
+		modelo.addColumn("Sexo");
+		modelo.addColumn("Fecha Nacimiento");
+		table_1.setModel(modelo);
+		
+		Cliente clientes = new Cliente();
+		rs = cliente.buscarCliente(textField_6.getText());
+		try {
+			while(rs.next()) {
+				modelo.addRow(new Object[]{
+						rs.getObject("id"), 
+						rs.getObject("nombre"),
+						rs.getObject("apellido"),
+						rs.getObject("DNI"),
+						rs.getObject("correo"),
+						rs.getObject("telefono"),
+						rs.getObject("sexo"),
+						rs.getObject("fecha_nacimiento")
+					}
+				);
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			}
+		
 		btnNuevo.setEnabled(true);
 		btnModificar.setEnabled(false);
 		btnActualizar.setEnabled(false);
