@@ -112,7 +112,7 @@ public class altaCliente extends JPanel {
 		
 
 		JDateChooser dateChooser = new JDateChooser();
-
+		
 		
 		String fechaEstatica = "Seleccionar";
 		dateChooser.getCalendarButton().setText(fechaEstatica);
@@ -308,10 +308,13 @@ public class altaCliente extends JPanel {
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//Date fecha = jdcFechaNacimiento.getDate();
-				//long d = fecha.getTime();
-				//java.sql.Date formatoFecha = new java.sql.Date(d);
-								
+				Date fechaBtn = dateChooser.getDate();
+				long dBtn = fechaBtn.getTime();
+				java.sql.Date formatoFechaBtn = new java.sql.Date(dBtn);
+				String fechaModificada = formatoFechaBtn.toString();
+				dateChooser.getCalendarButton().setText(fechaModificada);
+				
+				
 				int dialogButton = JOptionPane.YES_NO_OPTION;
 				int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea actualizar a este cliente?","Precaución",dialogButton); //pregunta 
 				if(dialogResult == JOptionPane.YES_OPTION){
@@ -343,6 +346,11 @@ public class altaCliente extends JPanel {
 						return;
 					}
 				
+					Date fecha = dateChooser.getDate();
+					long d = fecha.getTime();
+					java.sql.Date formatoFecha = new java.sql.Date(d);	
+					String fecha2 = formatoFecha.toString();
+					dateChooser.getCalendarButton().setText(fecha2);	
 					
 					Cliente cliente = new Cliente();
 					int id = Integer.parseInt(textField.getText());
@@ -354,7 +362,8 @@ public class altaCliente extends JPanel {
 							textField_3.getText(),						//envio de los datos 
 							textField_4.getText(),
 							textField_5.getText(),
-						    choice.getSelectedItem() //sexo persona
+						    choice.getSelectedItem(), //sexo persona
+						    formatoFecha
 							);			 
 					
 					DefaultTableModel modelo;
@@ -403,7 +412,6 @@ public class altaCliente extends JPanel {
 					textField_4.setEnabled(false);
 					textField_5.setEnabled(false);
 					textField_6.setEnabled(false);
-					
 					btnActualizar.setEnabled(false);
 					choice.setEnabled(false);
 					
@@ -426,7 +434,7 @@ public class altaCliente extends JPanel {
 					textField_4.setEnabled(false);
 					textField_5.setEnabled(false);
 					textField_6.setEnabled(false);
-					
+					btnActualizar.setEnabled(false);
 					choice.setEnabled(false);
 					 
 					JOptionPane.showMessageDialog(null,"Modificacion de usuario Cancelada");
@@ -451,8 +459,7 @@ public class altaCliente extends JPanel {
 				textField_5.setEnabled(true);
 				textField_6.setEnabled(true);		
 				choice.setEnabled(true);
-				dateChooser.setEnabled(true);
-								
+				dateChooser.setEnabled(true);							
 				btnActualizar.setEnabled(true);
 			}
 		}
@@ -489,7 +496,7 @@ public class altaCliente extends JPanel {
 				String value5 = table_1.getModel().getValueAt(row, column5).toString();
 				String value6 = table_1.getModel().getValueAt(row, column6).toString();
 				String value7 = table_1.getModel().getValueAt(row, column7).toString();
-				String value8 = table_1.getModel().getValueAt(row, column8).toString();
+				String fecha = table_1.getModel().getValueAt(row, column8).toString();
 				
 
 				textField.setText(value1);
@@ -500,7 +507,8 @@ public class altaCliente extends JPanel {
 				textField_5.setText(value6);
 				choice.select(value7);
 				choice.repaint();
-				//jdcFechaNacimiento.setText(value8);	
+				dateChooser.getCalendarButton().setText(fecha);
+				System.out.println(dateChooser.getDateEditor());
 				btnModificar.setEnabled(true);
 				btnGuardar.setEnabled(false);
 				textField_1.setEnabled(false);
@@ -510,8 +518,10 @@ public class altaCliente extends JPanel {
 				textField_4.setEnabled(false);
 				textField_5.setEnabled(false);
 				textField_6.setEnabled(false);
+				btnActualizar.setEnabled(false);
 				choice.setEnabled(false);
 				dateChooser.setEnabled(false);
+				
 			
 				}
 			}
@@ -557,6 +567,8 @@ public class altaCliente extends JPanel {
 				}
 			}
 		});
+		
+		
 		add(btnBuscar);
 		
 	
