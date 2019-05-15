@@ -49,7 +49,7 @@ public class TarjetasActivas extends JPanel{
 			while(rs.next()) {
 				modelo.addRow(new Object[]{
 						rs.getObject("n_tarjeta"), 
-						rs.getObject("cantidad_tarjeta"),
+						rs.getObject("dni"),
 						rs.getObject("puntos_acumulados"),
 						rs.getObject("ultima_compra"),
 						
