@@ -6,17 +6,28 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+import Clases.Cliente;
+import Clases.Tarjeta;
+
 import javax.swing.JButton;
+import java.awt.Font;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class perdidaTarjeta extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	private JTextField txtCantidadTarjetas;
+	private JTextField txtUltimaTarjeta;
+	private JTextField txtNuemeroTarjeta;
+	private JTextField txtPuntos;
+	private JTextField txtFechaAlta;
+	private JTextField txtUltimaCompra;
+	private JTextField txtBuscar;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -25,92 +36,143 @@ public class perdidaTarjeta extends JPanel {
 	 * Create the frame.
 	 */
 	public perdidaTarjeta() {
-		setBounds(100, 100, 625, 382);
+		setBounds(100, 100, 677, 550);
 		setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("ID:");
-		lblNewLabel.setBounds(10, 11, 46, 14);
-		add(lblNewLabel);
-		
-		textField = new JTextField();
-		textField.setBounds(47, 9, 86, 17);
-		add(textField);
-		textField.setColumns(10);
-		
 		JLabel lblCantidadDeTarjetas = new JLabel("Cantidad de Tarjetas:");
-		lblCantidadDeTarjetas.setBounds(10, 42, 109, 14);
+		lblCantidadDeTarjetas.setBounds(10, 42, 147, 14);
+		lblCantidadDeTarjetas.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblCantidadDeTarjetas);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(145, 39, 86, 20);
-		add(textField_1);
-		textField_1.setColumns(10);
+		txtCantidadTarjetas = new JTextField();
+		txtCantidadTarjetas.setBounds(149, 40, 109, 20);
+		txtCantidadTarjetas.setEnabled(false);
+		txtCantidadTarjetas.setEditable(false);
+		add(txtCantidadTarjetas);
+		txtCantidadTarjetas.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Ultima Tarjeta:");
-		lblNewLabel_1.setBounds(10, 71, 86, 14);
-		add(lblNewLabel_1);
+		JLabel lblUltimaTarjeta = new JLabel("Ultima Tarjeta:");
+		lblUltimaTarjeta.setBounds(10, 71, 104, 14);
+		lblUltimaTarjeta.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		add(lblUltimaTarjeta);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(145, 68, 86, 20);
-		add(textField_2);
-		textField_2.setColumns(10);
+		txtUltimaTarjeta = new JTextField();
+		txtUltimaTarjeta.setBounds(149, 71, 109, 20);
+		txtUltimaTarjeta.setEnabled(false);
+		txtUltimaTarjeta.setEditable(false);
+		add(txtUltimaTarjeta);
+		txtUltimaTarjeta.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Numero de tarjeta:");
-		lblNewLabel_2.setBounds(10, 104, 104, 14);
-		add(lblNewLabel_2);
+		JLabel lblNumeroTarjeta = new JLabel("Numero de tarjeta:");
+		lblNumeroTarjeta.setBounds(10, 104, 129, 14);
+		lblNumeroTarjeta.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		add(lblNumeroTarjeta);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(106, 101, 86, 20);
-		add(textField_3);
-		textField_3.setColumns(10);
+		txtNuemeroTarjeta = new JTextField();
+		txtNuemeroTarjeta.setBounds(149, 102, 109, 20);
+		add(txtNuemeroTarjeta);
+		txtNuemeroTarjeta.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(106, 136, 86, 20);
-		add(textField_4);
-		textField_4.setColumns(10);
+		txtPuntos = new JTextField();
+		txtPuntos.setBounds(472, 69, 109, 20);
+		txtPuntos.setEnabled(false);
+		txtPuntos.setEditable(false);
+		add(txtPuntos);
+		txtPuntos.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(106, 167, 86, 20);
-		add(textField_5);
-		textField_5.setColumns(10);
+		txtFechaAlta = new JTextField();
+		txtFechaAlta.setBounds(472, 102, 109, 20);
+		txtFechaAlta.setEnabled(false);
+		txtFechaAlta.setEditable(false);
+		add(txtFechaAlta);
+		txtFechaAlta.setColumns(10);
 		
 		JLabel lblPuntos = new JLabel("Puntos:");
-		lblPuntos.setBounds(10, 139, 46, 14);
+		lblPuntos.setBounds(352, 71, 70, 14);
+		lblPuntos.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		add(lblPuntos);
 		
-		JLabel lblNewLabel_3 = new JLabel("Fecha alta:");
-		lblNewLabel_3.setBounds(10, 170, 70, 14);
-		add(lblNewLabel_3);
+		JLabel lblFechaAlta = new JLabel("Fecha alta:");
+		lblFechaAlta.setBounds(352, 104, 70, 14);
+		lblFechaAlta.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		add(lblFechaAlta);
 		
-		JLabel lblEstado = new JLabel("Estado:");
-		lblEstado.setBounds(429, 11, 46, 14);
-		add(lblEstado);
+		txtUltimaCompra = new JTextField();
+		txtUltimaCompra.setBounds(472, 40, 109, 20);
+		txtUltimaCompra.setEnabled(false);
+		txtUltimaCompra.setEditable(false);
+		add(txtUltimaCompra);
+		txtUltimaCompra.setColumns(10);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(513, 8, 86, 20);
-		add(textField_6);
-		textField_6.setColumns(10);
+		JLabel lblUltimaCompra = new JLabel("Ultima compra:");
+		lblUltimaCompra.setBounds(352, 42, 104, 14);
+		lblUltimaCompra.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		add(lblUltimaCompra);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(513, 39, 86, 20);
-		add(textField_7);
-		textField_7.setColumns(10);
+		JLabel lblPerdidasDeTarjetas = new JLabel("Perdidas de Tarjetas");
+		lblPerdidasDeTarjetas.setBounds(25, 11, 132, 20);
+		lblPerdidasDeTarjetas.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		add(lblPerdidasDeTarjetas);
 		
-		JLabel lblNewLabel_4 = new JLabel("Ultima compra:");
-		lblNewLabel_4.setBounds(408, 42, 83, 14);
-		add(lblNewLabel_4);
+		JButton btnModificarTarjeta = new JButton("Modificar Tarjeta");
+		btnModificarTarjeta.setBounds(166, 148, 132, 23);
+		add(btnModificarTarjeta);
 		
-		JButton btnNuevo = new JButton("Nuevo");
-		btnNuevo.setBounds(25, 223, 89, 23);
-		add(btnNuevo);
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(337, 148, 132, 23);
+		add(btnCancelar);
 		
-		JButton btnModificar = new JButton("Modificar");
-		btnModificar.setBounds(25, 273, 89, 23);
-		add(btnModificar);
+		JLabel lblBucarClientePor = new JLabel("Buscar cliente con DNI:");
+		lblBucarClientePor.setBounds(25, 188, 155, 14);
+		lblBucarClientePor.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		add(lblBucarClientePor);
 		
-		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.setBounds(25, 322, 89, 23);
-		add(btnGuardar);
+		txtBuscar = new JTextField();
+		txtBuscar.setBounds(192, 186, 274, 20);
+		add(txtBuscar);
+		txtBuscar.setColumns(10);
+		
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setBounds(474, 185, 89, 23);
+		add(btnBuscar);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(25, 219, 623, 179);
+		add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		
+		
+		DefaultTableModel modelo;
+		modelo = new DefaultTableModel();
+		modelo.addColumn("DNI del Cliente");
+		modelo.addColumn("Cantidad de Tarjetas");
+		modelo.addColumn("Ultima Tarjeta");
+		modelo.addColumn("N° de Tarjeta");
+		modelo.addColumn("Fecha de Alta");
+		modelo.addColumn("Estado");
+		modelo.addColumn("Ultima Compra");
+	
+		Tarjeta tarjeta = new Tarjeta();
+		ResultSet rs = tarjeta.consultaTarjeta();
+		try {
+			while(rs.next()) {
+				modelo.addRow(new Object[]{ 
+						rs.getObject("dni"),
+						rs.getObject("cantidad_tarjeta"),
+						rs.getObject("n_tarjeta"),
+						rs.getObject("fecha_alta"),
+						rs.getObject("estado"),
+						rs.getObject("ultima_compra")
+						
+					}
+				);
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			
+			}
 
 	}
 }
