@@ -78,7 +78,7 @@ public class Tarjeta {
 			String fechaActual = dateFormat.format(date);
 			//Fin logica
 	
-			Conexion cn = new Conexion();
+			Conexion cn = new Conexion(); 
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
 			st.executeUpdate("INSERT INTO tarjetas (cantidad_tarjeta,`ultima_tarjeta`,`n_tarjeta`,`puntos_acumulados`,`fecha_alta`,estado,`ultima_compra`, id_tarjeta_cliente) VALUES ("+1+",'"+tarjeta+"','"+tarjeta+"',"+0+",'"+fechaActual+"',"+1+",'"+fechaActual+"',"+id+");");	

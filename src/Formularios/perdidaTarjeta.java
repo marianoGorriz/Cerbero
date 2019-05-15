@@ -18,6 +18,8 @@ import java.sql.SQLException;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class perdidaTarjeta extends JPanel {
 	private JTextField txtCantidadTarjetas;
@@ -69,6 +71,14 @@ public class perdidaTarjeta extends JPanel {
 		add(lblNumeroTarjeta);
 		
 		txtNuemeroTarjeta = new JTextField();
+		txtNuemeroTarjeta.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				
+				if (c<'0' || c>'9') e.consume();  //validacion de que solo se escriban número 
+			}
+		});
 		txtNuemeroTarjeta.setBounds(149, 102, 109, 20);
 		add(txtNuemeroTarjeta);
 		txtNuemeroTarjeta.setColumns(10);
@@ -137,7 +147,7 @@ public class perdidaTarjeta extends JPanel {
 		add(btnBuscar);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(25, 219, 623, 179);
+		scrollPane.setBounds(25, 219, 556, 179);
 		add(scrollPane);
 		
 		table = new JTable();
@@ -147,7 +157,7 @@ public class perdidaTarjeta extends JPanel {
 		DefaultTableModel modelo;
 		modelo = new DefaultTableModel();
 		modelo.addColumn("DNI");
-		modelo.addColumn("Cantidad de Tarjeta");
+		modelo.addColumn("Cantidad de Tarjeta");				//completado de la tabla
 		modelo.addColumn("Ultima Tarjeta");
 		modelo.addColumn("N° de Tarjeta");
 		modelo.addColumn("Fecha de Alta");
