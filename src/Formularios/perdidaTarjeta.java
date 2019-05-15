@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class AltaTarjeta extends JPanel {
+public class perdidaTarjeta extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -24,7 +24,7 @@ public class AltaTarjeta extends JPanel {
 	/**
 	 * Create the frame.
 	 */
-	public AltaTarjeta() {
+	public perdidaTarjeta() {
 		setBounds(100, 100, 625, 382);
 		setLayout(null);
 		

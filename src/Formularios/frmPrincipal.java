@@ -116,7 +116,7 @@ public class frmPrincipal extends JFrame {
 		mntmAltasDeTarjetas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {							//Eventos para abrir el panel 
-				AltaTarjeta alta = new AltaTarjeta();
+				perdidaTarjeta alta = new perdidaTarjeta();
 				alta.setBounds(10, 11, 620, 413);
 				frame.getContentPane().removeAll();
 				frame.getContentPane().add(alta);
