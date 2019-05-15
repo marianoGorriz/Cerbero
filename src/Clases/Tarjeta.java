@@ -87,7 +87,7 @@ public class Tarjeta {
 			System.out.println("SQLException: " + e2.getMessage());	
 		}
 	}
-	public ResultSet consultaTarjeta() {
+	public ResultSet perdidaTarjeta() {
 		try{ 
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();

@@ -146,32 +146,33 @@ public class perdidaTarjeta extends JPanel {
 		
 		DefaultTableModel modelo;
 		modelo = new DefaultTableModel();
-		modelo.addColumn("DNI del Cliente");
-		modelo.addColumn("Cantidad de Tarjetas");
+		modelo.addColumn("DNI");
+		modelo.addColumn("Cantidad de Tarjeta");
 		modelo.addColumn("Ultima Tarjeta");
 		modelo.addColumn("N° de Tarjeta");
 		modelo.addColumn("Fecha de Alta");
-		modelo.addColumn("Estado");
+		modelo.addColumn("Puntos");
 		modelo.addColumn("Ultima Compra");
-	
-		Tarjeta tarjeta = new Tarjeta();
-		ResultSet rs = tarjeta.consultaTarjeta();
+		table.setModel(modelo);
+		ResultSet rs;
+		Tarjeta perdida = new Tarjeta();
+		rs = perdida.perdidaTarjeta();
 		try {
 			while(rs.next()) {
-				modelo.addRow(new Object[]{ 
-						rs.getObject("dni"),
+				modelo.addRow(new Object[]{
+						rs.getObject("dni"), 
 						rs.getObject("cantidad_tarjeta"),
+						rs.getObject("ultima_tarjeta"),
 						rs.getObject("n_tarjeta"),
 						rs.getObject("fecha_alta"),
-						rs.getObject("estado"),
-						rs.getObject("ultima_compra")
+						rs.getObject("puntos_acumulados"),
+						rs.getObject("ultima_compra"),
 						
 					}
 				);
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
-			
 			}
 
 	}
