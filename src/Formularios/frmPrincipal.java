@@ -54,24 +54,24 @@ public class frmPrincipal extends JFrame {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\faku6\\Documents\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\reserva.png"));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\faku6\\Documents\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\reserva.png")); //imagen local 
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 811, 502);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("...:Sistema de ventas de puntos:...");
+		frame.setTitle("...:Sistema de ventas de puntos:..."); //titulo de la ventana 
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 23));
 		menuBar.setEnabled(false);
 		frame.setJMenuBar(menuBar);
 		
-		JMenu mnVentas = new JMenu("Ventas");
-		mnVentas.setIcon(new ImageIcon("C:\\Users\\faku6\\git\\Cerbero\\bin\\Iconos\\productos.png"));
-		mnVentas.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));
-		mnVentas.setHorizontalAlignment(SwingConstants.CENTER);
+		JMenu mnVentas = new JMenu("Ventas"); //mnMenu- ventana del menu 
+		mnVentas.setIcon(new ImageIcon("C:\\Users\\faku6\\git\\Cerbero\\bin\\Iconos\\productos.png")); //imagen local 
+		mnVentas.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14)); //tipo de formato
+		mnVentas.setHorizontalAlignment(SwingConstants.CENTER); //alineacion 
 		menuBar.add(mnVentas);
 		
-		JMenuItem mntmRealizarVenta = new JMenuItem("Realizar Venta");
+		JMenuItem mntmRealizarVenta = new JMenuItem("Realizar Venta"); //mntmMenu- submenu del menu VENTAS
 		mntmRealizarVenta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -82,21 +82,21 @@ public class frmPrincipal extends JFrame {
 				frame.repaint();
 			}
 		});
-		mntmRealizarVenta.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+		mntmRealizarVenta.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14)); //mntmMenu- submenu del menu VENTAS
 		mnVentas.add(mntmRealizarVenta);
 		
-		JMenuItem mntmVentasRealizadas = new JMenuItem("Ventas Realizadas");
-		mntmVentasRealizadas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+		JMenuItem mntmVentasRealizadas = new JMenuItem("Ventas Realizadas");   //mntmMenu- submenu del menu VENTAS
+		mntmVentasRealizadas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14)); //tipo de letra y tamaño
 		mnVentas.add(mntmVentasRealizadas);
 		
-		JMenu mnProductos = new JMenu("Productos");
-		mnProductos.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));
+		JMenu mnProductos = new JMenu("Productos"); 							//menú productos
+		mnProductos.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));			//tipo de letra y tamaño
 		menuBar.add(mnProductos);
 		
-		JMenuItem mntmAltaDeProductos = new JMenuItem("Alta de Productos");
+		JMenuItem mntmAltaDeProductos = new JMenuItem("Alta de Productos");		//mntmMenu- submenu del menu VENTAS
 		mntmAltaDeProductos.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mousePressed(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {							//Evento para abrir el panel ALTAS PRODUCTOS
 				AltaProductos panel = new AltaProductos();
 				panel.setBounds(10,11,620,413);
 				frame.getContentPane().removeAll();
@@ -104,18 +104,18 @@ public class frmPrincipal extends JFrame {
 				frame.repaint();
 			}
 		});
-		mntmAltaDeProductos.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+		mntmAltaDeProductos.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14)); //mntmMenu- submenu del menu productos 
 		mnProductos.add(mntmAltaDeProductos);
 		
-		JMenu mnTarjetas = new JMenu("Tarjetas");
-		mnTarjetas.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));
+		JMenu mnTarjetas = new JMenu("Tarjetas");							 	//MNMENU- Menu de TARJETAS
+		mnTarjetas.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));			//Tipo de letra y orientacion
 		mnTarjetas.setHorizontalAlignment(SwingConstants.CENTER);
 		menuBar.add(mnTarjetas);
 		
-		JMenuItem mntmAltasDeTarjetas = new JMenuItem("Altas de Tarjetas");
+		JMenuItem mntmAltasDeTarjetas = new JMenuItem("Altas de Tarjetas"); 	//mntmALTAS- submenu de menu TARJETAS
 		mntmAltasDeTarjetas.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mousePressed(MouseEvent arg0) {
+			public void mousePressed(MouseEvent arg0) {							//Eventos para abrir el panel 
 				AltaTarjeta alta = new AltaTarjeta();
 				alta.setBounds(10, 11, 620, 413);
 				frame.getContentPane().removeAll();
@@ -123,13 +123,13 @@ public class frmPrincipal extends JFrame {
 				frame.repaint();
 			}
 		});
-		mntmAltasDeTarjetas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+		mntmAltasDeTarjetas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));	//tipo de letra y tamaño
 		mnTarjetas.add(mntmAltasDeTarjetas);
 		
-		JMenuItem mntmTarjetasActivas = new JMenuItem("Tarjetas Activas");
+		JMenuItem mntmTarjetasActivas = new JMenuItem("Tarjetas Activas");			//MNTM MENU- Submenu del menu TARJETAS
 		mntmTarjetasActivas.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mousePressed(MouseEvent arg0) {
+			public void mousePressed(MouseEvent arg0) {								//Evento para poder abrir el panel 
 				TarjetasActivas activas = new TarjetasActivas();
 				activas.setBounds(10, 11, 620, 413);
 				frame.getContentPane().removeAll();
@@ -140,10 +140,10 @@ public class frmPrincipal extends JFrame {
 		mntmTarjetasActivas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		mnTarjetas.add(mntmTarjetasActivas);
 		
-		JMenuItem mntmPedidoDeTarjetas = new JMenuItem("Pedido de Tarjetas");
+		JMenuItem mntmPedidoDeTarjetas = new JMenuItem("Pedido de Tarjetas");		//Submenu del menu tarjetas
 		mntmPedidoDeTarjetas.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mousePressed(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {								//Evento para poder abrir el panel 
 				Pedido pedido = new Pedido();
 				pedido.setBounds(10, 11, 620, 413);
 				frame.getContentPane().removeAll();
@@ -152,17 +152,17 @@ public class frmPrincipal extends JFrame {
 				
 			}
 		});
-		mntmPedidoDeTarjetas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+		mntmPedidoDeTarjetas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));	//tipo de letra y tamaño
 		mnTarjetas.add(mntmPedidoDeTarjetas);
 		
-		JMenu mnClientes = new JMenu("Clientes");
-		mnClientes.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));
+		JMenu mnClientes = new JMenu("Clientes");									//MNMenu- Menu de clientes
+		mnClientes.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));				//Tipo de letra y tamaño
 		menuBar.add(mnClientes);
 		
-		JMenuItem mntmAltaDeClientes = new JMenuItem("Alta de Clientes");
+		JMenuItem mntmAltaDeClientes = new JMenuItem("Alta de Clientes");			//Submenu del menu CLIENTES
 		mntmAltaDeClientes.addMouseListener(new MouseAdapter() {
 				
-			public void mousePressed(MouseEvent arg0) {
+			public void mousePressed(MouseEvent arg0) {								//Evento para poder traer la ventana 
 				altaCliente alta = new altaCliente();
 				alta.setBounds(10,11,620,413);
 				frame.getContentPane().removeAll();
@@ -173,10 +173,10 @@ public class frmPrincipal extends JFrame {
 		mntmAltaDeClientes.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		mnClientes.add(mntmAltaDeClientes);
 		
-		JMenuItem mntmClientesInactivos = new JMenuItem("Clientes Inactivos");
+		JMenuItem mntmClientesInactivos = new JMenuItem("Clientes Inactivos");			//Submenu del menu CLIENTES
 		mntmClientesInactivos.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mousePressed(MouseEvent arg0) {
+			public void mousePressed(MouseEvent arg0) {									//Evento para poder abrir la ventana 
 				Clientes_inactivos clientes = new Clientes_inactivos();
 				clientes.setBounds(10,11,620,413);
 				frame.getContentPane().removeAll();
@@ -185,11 +185,11 @@ public class frmPrincipal extends JFrame {
 					
 			}
 		});
-		mntmClientesInactivos.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+		mntmClientesInactivos.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));		//Tipo de letra y tamaño
 		mnClientes.add(mntmClientesInactivos);
 		
-		JMenu mnUsuarios = new JMenu("Usuarios");
-		mnUsuarios.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));
+		JMenu mnUsuarios = new JMenu("Usuarios");										//Menu de usuarios
+		mnUsuarios.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));					//Tipo de letra y tamaño 
 		menuBar.add(mnUsuarios);
 		
 		/*mntmAltaDeClientes.addActionListener(new ActionListener() {				//trae la ventana y la relaciona al menu
@@ -206,10 +206,10 @@ public class frmPrincipal extends JFrame {
 		}); */
 		
 
-		JMenuItem mntmAdminUsuarios = new JMenuItem("Admin Usuarios");
+		JMenuItem mntmAdminUsuarios = new JMenuItem("Admin Usuarios");			//Submenu del menu Usuarios
 		mntmAdminUsuarios.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mousePressed(MouseEvent arg0) {
+			public void mousePressed(MouseEvent arg0) {							//Evento para traer la ventana 
 				PanelUsuarios adminUser = new PanelUsuarios();
 				adminUser.setBounds(10, 11, 620, 413);
 				frame.getContentPane().removeAll();
@@ -239,27 +239,33 @@ public class frmPrincipal extends JFrame {
 
 			} 
 		});*/
-		mntmAdminUsuarios.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+		mntmAdminUsuarios.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14)); 			//Tipo de letra y tamaño 
 		mnUsuarios.add(mntmAdminUsuarios);
 		
-		JMenu mnMantenimiento = new JMenu("Mantenimiento");
-		mnMantenimiento.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));
+		JMenu mnMantenimiento = new JMenu("Mantenimiento"); 							//Menu Mantenimiento.
+		mnMantenimiento.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));				//Tipo de letra y tamaño
 		menuBar.add(mnMantenimiento);
 		
-		JMenuItem mntmCambiosDeDias = new JMenuItem("Cambios de dias de bajas");
-		mntmCambiosDeDias.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));
+		JMenuItem mntmCambiosDeDias = new JMenuItem("Cambios de dias de bajas");		//Submenu del menu MANTENIMIENTO
+		mntmCambiosDeDias.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));			//Tipo de letra y tamaño
 		mnMantenimiento.add(mntmCambiosDeDias);
 		
-		JMenuItem mntmCambiosDePorsentaje = new JMenuItem("Cambios de porsentaje de puntos");
-		mntmCambiosDePorsentaje.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));
+		JMenuItem mntmCambiosDePorsentaje = new JMenuItem("Cambios de porsentaje de puntos");	//Submenu del menu MANTENIMIENTO
+		mntmCambiosDePorsentaje.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));			//Tipo de letra y tamaño
 		mnMantenimiento.add(mntmCambiosDePorsentaje);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Backup de los datos");
-		mntmNewMenuItem.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));
+		JMenuItem mntmNewMenuItem = new JMenuItem("Backup de los datos");						//Submenu del menu MANTENIMIENTO
+		mntmNewMenuItem.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));					//Tipo de letra y tamaño
 		mnMantenimiento.add(mntmNewMenuItem);
 		
-		JMenu mnSalir = new JMenu("Cerrar Sesion");
-		mnSalir.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));
+		JMenu mnSalir = new JMenu("Cerrar Sesion");									//Menu para cerrar sesion
+		mnSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {								//Evento de cerrar ventana 
+				System.exit(0);
+			}
+		});
+		mnSalir.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));				//tipo de letra y tamaño
 		menuBar.add(mnSalir);
 		frame.getContentPane().setLayout(null);
 		
@@ -273,7 +279,7 @@ public class frmPrincipal extends JFrame {
 		
 	}
 
-	public void mostrarPrincipal() {
+	public void mostrarPrincipal() {								//evento para mostrar la ventana 
 		try {
 			frmPrincipal window = new frmPrincipal();
 			window.frame.setVisible(true);
