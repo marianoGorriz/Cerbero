@@ -12,7 +12,7 @@ public class Producto {
 	private String nombre;
 	private int puntos_actual,estado;
 	
-	public void altaProducto(String nombre, int puntos_actual) {
+	public void altaProducto(String nombre, float puntos_actual) {
 		try {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
@@ -25,7 +25,7 @@ public class Producto {
 		}
 	}
 	
-	public void modificarProducto(String nombre, int puntos_actual, int id) {
+	public void modificarProducto(String nombre, float puntos_actual, int id) {
 		try {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();

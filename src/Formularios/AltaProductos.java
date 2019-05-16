@@ -57,17 +57,17 @@ public class AltaProductos extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				Producto producto = new Producto();
 				if(btnCargar.getText() == "Cargar") {
-					producto.altaProducto(textField.getText(), Integer.parseInt(textField_1.getText()));
+					producto.altaProducto(textField.getText(), Float.parseFloat(textField_1.getText()));
 				} else {
 					int column = 0;
 					int row = table.getSelectedRow();
 					int id = Integer.parseInt(table.getModel().getValueAt(row, column).toString());
-					producto.modificarProducto(textField.getText(), Integer.parseInt(textField_1.getText()), id);
+					producto.modificarProducto(textField.getText(), Float.parseFloat(textField_1.getText()), id);
 					btnCargar.setText("Cargar");
 					textField.setText("");
 					textField_1.setText("");
 				}
-				
+				llenarTablaProductos();
 			}
 		});
 		btnCargar.setBounds(10, 36, 96, 23);
@@ -104,6 +104,7 @@ public class AltaProductos extends JPanel {
 				} else {
 					habilitar.habilitarProducto(valor, id);
 				}
+				llenarTablaProductos();
 			}
 		});
 		btnNewButton_1.setBounds(351, 100, 89, 23);
