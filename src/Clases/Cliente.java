@@ -91,6 +91,23 @@ public class Cliente {
 	}
 		return null;
 	}
+	
+	public ResultSet busquedaClienteInactivo(String nro_tarjeta) {
+		try{ 
+			Conexion cn = new Conexion();
+			Connection con = cn.conectarDB();
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery( "SELECT * FROM clientes INNER JOIN tarjetas ON clientes.id = tarjetas.id_tarjeta_cliente WHERE tarjetas.n_tarjeta LIKE '%" + nro_tarjeta + "%' AND tarjetas.estado = 0;");
+			return rs;
+		}
+		catch (SQLException e2) {
+			//System.out.println("nope2");
+			JOptionPane.showMessageDialog(null, "Error");
+			System.out.println("SQLException: " + e2.getMessage());
+			
+	}
+		return null;
+	}
 }
   
 

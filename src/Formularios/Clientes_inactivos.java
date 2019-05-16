@@ -16,6 +16,8 @@ import javax.swing.table.DefaultTableModel;
 import Clases.Cliente;
 
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Clientes_inactivos extends JPanel {
 	private JTable table;
@@ -53,6 +55,44 @@ public class Clientes_inactivos extends JPanel {
 		txtBuscar.setColumns(10);
 		
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				String nro_tarjeta = txtBuscar.getText();
+				DefaultTableModel modelo;
+				modelo = new DefaultTableModel();
+				modelo.addColumn("ID");
+				modelo.addColumn("Nombre");
+				modelo.addColumn("Apellido");
+				modelo.addColumn("N° de Tarjeta");
+				modelo.addColumn("Fecha de Alta");
+				modelo.addColumn("Estado");
+				modelo.addColumn("Ultima Compra");
+				table_2.setModel(modelo);
+				Cliente clienteInactivo = new Cliente();
+				ResultSet rs;
+				rs = clienteInactivo.busquedaClienteInactivo(nro_tarjeta);
+				
+				try {
+					while(rs.next()) {
+						modelo.addRow(new Object[]{
+								rs.getObject("id"), 
+								rs.getObject("nombre"),
+								rs.getObject("apellido"),
+								rs.getObject("n_tarjeta"),
+								rs.getObject("fecha_alta"),
+								rs.getObject("estado"),
+								rs.getObject("ultima_compra"),
+								
+							}
+						);
+					}
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+					}
+			}
+		});
 		btnBuscar.setBounds(423, 82, 89, 23);
 		add(btnBuscar);
 		
