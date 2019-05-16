@@ -56,24 +56,7 @@ public class RealizarVenta extends JPanel {
 		btnNewButton.setBounds(186, 19, 88, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DefaultTableModel modelo;
-				modelo = new DefaultTableModel();
-				modelo.addColumn("ID");
-				modelo.addColumn("Producto");
-				modelo.addColumn("Puntos");
-				table.setModel(modelo);
-				modelo.addRow(new Object[]{"ID", "Producto", "Puntos"});
-				ResultSet rs;
-				Venta busqueda = new Venta();
-				rs = busqueda.buscarProducto(textField.getText());
-				try {
-					while(rs.next()) {
-						modelo.addRow(new Object[]{rs.getObject("id"), rs.getObject("nombre"), rs.getObject("puntos_actual")});
-					}
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				llenarTablaProductos();
 			}
 		});
 		add(btnNewButton);
@@ -157,5 +140,28 @@ public class RealizarVenta extends JPanel {
 		});
 		btnRealizarVenta.setBounds(284, 276, 116, 23);
 		add(btnRealizarVenta);
+		
+		llenarTablaProductos();
+	}
+	
+	public void llenarTablaProductos() {
+		DefaultTableModel modelo;
+		modelo = new DefaultTableModel();
+		modelo.addColumn("ID");
+		modelo.addColumn("Producto");
+		modelo.addColumn("Puntos");
+		table.setModel(modelo);
+		modelo.addRow(new Object[]{"ID", "Producto", "Puntos"});
+		ResultSet rs;
+		Venta busqueda = new Venta();
+		rs = busqueda.buscarProducto(textField.getText());
+		try {
+			while(rs.next()) {
+				modelo.addRow(new Object[]{rs.getObject("id"), rs.getObject("nombre"), rs.getObject("puntos_actual")});
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 }

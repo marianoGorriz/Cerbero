@@ -112,25 +112,7 @@ public class AltaProductos extends JPanel {
 		JButton btnNewButton = new JButton("Buscar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DefaultTableModel modelo;
-				modelo = new DefaultTableModel();
-				modelo.addColumn("ID");
-				modelo.addColumn("Producto");
-				modelo.addColumn("Puntos");
-				modelo.addColumn("Estado");
-				table.setModel(modelo);
-				modelo.addRow(new Object[]{"ID", "Producto", "Puntos", "Estado"});
-				ResultSet rs;
-				Producto busqueda = new Producto();
-				rs = busqueda.buscarProducto(textField_2.getText());
-				try {
-					while(rs.next()) {
-						modelo.addRow(new Object[]{rs.getObject("id"), rs.getObject("nombre"), rs.getObject("puntos_actual"), rs.getObject("estado")});
-					}
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				llenarTablaProductos();
 			}
 		});
 		btnNewButton.setBounds(351, 69, 89, 23);
@@ -159,6 +141,29 @@ public class AltaProductos extends JPanel {
 				}
 			}
 		});
-
+		
+		llenarTablaProductos();
+	}
+	
+	public void llenarTablaProductos() {
+		DefaultTableModel modelo;
+		modelo = new DefaultTableModel();
+		modelo.addColumn("ID");
+		modelo.addColumn("Producto");
+		modelo.addColumn("Puntos");
+		modelo.addColumn("Estado");
+		table.setModel(modelo);
+		modelo.addRow(new Object[]{"ID", "Producto", "Puntos", "Estado"});
+		ResultSet rs;
+		Producto busqueda = new Producto();
+		rs = busqueda.buscarProducto(textField_2.getText());
+		try {
+			while(rs.next()) {
+				modelo.addRow(new Object[]{rs.getObject("id"), rs.getObject("nombre"), rs.getObject("puntos_actual"), rs.getObject("estado")});
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 }
