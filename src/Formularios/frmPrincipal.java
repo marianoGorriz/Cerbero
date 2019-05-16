@@ -56,7 +56,7 @@ public class frmPrincipal extends JFrame {
 		frame = new JFrame();
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\faku6\\Documents\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\reserva.png")); //imagen local 
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 811, 502);
+		frame.setBounds(100, 100, 675, 502);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("...:Sistema de ventas de puntos:..."); //titulo de la ventana 
 		
@@ -139,21 +139,6 @@ public class frmPrincipal extends JFrame {
 		});
 		mntmTarjetasActivas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		mnTarjetas.add(mntmTarjetasActivas);
-		
-		JMenuItem mntmPedidoDeTarjetas = new JMenuItem("Pedido de Tarjetas");		//Submenu del menu tarjetas
-		mntmPedidoDeTarjetas.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {								//Evento para poder abrir el panel 
-				Pedido pedido = new Pedido();
-				pedido.setBounds(10, 11, 620, 413);
-				frame.getContentPane().removeAll();
-				frame.getContentPane().add(pedido);
-				frame.repaint();
-				
-			}
-		});
-		mntmPedidoDeTarjetas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));	//tipo de letra y tamaño
-		mnTarjetas.add(mntmPedidoDeTarjetas);
 		
 		JMenu mnClientes = new JMenu("Clientes");									//MNMenu- Menu de clientes
 		mnClientes.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));				//Tipo de letra y tamaño

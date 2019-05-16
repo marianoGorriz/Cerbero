@@ -289,6 +289,8 @@ public class altaCliente extends JPanel {
 			textField_5.setEnabled(false);
 			textField_6.setEnabled(false);
 			btnGuardar.setEnabled(false);
+			
+			
 						
 			}
 			
