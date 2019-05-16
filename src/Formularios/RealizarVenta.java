@@ -26,7 +26,8 @@ public class RealizarVenta extends JPanel {
 	private JTextField textField;
 	private JTable table;
 	private JTable table_1;
-	private JTextField txtCantidad;
+	private JTextField txtPrecio;
+	private JTextField tfNroTarjeta;
 
 	/**
 	 * Create the panel.
@@ -92,25 +93,25 @@ public class RealizarVenta extends JPanel {
 		DefaultTableModel modelo;
 		modelo = new DefaultTableModel();
 		modelo.addColumn("Producto");
-		modelo.addColumn("Cantidad");
-		modelo.addColumn("Puntos");
+		modelo.addColumn("Precio");
+		modelo.addColumn("Cantidad puntos");
 		table_1.setModel(modelo);
-		modelo.addRow(new Object[]{"Producto", "Cantidad", "Puntos"});
+		modelo.addRow(new Object[]{"Producto", "Precio", "Cantidad puntos"});
 
 		
-		txtCantidad = new JTextField();
-		txtCantidad.setBounds(284, 74, 96, 20);
-		add(txtCantidad);
-		txtCantidad.setColumns(10);
+		txtPrecio = new JTextField();
+		txtPrecio.setBounds(284, 74, 96, 20);
+		add(txtPrecio);
+		txtPrecio.setColumns(10);
 		
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int row = table.getSelectedRow();
 				
-				int puntos = (int) table.getModel().getValueAt(row, 2);
-				int cantidad = Integer.parseInt(txtCantidad.getText());
-				modelo.addRow(new Object[]{table.getModel().getValueAt(row, 1).toString(),txtCantidad.getText(), puntos*cantidad});
+				float puntos = (float) table.getModel().getValueAt(row, 2);
+				float precio = Float.parseFloat(txtPrecio.getText());
+				modelo.addRow(new Object[]{table.getModel().getValueAt(row, 1).toString(),txtPrecio.getText(), precio*puntos});
 			}
 		});
 		
@@ -127,19 +128,30 @@ public class RealizarVenta extends JPanel {
 		btnRealizarVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int filas_tabla_1 = modelo.getRowCount();
-				int puntos_total = 0;
+				float puntos_total = 0;
 				for(int i = 1; i < filas_tabla_1;i++)
 				{
-					puntos_total = puntos_total + Integer.parseInt(table_1.getModel().getValueAt(i, 2).toString()) ;
+					puntos_total = puntos_total + Float.parseFloat(table_1.getModel().getValueAt(i, 2).toString()) ;
 				}
 				lblNewLabel_2.setText("Total puntos: ");
 				System.out.println(puntos_total);
 				lblNewLabel_2.setText(lblNewLabel_2.getText() + puntos_total);
+				
+				System.out.println(tfNroTarjeta.getText());
 
 			}
 		});
 		btnRealizarVenta.setBounds(284, 276, 116, 23);
 		add(btnRealizarVenta);
+		
+		tfNroTarjeta = new JTextField();
+		tfNroTarjeta.setBounds(346, 236, 140, 20);
+		add(tfNroTarjeta);
+		tfNroTarjeta.setColumns(10);
+		
+		JLabel lblNTarjeta = new JLabel("N\u00B0 Tarjeta:");
+		lblNTarjeta.setBounds(284, 236, 64, 14);
+		add(lblNTarjeta);
 		
 		llenarTablaProductos();
 	}
