@@ -63,7 +63,7 @@ public class frmPrincipal extends JFrame {
 		frame = new JFrame();
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\faku6\\Documents\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\reserva.png")); //imagen local 
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 811, 502);
+		frame.setBounds(100, 100, 675, 502);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("...:Sistema de ventas de puntos:..."); //titulo de la ventana 
 		
@@ -95,6 +95,24 @@ public class frmPrincipal extends JFrame {
 		JMenuItem mntmVentasRealizadas = new JMenuItem("Ventas Realizadas");   //mntmMenu- submenu del menu VENTAS
 		mntmVentasRealizadas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14)); //tipo de letra y tamaño
 		mnVentas.add(mntmVentasRealizadas);
+		
+		JMenuItem mntmRealizarCanjes = new JMenuItem("Realizar Canjes ");//mntmMenu- submenu del menu VENTAS-Canjes de puntos 
+		mntmRealizarCanjes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				realizarCanje canjes = new realizarCanje();					//LLamado de la ventana 
+				canjes.setBounds(10,11,620,413);
+				frame.getContentPane().removeAll();
+				frame.getContentPane().add(canjes);
+				frame.repaint();		
+			}
+		});
+		mntmRealizarCanjes.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+		mnVentas.add(mntmRealizarCanjes);
+		
+		JMenuItem mntmCanjesRealizados = new JMenuItem("Canjes Realizados");			//submenu de la ventana ventas- historial del canjes realizados
+		mntmCanjesRealizados.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+		mnVentas.add(mntmCanjesRealizados);
 		
 		JMenu mnProductos = new JMenu("Productos"); 							//menú productos
 		mnProductos.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));			//tipo de letra y tamaño
@@ -146,21 +164,6 @@ public class frmPrincipal extends JFrame {
 		});
 		mntmTarjetasActivas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		mnTarjetas.add(mntmTarjetasActivas);
-		
-		JMenuItem mntmPedidoDeTarjetas = new JMenuItem("Pedido de Tarjetas");		//Submenu del menu tarjetas
-		mntmPedidoDeTarjetas.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {								//Evento para poder abrir el panel 
-				Pedido pedido = new Pedido();
-				pedido.setBounds(10, 11, 620, 413);
-				frame.getContentPane().removeAll();
-				frame.getContentPane().add(pedido);
-				frame.repaint();
-				
-			}
-		});
-		mntmPedidoDeTarjetas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));	//tipo de letra y tamaño
-		mnTarjetas.add(mntmPedidoDeTarjetas);
 		
 		JMenu mnClientes = new JMenu("Clientes");									//MNMenu- Menu de clientes
 		mnClientes.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));				//Tipo de letra y tamaño
@@ -254,15 +257,15 @@ public class frmPrincipal extends JFrame {
 		menuBar.add(mnMantenimiento);
 		
 		JMenuItem mntmCambiosDeDias = new JMenuItem("Cambios de dias de bajas");		//Submenu del menu MANTENIMIENTO
-		mntmCambiosDeDias.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));			//Tipo de letra y tamaño
+		mntmCambiosDeDias.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));			//Tipo de letra y tamaño
 		mnMantenimiento.add(mntmCambiosDeDias);
 		
 		JMenuItem mntmCambiosDePorsentaje = new JMenuItem("Cambios de porsentaje de puntos");	//Submenu del menu MANTENIMIENTO
-		mntmCambiosDePorsentaje.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));			//Tipo de letra y tamaño
+		mntmCambiosDePorsentaje.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));			//Tipo de letra y tamaño
 		mnMantenimiento.add(mntmCambiosDePorsentaje);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Backup de los datos");						//Submenu del menu MANTENIMIENTO
-		mntmNewMenuItem.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));					//Tipo de letra y tamaño
+		mntmNewMenuItem.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));					//Tipo de letra y tamaño
 		mnMantenimiento.add(mntmNewMenuItem);
 		
 		JMenu mnSalir = new JMenu("Cerrar Sesion");									//Menu para cerrar sesion
