@@ -32,7 +32,7 @@ import java.awt.Toolkit;
 public class frmPrincipal extends JFrame {
 
 	private JFrame frame;
-	private JDesktopPane jdpEscritorio; //permite abrir ventanas 
+	private JDesktopPane jdpEscritorio; //permite abrir ventanass
 
 
 	/**
@@ -88,7 +88,7 @@ public class frmPrincipal extends JFrame {
 		mntmRealizarVenta.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14)); //mntmMenu- submenu del menu VENTAS
 		mnVentas.add(mntmRealizarVenta);
 		
-		JMenuItem mntmVentasRealizadas = new JMenuItem("Ventas Realizadas");   //mntmMenu- submenu del menu VENTAS
+		JMenuItem mntmVentasRealizadas = new JMenuItem("Ventas RealizadasS");   //mntmMenu- submenu del menu VENTAS
 		mntmVentasRealizadas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14)); //tipo de letra y tamaño
 		mnVentas.add(mntmVentasRealizadas);
 		

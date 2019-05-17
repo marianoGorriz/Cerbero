@@ -70,7 +70,7 @@ public class frmLogin {
 			public void actionPerformed(ActionEvent e) {
 				
 				if(txtUsuario.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Falta el campo USUARIO");  //validacion de USUARIO
+					JOptionPane.showMessageDialog(null, "Falta el campo USUARIO");  //validacion de USUARIOO
 					txtUsuario.requestFocusInWindow();
 					return;
 				}
@@ -93,7 +93,7 @@ public class frmLogin {
 					frame.setVisible(false);
 				
 				}else {
-					JOptionPane.showMessageDialog(null, "ERROR en Usuario o Contraseña");
+					JOptionPane.showMessageDialog(null, "ERRORRR en Usuario o Contraseña");
 				}
 				
 				
