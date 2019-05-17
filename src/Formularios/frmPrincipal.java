@@ -92,6 +92,24 @@ public class frmPrincipal extends JFrame {
 		mntmVentasRealizadas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14)); //tipo de letra y tamaño
 		mnVentas.add(mntmVentasRealizadas);
 		
+		JMenuItem mntmRealizarCanjes = new JMenuItem("Realizar Canjes ");//mntmMenu- submenu del menu VENTAS-Canjes de puntos 
+		mntmRealizarCanjes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				realizarCanje canjes = new realizarCanje();					//LLamado de la ventana 
+				canjes.setBounds(10,11,620,413);
+				frame.getContentPane().removeAll();
+				frame.getContentPane().add(canjes);
+				frame.repaint();		
+			}
+		});
+		mntmRealizarCanjes.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+		mnVentas.add(mntmRealizarCanjes);
+		
+		JMenuItem mntmCanjesRealizados = new JMenuItem("Canjes Realizados");			//submenu de la ventana ventas- historial del canjes realizados
+		mntmCanjesRealizados.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+		mnVentas.add(mntmCanjesRealizados);
+		
 		JMenu mnProductos = new JMenu("Productos"); 							//menú productos
 		mnProductos.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));			//tipo de letra y tamaño
 		menuBar.add(mnProductos);
@@ -249,15 +267,15 @@ public class frmPrincipal extends JFrame {
 		menuBar.add(mnMantenimiento);
 		
 		JMenuItem mntmCambiosDeDias = new JMenuItem("Cambios de dias de bajas");		//Submenu del menu MANTENIMIENTO
-		mntmCambiosDeDias.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));			//Tipo de letra y tamaño
+		mntmCambiosDeDias.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));			//Tipo de letra y tamaño
 		mnMantenimiento.add(mntmCambiosDeDias);
 		
 		JMenuItem mntmCambiosDePorsentaje = new JMenuItem("Cambios de porsentaje de puntos");	//Submenu del menu MANTENIMIENTO
-		mntmCambiosDePorsentaje.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));			//Tipo de letra y tamaño
+		mntmCambiosDePorsentaje.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));			//Tipo de letra y tamaño
 		mnMantenimiento.add(mntmCambiosDePorsentaje);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Backup de los datos");						//Submenu del menu MANTENIMIENTO
-		mntmNewMenuItem.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));					//Tipo de letra y tamaño
+		mntmNewMenuItem.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));					//Tipo de letra y tamaño
 		mnMantenimiento.add(mntmNewMenuItem);
 		
 		JMenu mnSalir = new JMenu("Cerrar Sesion");									//Menu para cerrar sesion
