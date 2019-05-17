@@ -15,65 +15,53 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class VentaRealizadas extends JFrame {
+public class VentaRealizadas extends JPanel {
 
-	private JPanel contentPane;
 	private JTable table;
+	private JTable table_1;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentaRealizadas frame = new VentaRealizadas();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public VentaRealizadas() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 696, 461);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setLayout(null);
+	
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 414, 405, -268);
-		contentPane.add(scrollPane);
+		add(scrollPane);
 		
 		table = new JTable();
 		table.setBounds(20, 391, 382, -233);
-		contentPane.add(table);
+		add(table);
 		
 		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(102, 44, 117, 20);
-		contentPane.add(dateChooser);
+		dateChooser.setBounds(91, 44, 117, 20);
+		dateChooser.getCalendarButton().setBounds(96, 0, 21, 20);
+		add(dateChooser);
+		dateChooser.setLayout(null);
 		
 		JDateChooser dateChooser_1 = new JDateChooser();
 		dateChooser_1.setBounds(285, 44, 117, 20);
-		contentPane.add(dateChooser_1);
+		dateChooser_1.getCalendarButton().setBounds(96, 0, 21, 20);
+		add(dateChooser_1);
+		dateChooser_1.setLayout(null);
 		
 		JLabel lblFiltrarDesde = new JLabel("Filtrar Desde:");
-		lblFiltrarDesde.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblFiltrarDesde.setBounds(10, 50, 82, 14);
-		contentPane.add(lblFiltrarDesde);
+		lblFiltrarDesde.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		add(lblFiltrarDesde);
 		
 		JLabel lblHasta = new JLabel("Hasta:");
 		lblHasta.setBounds(241, 50, 46, 14);
-		contentPane.add(lblHasta);
+		add(lblHasta);
 		
 		JButton btnNewButton = new JButton("Filtrar");
 		btnNewButton.setBounds(444, 44, 89, 23);
-		contentPane.add(btnNewButton);
+		add(btnNewButton);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(10, 87, 394, 208);
+		add(scrollPane_1);
+		
+		table_1 = new JTable();
+		scrollPane_1.setViewportView(table_1);
 	}
 }
