@@ -102,10 +102,6 @@ public class realizarCanje extends JPanel {
 		btnRealizar.setBounds(369, 331, 89, 23);
 		add(btnRealizar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(469, 331, 89, 23);
-		add(btnCancelar);
-		
 		JLabel lblProductosAgrados = new JLabel("Productos Agrados:");
 		lblProductosAgrados.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		lblProductosAgrados.setBounds(10, 263, 127, 14);
