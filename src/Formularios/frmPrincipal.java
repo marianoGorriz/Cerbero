@@ -88,7 +88,21 @@ public class frmPrincipal extends JFrame {
 		mntmRealizarVenta.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14)); //mntmMenu- submenu del menu VENTAS
 		mnVentas.add(mntmRealizarVenta);
 		
-		JMenuItem mntmVentasRealizadas = new JMenuItem("Ventas RealizadasS");   //mntmMenu- submenu del menu VENTAS
+
+
+
+		JMenuItem mntmVentasRealizadas = new JMenuItem("Ventas Realizadas");   //mntmMenu- submenu del menu VENTAS
+		mntmVentasRealizadas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				VentaRealizadas ventas = new VentaRealizadas();
+				ventas.setBounds(10,11,620,413);
+				frame.getContentPane().removeAll();
+				frame.getContentPane().add(ventas);
+				frame.repaint();
+			}
+		});
+
 		mntmVentasRealizadas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14)); //tipo de letra y tamaño
 		mnVentas.add(mntmVentasRealizadas);
 		
