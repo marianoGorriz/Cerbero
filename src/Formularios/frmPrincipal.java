@@ -53,6 +53,13 @@ public class frmPrincipal extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		frmLogin gg = new frmLogin();
+		if(gg.rol.equals("Administrador")) {
+			System.out.println("Ingresaste como administrador");
+		} else {
+			System.out.println("Ingresaste como mozo");
+		}
 		frame = new JFrame();
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\faku6\\Documents\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\reserva.png")); //imagen local 
 		frame.setResizable(false);
