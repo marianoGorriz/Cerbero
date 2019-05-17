@@ -22,9 +22,11 @@ public class Usuario extends Persona {
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
 			ResultSet rs = st.executeQuery("SELECT * FROM usuarios WHERE usuario='"+usuario+"'AND contraseña='"+password+"'");
-
+			
+			
 			if(rs.first() != false) {
 					bandera = 1;
+					this.rol = rs.getObject("rol").toString();
 			}
 			
 		}
@@ -103,6 +105,10 @@ public class Usuario extends Persona {
 			JOptionPane.showMessageDialog(null, "Error al realizar lo solicitado");
 			System.out.println("SQLException: " + e2.getMessage());
 		}
+	}
+	
+	public String getRol() {
+		return this.rol;
 	}
     
 	

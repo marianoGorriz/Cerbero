@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import javax.swing.JScrollBar;
+import java.awt.Font;
 
 public class RealizarVenta extends JPanel {
 	private JTextField textField;
@@ -36,16 +37,16 @@ public class RealizarVenta extends JPanel {
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Productos:");
-		lblNewLabel.setBounds(10, 23, 75, 14);
+		lblNewLabel.setBounds(10, 53, 75, 14);
 		add(lblNewLabel);
 		
 		textField = new JTextField();
-		textField.setBounds(80, 20, 96, 20);
+		textField.setBounds(82, 50, 96, 20);
 		add(textField);
 		textField.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 48, 264, 151);		
+		scrollPane.setBounds(10, 95, 291, 151);		
 
 		add(scrollPane);
 		
@@ -54,7 +55,7 @@ public class RealizarVenta extends JPanel {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
 		JButton btnNewButton = new JButton("Buscar");
-		btnNewButton.setBounds(186, 19, 88, 23);
+		btnNewButton.setBounds(207, 49, 88, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				llenarTablaProductos();
@@ -63,7 +64,8 @@ public class RealizarVenta extends JPanel {
 		add(btnNewButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(284, 49, 184, 14);
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblNewLabel_1.setBounds(449, 143, 88, 14);
 		add(lblNewLabel_1);
 
 		table.addMouseListener(new MouseAdapter() {
@@ -84,7 +86,7 @@ public class RealizarVenta extends JPanel {
 		});
 		
 		JScrollPane scrollPane2 = new JScrollPane();
-		scrollPane2.setBounds(10, 210, 264, 149);
+		scrollPane2.setBounds(10, 257, 291, 149);
 		add(scrollPane2);
 				
 		table_1 = new JTable();
@@ -96,11 +98,11 @@ public class RealizarVenta extends JPanel {
 		modelo.addColumn("Precio");
 		modelo.addColumn("Cantidad puntos");
 		table_1.setModel(modelo);
-		modelo.addRow(new Object[]{"Producto", "Precio", "Cantidad puntos"});
+		//modelo.addRow(new Object[]{"Producto", "Precio", "Cantidad puntos"});
 
 		
 		txtPrecio = new JTextField();
-		txtPrecio.setBounds(284, 74, 96, 20);
+		txtPrecio.setBounds(353, 175, 96, 20);
 		add(txtPrecio);
 		txtPrecio.setColumns(10);
 		
@@ -116,12 +118,12 @@ public class RealizarVenta extends JPanel {
 		});
 		
 
-		btnAgregar.setBounds(390, 73, 96, 23);
+		btnAgregar.setBounds(459, 174, 96, 23);
 		add(btnAgregar);
 		
 		
 		JLabel lblNewLabel_2 = new JLabel("Total puntos:");
-		lblNewLabel_2.setBounds(284, 211, 184, 14);
+		lblNewLabel_2.setBounds(311, 320, 184, 14);
 		add(lblNewLabel_2);
 		
 		JButton btnRealizarVenta = new JButton("Realizar venta");
@@ -141,17 +143,25 @@ public class RealizarVenta extends JPanel {
 
 			}
 		});
-		btnRealizarVenta.setBounds(284, 276, 116, 23);
+		btnRealizarVenta.setBounds(338, 345, 116, 23);
 		add(btnRealizarVenta);
 		
 		tfNroTarjeta = new JTextField();
-		tfNroTarjeta.setBounds(346, 236, 140, 20);
+		tfNroTarjeta.setBounds(72, 11, 140, 20);
 		add(tfNroTarjeta);
 		tfNroTarjeta.setColumns(10);
 		
 		JLabel lblNTarjeta = new JLabel("N\u00B0 Tarjeta:");
-		lblNTarjeta.setBounds(284, 236, 64, 14);
+		lblNTarjeta.setBounds(10, 11, 64, 14);
 		add(lblNTarjeta);
+		
+		JLabel lblProductoSeleccionado = new JLabel("Producto seleccionado:");
+		lblProductoSeleccionado.setBounds(311, 143, 138, 14);
+		add(lblProductoSeleccionado);
+		
+		JButton btnEliminarProducto = new JButton("Eliminar");
+		btnEliminarProducto.setBounds(338, 268, 111, 23);
+		add(btnEliminarProducto);
 		
 		llenarTablaProductos();
 	}
@@ -163,7 +173,7 @@ public class RealizarVenta extends JPanel {
 		modelo.addColumn("Producto");
 		modelo.addColumn("Puntos");
 		table.setModel(modelo);
-		modelo.addRow(new Object[]{"ID", "Producto", "Puntos"});
+		//modelo.addRow(new Object[]{"ID", "Producto", "Puntos"});
 		ResultSet rs;
 		Venta busqueda = new Venta();
 		rs = busqueda.buscarProducto(textField.getText());
