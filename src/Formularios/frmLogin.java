@@ -86,7 +86,6 @@ public class frmLogin {
 				Usuario user = new Usuario();
 				int login = user.validacionLogin(usuario, password,0);
 				rol = user.getRol();
-				System.out.println(user.getRol()+"login");
 				
 				if (login  == 1) {
 					frmPrincipal window = new frmPrincipal();

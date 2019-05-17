@@ -34,8 +34,6 @@ public class frmPrincipal extends JFrame {
 	private JFrame frame;
 	private JDesktopPane jdpEscritorio; //permite abrir ventanas 
 
-	
-
 
 	/**
 	 * Launch the application.
@@ -54,12 +52,10 @@ public class frmPrincipal extends JFrame {
 	 */
 	private void initialize() {
 		
-		frmLogin gg = new frmLogin();
-		if(gg.rol.equals("Administrador")) {
-			System.out.println("Ingresaste como administrador");
-		} else {
-			System.out.println("Ingresaste como mozo");
-		}
+		frmLogin rolUser = new frmLogin();
+		
+		String rol = rolUser.rol;
+		
 		frame = new JFrame();
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\faku6\\Documents\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\reserva.png")); //imagen local 
 		frame.setResizable(false);
@@ -99,7 +95,11 @@ public class frmPrincipal extends JFrame {
 		JMenu mnProductos = new JMenu("Productos"); 							//menú productos
 		mnProductos.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));			//tipo de letra y tamaño
 		menuBar.add(mnProductos);
-		
+		if (rol.equals("Administrador")) {
+			mnProductos.setVisible(true);
+		} else {
+			mnProductos.setVisible(false);
+		}
 		JMenuItem mntmAltaDeProductos = new JMenuItem("Alta de Productos");		//mntmMenu- submenu del menu VENTAS
 		mntmAltaDeProductos.addMouseListener(new MouseAdapter() {
 			@Override
@@ -181,6 +181,11 @@ public class frmPrincipal extends JFrame {
 		mnClientes.add(mntmClientesInactivos);
 		
 		JMenu mnUsuarios = new JMenu("Usuarios");										//Menu de usuarios
+		if (rol.equals("Administrador")) {
+			mnUsuarios.setVisible(true);
+		} else {
+			mnUsuarios.setVisible(false);
+		}
 		mnUsuarios.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));					//Tipo de letra y tamaño 
 		menuBar.add(mnUsuarios);
 		
@@ -235,6 +240,11 @@ public class frmPrincipal extends JFrame {
 		mnUsuarios.add(mntmAdminUsuarios);
 		
 		JMenu mnMantenimiento = new JMenu("Mantenimiento"); 							//Menu Mantenimiento.
+		if (rol.equals("Administrador")) {
+			mnMantenimiento.setVisible(true);
+		} else {
+			mnMantenimiento.setVisible(false);
+		}
 		mnMantenimiento.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));				//Tipo de letra y tamaño
 		menuBar.add(mnMantenimiento);
 		
