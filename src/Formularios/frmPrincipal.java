@@ -34,22 +34,11 @@ public class frmPrincipal extends JFrame {
 	private JFrame frame;
 	private JDesktopPane jdpEscritorio; //permite abrir ventanass
 
-
-	/**
-	 * Launch the application.
-	 */
-
-
-	/**
-	 * Create the application.
-	 */
 	public frmPrincipal() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+
 	private void initialize() {
 		
 		frmLogin rolUser = new frmLogin();
@@ -88,9 +77,6 @@ public class frmPrincipal extends JFrame {
 		mntmRealizarVenta.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14)); //mntmMenu- submenu del menu VENTAS
 		mnVentas.add(mntmRealizarVenta);
 		
-
-
-
 		JMenuItem mntmVentasRealizadas = new JMenuItem("Ventas Realizadas");   //mntmMenu- submenu del menu VENTAS
 		mntmVentasRealizadas.addMouseListener(new MouseAdapter() {
 			@Override
@@ -121,6 +107,16 @@ public class frmPrincipal extends JFrame {
 		mnVentas.add(mntmRealizarCanjes);
 		
 		JMenuItem mntmCanjesRealizados = new JMenuItem("Canjes Realizados");			//submenu de la ventana ventas- historial del canjes realizados
+		mntmCanjesRealizados.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				canjesRealizados canjesR = new canjesRealizados();
+				canjesR.setBounds(10,11,620,413);
+				frame.getContentPane().removeAll();				//formula para la ventana de canjes 
+				frame.getContentPane().add(canjesR);
+				frame.repaint();
+			}
+		});
 		mntmCanjesRealizados.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		mnVentas.add(mntmCanjesRealizados);
 		
@@ -221,20 +217,6 @@ public class frmPrincipal extends JFrame {
 		mnUsuarios.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));					//Tipo de letra y tamaño 
 		menuBar.add(mnUsuarios);
 		
-		/*mntmAltaDeClientes.addActionListener(new ActionListener() {				//trae la ventana y la relaciona al menu
-			public void actionPerformed(ActionEvent evt) {
-
-				PanelUsuarios gg = new PanelUsuarios();
-				gg.setBounds(10,11,620,413);
-				frame.getContentPane().removeAll();
-				frame.getContentPane().add(gg);
-				frame.repaint();
-
-
-			}
-		}); */
-		
-
 		JMenuItem mntmAdminUsuarios = new JMenuItem("Admin Usuarios");			//Submenu del menu Usuarios
 		mntmAdminUsuarios.addMouseListener(new MouseAdapter() {
 			@Override
@@ -248,26 +230,7 @@ public class frmPrincipal extends JFrame {
 			}
 			
 		});
-		/*mntmAdminUsuarios.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				PanelUsuarios adminUser = new PanelUsuarios();
-				adminUser.setBounds(10,11,620,413);
-				frame.getContentPane().removeAll();
-				frame.getContentPane().add(adminUser);
-				frame.repaint();
-			}
-			
-		});*/
-		/**mntmAdminUsuarios.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				frmUsuario gg = new frmUsuario();
-				jdpEscritorio.add(gg);
-				gg.show();
-
-			} 
-		});*/
+		
 		mntmAdminUsuarios.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14)); 			//Tipo de letra y tamaño 
 		mnUsuarios.add(mntmAdminUsuarios);
 		
@@ -302,9 +265,6 @@ public class frmPrincipal extends JFrame {
 		mnSalir.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));				//tipo de letra y tamaño
 		menuBar.add(mnSalir);
 		frame.getContentPane().setLayout(null);
-		
-
-		
 
 	}
 	
