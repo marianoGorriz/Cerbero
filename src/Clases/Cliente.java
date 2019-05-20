@@ -59,13 +59,13 @@ public class Cliente {
 		}
 		return id;
 	}
-	public void modificarCliente(int id, String nombre,String apellido, String dni, String correo, String telefono, String sexo, java.sql.Date fecha) {
+	public void modificarCliente(int id, String nombre,String apellido, String dni, String correo, String telefono, String sexo, String fecha) {
 		try {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
 			st.executeUpdate("UPDATE clientes SET `nombre` = '" + nombre + "', `apellido` = '" + apellido + 
-							 "',`dni` = '" + dni + "',`correo` = '" + correo + "',`sexo` = '" + sexo +"',`fecha_nacimiento` = '"+fecha+"' WHERE id = " + id + ";");
+							 "',`dni` = '" + dni + "',`correo` = '" + correo + "',`sexo` = '" + sexo +"',`fecha_nacimiento` = '"+fecha+"',`telefono` = '"+telefono+"' WHERE id = " + id + ";");
 			
 		}		 
 		catch (SQLException e2) {

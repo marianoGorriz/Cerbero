@@ -326,11 +326,12 @@ public class altaCliente extends JPanel {
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Date fechaBtn = dateChooser.getDate();
-				long dBtn = fechaBtn.getTime();
-				java.sql.Date formatoFechaBtn = new java.sql.Date(dBtn);
-				String fechaModificada = formatoFechaBtn.toString();
-				dateChooser.getCalendarButton().setText(fechaModificada);
+			
+				Date fecha = dateChooser.getDate();
+				long d = fecha.getTime();
+				java.sql.Date formatoFecha = new java.sql.Date(d);	
+				String fecha2 = formatoFecha.toString();
+				dateChooser.getCalendarButton().setText(fecha2);
 				
 				
 				int dialogButton = JOptionPane.YES_NO_OPTION;
@@ -364,11 +365,7 @@ public class altaCliente extends JPanel {
 						return;
 					}
 				
-					Date fecha = dateChooser.getDate();
-					long d = fecha.getTime();
-					java.sql.Date formatoFecha = new java.sql.Date(d);	
-					String fecha2 = formatoFecha.toString();
-					dateChooser.getCalendarButton().setText(fecha2);	
+						
 					
 					Cliente cliente = new Cliente();
 					int id = Integer.parseInt(textField.getText());
@@ -381,7 +378,7 @@ public class altaCliente extends JPanel {
 							textField_4.getText(),
 							textField_5.getText(),
 						    choice.getSelectedItem(), //sexo persona
-						    formatoFecha
+						    fecha2
 							);			 
 					
 					DefaultTableModel modelo;
