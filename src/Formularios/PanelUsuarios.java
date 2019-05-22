@@ -177,6 +177,7 @@ public class PanelUsuarios extends JPanel {
 				passwordField_1.setText("");
 				btnEliminar.setEnabled(false);
 				//btnCancelar.setEnabled(false);
+				cargaTabla();
 				
 			
 				if(dialogResult == JOptionPane.NO_OPTION) {
@@ -192,31 +193,7 @@ public class PanelUsuarios extends JPanel {
 												
 				}
 						
-					DefaultTableModel modelo;
-					modelo = new DefaultTableModel();
-					modelo.addColumn("ID");
-					modelo.addColumn("Usuario");
-					modelo.addColumn("Contraseña");
-					modelo.addColumn("Rol");
-					modelo.addColumn("Estado");
-					table.setModel(modelo);
-				
-					ResultSet rs;
-										
-					Usuario usuario = new Usuario();
-					rs = usuario.buscarUsuario(textField_4.getText());
-					try {
-						while(rs.next()) {
-							modelo.addRow(new Object[]{
-									rs.getObject("id"),
-									rs.getObject("usuario"),
-									rs.getObject("contraseña"),
-									rs.getObject("rol"),
-									rs.getObject("Estado")});
-						}
-					} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
+			cargaTabla();		//Carga de la variable 
 			}
 		});
 		
@@ -242,33 +219,7 @@ public class PanelUsuarios extends JPanel {
 					usuario.modificarUsuario(textField_1.getText(), pass, id, choice.getSelectedItem());
 					
 					
-					DefaultTableModel modelo;
-					modelo = new DefaultTableModel();
-					modelo.addColumn("ID");
-					modelo.addColumn("Usuario");
-					modelo.addColumn("Contraseña");
-					modelo.addColumn("Rol");
-					modelo.addColumn("Estado");
-					table.setModel(modelo);
-				
-					ResultSet rs;
-					
-					
-					Usuario usuario2 = new Usuario();
-					rs = usuario.buscarUsuario(textField_4.getText());
-					try {
-						while(rs.next()) {
-							modelo.addRow(new Object[]{
-									rs.getObject("id"),
-									rs.getObject("usuario"),
-									rs.getObject("contraseña"),
-									rs.getObject("rol"), 
-									rs.getObject("Estado")});
-						}
-					} catch (SQLException e1) {
-						
-						e1.printStackTrace();
-					}
+					cargaTabla(); 					//variable para recargar la tabla
 					textField_1.setText("");
 					passwordField.setText(""); //limpieza del formulario
 					passwordField_1.setText("");
@@ -308,8 +259,14 @@ public class PanelUsuarios extends JPanel {
 					} else {
 						habilitar.habilitarUsuario(valor, id);
 					}
+					cargaTabla();										//Llama a la variable de abajo y recarga la tabla 
+					
+					
 				}
+			
+			
 			}
+		
 		);
 		btnNewButton.setBounds(410, 157, 104, 23);
 		add(btnNewButton);
@@ -360,31 +317,7 @@ public class PanelUsuarios extends JPanel {
 		
 		btnBuscar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					DefaultTableModel modelo;
-					modelo = new DefaultTableModel();
-					modelo.addColumn("ID");
-					modelo.addColumn("Usuario");
-					modelo.addColumn("Contraseña");
-					modelo.addColumn("Rol");
-					modelo.addColumn("Estado");
-					table.setModel(modelo);
-			
-					ResultSet rs;
-										
-					Usuario usuario = new Usuario();
-					rs = usuario.buscarUsuario(textField_4.getText());
-					try {
-						while(rs.next()) {
-							modelo.addRow(new Object[]{
-									rs.getObject("id"), 
-									rs.getObject("usuario"),
-									rs.getObject("contraseña"),
-									rs.getObject("rol"), 
-									rs.getObject("Estado")});
-						}
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
+				cargaTabla();
 				}
 			}
 		);
@@ -439,33 +372,7 @@ public class PanelUsuarios extends JPanel {
 		btnNuevo.setBounds(410, 26, 104, 23);
 		add(btnNuevo);
 				
-		DefaultTableModel modelo;
-		modelo = new DefaultTableModel();
-		modelo.addColumn("ID");
-		modelo.addColumn("Usuario");
-		modelo.addColumn("Contraseña");
-		modelo.addColumn("Rol");
-		modelo.addColumn("Estado");
-		table.setModel(modelo);
-
-		ResultSet rs;
-		
-		Usuario usuario = new Usuario();
-		rs = usuario.buscarUsuario(textField_4.getText());
-		try {
-			while(rs.next()) {
-				modelo.addRow(new Object[]{
-						rs.getObject("id"),
-						rs.getObject("usuario"),
-						rs.getObject("contraseña"),
-						rs.getObject("rol"),
-						rs.getObject("Estado")
-						}
-				);
-			}
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
+		cargaTabla();	//variable para cargar la tabla en el inicio
 
 		textField_1.setEnabled(false);
 		passwordField.setEnabled(false);
@@ -482,6 +389,39 @@ public class PanelUsuarios extends JPanel {
 		textField_1.setText("");
 		passwordField.setText("");
 		passwordField_1.setText("");
+		
 	
 	}
+	public void cargaTabla() {				//Variable para recargar la tabla 
+
+		DefaultTableModel modelo;
+		modelo = new DefaultTableModel();
+		modelo.addColumn("ID");
+		modelo.addColumn("Usuario");
+		modelo.addColumn("Contraseña");
+		modelo.addColumn("Rol");
+		modelo.addColumn("Estado");
+		table.setModel(modelo);
+	
+		ResultSet rs;
+		
+		
+		Usuario usuario2 = new Usuario();
+		rs = usuario2.buscarUsuario(textField_4.getText());
+		try {
+			while(rs.next()) {
+				modelo.addRow(new Object[]{
+						rs.getObject("id"),
+						rs.getObject("usuario"),
+						rs.getObject("contraseña"),
+						rs.getObject("rol"), 
+						rs.getObject("Estado")});
+			}
+		} catch (SQLException e1) {
+			
+			e1.printStackTrace();
+		}
+		
+	}
+	
 }

@@ -67,7 +67,7 @@ public class Clientes_inactivos extends JPanel {
 				modelo.addColumn("Apellido");
 				modelo.addColumn("N° de Tarjeta");
 				modelo.addColumn("Fecha de Alta");
-				modelo.addColumn("Estado");
+			
 				modelo.addColumn("Ultima Compra");
 				table_2.setModel(modelo);
 				Cliente clienteInactivo = new Cliente();
@@ -82,7 +82,7 @@ public class Clientes_inactivos extends JPanel {
 								rs.getObject("apellido"),
 								rs.getObject("n_tarjeta"),
 								rs.getObject("fecha_alta"),
-								rs.getObject("estado"),
+							
 								rs.getObject("ultima_compra"),
 								
 							}
@@ -103,7 +103,7 @@ public class Clientes_inactivos extends JPanel {
 		modelo.addColumn("Apellido");
 		modelo.addColumn("N° de Tarjeta");
 		modelo.addColumn("Fecha de Alta");
-		modelo.addColumn("Estado");
+	
 		modelo.addColumn("Ultima Compra");
 		table_2.setModel(modelo);
 		
@@ -122,7 +122,7 @@ public class Clientes_inactivos extends JPanel {
 						rs.getObject("apellido"),
 						rs.getObject("n_tarjeta"),
 						rs.getObject("fecha_alta"),
-						rs.getObject("estado"),
+					
 						rs.getObject("ultima_compra"),
 						
 					}
