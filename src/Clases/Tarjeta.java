@@ -1,3 +1,4 @@
+
 package Clases;
 
 import java.sql.Connection;
@@ -78,7 +79,7 @@ public class Tarjeta {
 			String fechaActual = dateFormat.format(date);
 			//Fin logica
 	
-			Conexion cn = new Conexion();
+			Conexion cn = new Conexion(); 
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
 			st.executeUpdate("INSERT INTO tarjetas (cantidad_tarjeta,`ultima_tarjeta`,`n_tarjeta`,`puntos_acumulados`,`fecha_alta`,estado,`ultima_compra`, id_tarjeta_cliente) VALUES ("+1+",'"+tarjeta+"','"+tarjeta+"',"+0+",'"+fechaActual+"',"+1+",'"+fechaActual+"',"+id+");");	
@@ -120,6 +121,22 @@ public class Tarjeta {
 	}
 		return null;
 	}
+	public ResultSet buscarTarjetasActivas(String busquedatarjeta) {
+		try{ 
+			Conexion cn = new Conexion();
+			Connection con = cn.conectarDB();
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery( "SELECT * FROM clientes INNER JOIN tarjetas ON clientes.id = tarjetas.id_tarjeta_cliente WHERE tarjetas.n_tarjeta LIKE '%" + busquedatarjeta +"%' AND tarjetas.estado = 0;");
+			return rs;
+		}
+		catch (SQLException e2) {
+			//System.out.println("nope2");
+			JOptionPane.showMessageDialog(null, "Error");
+			System.out.println("SQLException: " + e2.getMessage());
+			
+	}
+		return null;
+	}
+
+
 }
-	
-	
