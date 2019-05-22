@@ -49,6 +49,14 @@ public class PanelUsuarios extends JPanel {
 		});
 		setLayout(null);
 		
+		DefaultTableModel modelo;
+		modelo = new DefaultTableModel();
+		modelo.addColumn("ID");
+		modelo.addColumn("Usuario");
+		modelo.addColumn("Contraseña");
+		modelo.addColumn("Rol");
+		modelo.addColumn("Estado");
+		
 		
 		JLabel lblIdDelUsuario = new JLabel("Id del Usuario:");
 		lblIdDelUsuario.setFont(new Font("Times New Roman", Font.BOLD, 14));
@@ -111,7 +119,7 @@ public class PanelUsuarios extends JPanel {
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(25, 239, 489, 155);
+		scrollPane.setBounds(25, 235, 489, 155);
 		add(scrollPane);
 		table = new JTable();
 
@@ -255,16 +263,23 @@ public class PanelUsuarios extends JPanel {
 					
 					if(valor == "Deshabilitar") {
 						habilitar.habilitarUsuario(valor, id);					//habilitacion del usario 
-						
+
 					} else {
 						habilitar.habilitarUsuario(valor, id);
+
 					}
 					cargaTabla();										//Llama a la variable de abajo y recarga la tabla 
 					
 					
-				}
+		
+						
+					}	
+
+				
+
 			
 			
+
 			}
 		
 		);
@@ -372,7 +387,32 @@ public class PanelUsuarios extends JPanel {
 		btnNuevo.setBounds(410, 26, 104, 23);
 		add(btnNuevo);
 				
+
+
 		cargaTabla();	//variable para cargar la tabla en el inicio
+
+		
+		table.setModel(modelo);
+
+		ResultSet rs;
+		
+		Usuario usuario = new Usuario();
+		rs = usuario.buscarUsuario(textField_4.getText());
+		try {
+			while(rs.next()) {
+				modelo.addRow(new Object[]{
+						rs.getObject("id"),
+						rs.getObject("usuario"),
+						rs.getObject("contraseña"),
+						rs.getObject("rol"),
+						rs.getObject("Estado")
+						}
+				);
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+
 
 		textField_1.setEnabled(false);
 		passwordField.setEnabled(false);

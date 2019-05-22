@@ -59,7 +59,7 @@ public class Cliente {
 		}
 		return id;
 	}
-	public void modificarCliente(int id, String nombre,String apellido, String dni, String correo, String telefono, String sexo, String fecha) {
+	public void modificarCliente(int id, String nombre,String apellido, String dni, String correo, String telefono, String sexo, java.sql.Date fecha) {
 		try {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();

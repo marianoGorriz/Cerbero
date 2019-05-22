@@ -21,9 +21,7 @@ public class Usuario extends Persona {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
-			ResultSet rs = st.executeQuery("SELECT * FROM usuarios WHERE usuario='"+usuario+"'AND contraseña='"+password+"'");
-			
-			
+			ResultSet rs = st.executeQuery("SELECT * FROM usuarios WHERE usuario='"+usuario+"'AND contraseña='"+password+"'AND estado='"+1+"'");
 			if(rs.first() != false) {
 					bandera = 1;
 					this.rol = rs.getObject("rol").toString();

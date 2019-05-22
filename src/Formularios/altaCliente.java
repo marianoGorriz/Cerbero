@@ -21,8 +21,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.awt.event.ActionListener;
 import java.awt.Rectangle;
 import javax.swing.border.LineBorder;
@@ -215,64 +218,80 @@ public class altaCliente extends JPanel {
 			java.sql.Date formatoFecha = new java.sql.Date(d);	
 			String fecha2 = formatoFecha.toString();
 			dateChooser.getCalendarButton().setText(fecha2);	
+			
+
+			Pattern pattern = Pattern
+	                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+	                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+			
+		    String emailValidar = textField_4.getText();
+		    Matcher mather = pattern.matcher(emailValidar);
 	
 			int dialogButton = JOptionPane.YES_NO_OPTION;
 			int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea agregar un nuevo Cliente?","Precaución",dialogButton);
 			if(dialogResult == JOptionPane.YES_OPTION){
 				
 				if(textField_1.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Falta el campo Nombre");  //validacion de formulario
+					JOptionPane.showMessageDialog(null, "Falta el campo Nombre"); //validacion de formulario
 					textField_1.requestFocusInWindow();
 					return;
-				}
-				if(textField_2.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Falta el campo Apellido"); //validacion de formulario
-					textField_2.requestFocusInWindow();
-					return;
-				}
-				if(textField_3.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Falta el campo DNI"); //validacion de formulario
-					textField_3.requestFocusInWindow();
-					return;
-				}
-				if(txtTarjeta.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Falta agregar la Tarjeta");//validacion de formulario
-					txtTarjeta.requestFocusInWindow();
-					return;
-				}
-				if(textField_4.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Falta el campo Correo");//validacion de formulario
-					textField_4.requestFocusInWindow();
-					return;
-				}
-				if(textField_5.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Falta el campo TELEFONO");//validacion de formulario
-					textField_5.requestFocusInWindow();
-					return;
-				}
-				if(dateChooser.getDate().equals(null)) {
-					
-
-					JOptionPane.showMessageDialog(null, "Falta el campo dat");//validacion de formulario
-					dateChooser.requestFocusInWindow();
-					return;
-				}
+				}else
+				{
+					if(textField_2.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "Falta el campo Apellido");//validacion de formulario
+						textField_2.requestFocusInWindow();
+						return;
+					}else {
+						if(textField_3.getText().equals("")) {
+							JOptionPane.showMessageDialog(null, "Falta el campo DNI"); //validacion de formulario
+							textField_3.requestFocusInWindow();
+							return;
+						}else
+						{
+							if(textField_5.getText().equals("")) {
+								JOptionPane.showMessageDialog(null, "Falta el campo TELEFONO"); //validacion de formulario
+								textField_5.requestFocusInWindow();
+								return;
+							}else {
+								 
+								    		if (textField_4.getText().equals("")) {
+										JOptionPane.showMessageDialog(null, "Falta el campo Correo"); //validacion de formulario
+										textField_4.requestFocusInWindow();
+										return;
+									}else
+									{
+										if (mather.find() == true) {
+											Cliente cliente = new Cliente();
+											int id = Integer.parseInt(textField.getText());
+											//MODIFICAR FUNCION
+											cliente.modificarCliente(
+													id,
+													textField_1.getText(),
+													textField_2.getText(),
+													textField_3.getText(),						//envio de los datos 
+													textField_4.getText(),
+													textField_5.getText(),
+												    choice.getSelectedItem(), //sexo persona
+												    formatoFecha
+													);	
+											Tarjeta tarjeta = new Tarjeta();
+											String t = txtTarjeta.getText();
+											tarjeta.altaTarjeta(id, t);
+											
+										} else {
+											JOptionPane.showMessageDialog(null, "Forma de email incorrecto"); //validacion de formulario
+										
+										}
+									}
+							}
+						}
+					}
+				}	
+				
 				
 			
-			Cliente cliente = new Cliente();
-			
-				int id = cliente.altaCliente(textField_1.getText(),
-						textField_2.getText(),
-						textField_3.getText(),
-						textField_4.getText(),
-						textField_5.getText(),
-						choice.getSelectedItem(),
-						formatoFecha		
-						);
 				
-			Tarjeta tarjeta = new Tarjeta();
-			String t = txtTarjeta.getText();
-			tarjeta.altaTarjeta(id, t);
+		
 			
 			textField.setText("");
 			textField_1.setText("");
@@ -325,14 +344,20 @@ public class altaCliente extends JPanel {
 		btnActualizar.setBounds(430, 207, 102, 23);
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 			
 				Date fecha = dateChooser.getDate();
-				long d = fecha.getTime();
+				long d = fecha.getTime();		
 				java.sql.Date formatoFecha = new java.sql.Date(d);	
 				String fecha2 = formatoFecha.toString();
 				dateChooser.getCalendarButton().setText(fecha2);
+				dateChooser.setDate(formatoFecha);
 				
+				Pattern pattern = Pattern
+		                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+		                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+				
+			    String emailValidar = textField_4.getText();
+			    Matcher mather = pattern.matcher(emailValidar);
 				
 				int dialogButton = JOptionPane.YES_NO_OPTION;
 				int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea actualizar a este cliente?","Precaución",dialogButton); //pregunta 
@@ -342,44 +367,62 @@ public class altaCliente extends JPanel {
 						JOptionPane.showMessageDialog(null, "Falta el campo Nombre"); //validacion de formulario
 						textField_1.requestFocusInWindow();
 						return;
-					}
-					if(textField_2.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Falta el campo Apellido");//validacion de formulario
-						textField_2.requestFocusInWindow();
-						return;
-					}
-					if(textField_3.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Falta el campo DNI"); //validacion de formulario
-						textField_3.requestFocusInWindow();
-						return;
-					}
-				
-					if(textField_4.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Falta el campo Correo"); //validacion de formulario
-						textField_4.requestFocusInWindow();
-						return;
-					}
-					if(textField_5.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Falta el campo TELEFONO"); //validacion de formulario
-						textField_5.requestFocusInWindow();
-						return;
-					}
-				
+					}else
+					{
+						if(textField_2.getText().equals("")) {
+							JOptionPane.showMessageDialog(null, "Falta el campo Apellido");//validacion de formulario
+							textField_2.requestFocusInWindow();
+							return;
+						}else {
+							if(textField_3.getText().equals("")) {
+								JOptionPane.showMessageDialog(null, "Falta el campo DNI"); //validacion de formulario
+								textField_3.requestFocusInWindow();
+								return;
+							}else
+							{
+								if(textField_5.getText().equals("")) {
+									JOptionPane.showMessageDialog(null, "Falta el campo TELEFONO"); //validacion de formulario
+									textField_5.requestFocusInWindow();
+									return;
+								}else {
+									 
+									    		if (textField_4.getText().equals("")) {
+											JOptionPane.showMessageDialog(null, "Falta el campo Correo"); //validacion de formulario
+											textField_4.requestFocusInWindow();
+											return;
+										}else
+										{
+											if (mather.find() == true) {
+												Cliente cliente = new Cliente();
+												int id = Integer.parseInt(textField.getText());
+												//MODIFICAR FUNCION
+												cliente.modificarCliente(
+														id,
+														textField_1.getText(),
+														textField_2.getText(),
+														textField_3.getText(),						//envio de los datos 
+														textField_4.getText(),
+														textField_5.getText(),
+													    choice.getSelectedItem(), //sexo persona
+													    formatoFecha
+														);	
+											} else {
+												JOptionPane.showMessageDialog(null, "Forma de email incorrecto"); //validacion de formulario
+											
+											}
+										}
+								}
+							}
+						}
+					}	
+					
+					
+					
+				   
+					
 						
 					
-					Cliente cliente = new Cliente();
-					int id = Integer.parseInt(textField.getText());
-					//MODIFICAR FUNCION
-					cliente.modificarCliente(
-							id,
-							textField_1.getText(),
-							textField_2.getText(),
-							textField_3.getText(),						//envio de los datos 
-							textField_4.getText(),
-							textField_5.getText(),
-						    choice.getSelectedItem(), //sexo persona
-						    fecha2
-							);			 
+						 
 					
 					DefaultTableModel modelo;
 					modelo = new DefaultTableModel();
@@ -396,7 +439,7 @@ public class altaCliente extends JPanel {
 				//	recarga de los datos de la tabla
 					ResultSet rs;
 					Cliente clientes = new Cliente();
-					rs = cliente.buscarCliente(textField_6.getText());
+					rs = clientes.buscarCliente(textField_6.getText());
 					try {
 						while(rs.next()) {
 							modelo.addRow(new Object[]{rs.getObject("id"), 
@@ -522,7 +565,21 @@ public class altaCliente extends JPanel {
 				textField_5.setText(value6);
 				choice.select(value7);
 				choice.repaint();
-				dateChooser.getCalendarButton().setText(fecha);
+				
+		
+				try {
+					SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+					java.util.Date date = sdf1.parse(fecha);
+					java.sql.Date dateSql = new java.sql.Date(date.getTime());
+					dateChooser.setDate(dateSql);
+					dateChooser.getCalendarButton().setText(dateSql.toString());
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			
+				
 				//System.out.println(dateChooser.getDateEditor());
 				btnModificar.setEnabled(true);
 				btnGuardar.setEnabled(false);
