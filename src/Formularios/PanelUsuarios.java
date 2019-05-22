@@ -49,6 +49,14 @@ public class PanelUsuarios extends JPanel {
 		});
 		setLayout(null);
 		
+		DefaultTableModel modelo;
+		modelo = new DefaultTableModel();
+		modelo.addColumn("ID");
+		modelo.addColumn("Usuario");
+		modelo.addColumn("Contraseña");
+		modelo.addColumn("Rol");
+		modelo.addColumn("Estado");
+		
 		
 		JLabel lblIdDelUsuario = new JLabel("Id del Usuario:");
 		lblIdDelUsuario.setFont(new Font("Times New Roman", Font.BOLD, 14));
@@ -111,7 +119,7 @@ public class PanelUsuarios extends JPanel {
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(25, 239, 489, 155);
+		scrollPane.setBounds(25, 235, 489, 155);
 		add(scrollPane);
 		table = new JTable();
 
@@ -304,11 +312,14 @@ public class PanelUsuarios extends JPanel {
 					
 					if(valor == "Deshabilitar") {
 						habilitar.habilitarUsuario(valor, id);					//habilitacion del usario 
-						
+
 					} else {
 						habilitar.habilitarUsuario(valor, id);
-					}
+					
+						
+					}	
 				}
+				
 			}
 		);
 		btnNewButton.setBounds(410, 157, 104, 23);
@@ -439,13 +450,7 @@ public class PanelUsuarios extends JPanel {
 		btnNuevo.setBounds(410, 26, 104, 23);
 		add(btnNuevo);
 				
-		DefaultTableModel modelo;
-		modelo = new DefaultTableModel();
-		modelo.addColumn("ID");
-		modelo.addColumn("Usuario");
-		modelo.addColumn("Contraseña");
-		modelo.addColumn("Rol");
-		modelo.addColumn("Estado");
+		
 		table.setModel(modelo);
 
 		ResultSet rs;

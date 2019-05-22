@@ -68,33 +68,46 @@ public class frmLogin {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+			
 				if(txtUsuario.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "Falta el campo USUARIO");  //validacion de USUARIOO
 					txtUsuario.requestFocusInWindow();
 					return;
+				}else	
+					{
+					if(pwdUsuario.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "Falta el campo CONTRASEÑA");  //validacion de USUARIO
+						pwdUsuario.requestFocusInWindow();
+						return;
+					}else {
+						String usuario = txtUsuario.getText();
+						String password = new String (pwdUsuario.getPassword());
+						
+						Usuario user = new Usuario();
+						int login = user.validacionLogin(usuario, password,0);
+						rol = user.getRol();
+						
+						if (login  == 1) {
+							frmPrincipal window = new frmPrincipal();
+							window.mostrarPrincipal();
+							frame.setVisible(false);
+						
+						}else {
+								JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrecta");
+							
+						}
+						
+						
+					}
+					
 				}
-				if(pwdUsuario.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Falta el campo CONTRASEÑA");  //validacion de USUARIO
-					pwdUsuario.requestFocusInWindow();
-					return;
-				}
 				
-				String usuario = txtUsuario.getText();
-				String password = new String (pwdUsuario.getPassword());
 				
-				Usuario user = new Usuario();
-				int login = user.validacionLogin(usuario, password,0);
-				rol = user.getRol();
 				
-				if (login  == 1) {
-					frmPrincipal window = new frmPrincipal();
-					window.mostrarPrincipal();
-					frame.setVisible(false);
 				
-				}else {
-					JOptionPane.showMessageDialog(null, "ERRORRR en Usuario o Contraseña");
-				}
+			
+				
+				
 				
 				
 				
