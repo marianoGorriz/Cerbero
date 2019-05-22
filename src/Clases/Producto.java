@@ -12,12 +12,12 @@ public class Producto {
 	private String nombre;
 	private int puntos_actual,estado;
 	
-	public void altaProducto(String nombre, float puntos_actual) {
+	public void altaProducto(String nombre, float puntos_actual, int precio) {
 		try {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
-			st.executeUpdate("INSERT INTO productos (`nombre`, `puntos_actual`) VALUES ('" + nombre + "', " + puntos_actual + ");");
+			st.executeUpdate("INSERT INTO productos (`nombre`, `puntos_actual`, `precio`) VALUES ('" + nombre + "', " + puntos_actual + ", " + precio + ");");
 		}		 
 		catch (SQLException e2) {
 			System.out.println("nope2");
@@ -25,12 +25,12 @@ public class Producto {
 		}
 	}
 	
-	public void modificarProducto(String nombre, float puntos_actual, int id) {
+	public void modificarProducto(String nombre, float puntos_actual, int id, int precio) {
 		try {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
-			st.executeUpdate("UPDATE productos SET `nombre` = '" + nombre + "', `puntos_actual` = " + puntos_actual + 
+			st.executeUpdate("UPDATE productos SET `nombre` = '" + nombre + "', `puntos_actual` = " + puntos_actual + ", `precio` = " + precio +
 							 " WHERE id = " + id + ";");
 			
 		}		 

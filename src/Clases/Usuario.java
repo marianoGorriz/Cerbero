@@ -25,6 +25,7 @@ public class Usuario extends Persona {
 			if(rs.first() != false) {
 					bandera = 1;
 					this.rol = rs.getObject("rol").toString();
+					this.id = (int) rs.getObject("id");
 			}
 			
 		}
@@ -108,7 +109,10 @@ public class Usuario extends Persona {
 	public String getRol() {
 		return this.rol;
 	}
-    
+	
+	public int getId() {
+		return this.id;
+	}
 	
 
 }

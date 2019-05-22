@@ -36,6 +36,7 @@ public class frmLogin {
 	private JPasswordField pwdUsuario;
 	private JTextField txtUsuario;
 	public static String rol;
+	public static int id;
 	
 	/**
 	 * Create the application.
@@ -86,6 +87,7 @@ public class frmLogin {
 						Usuario user = new Usuario();
 						int login = user.validacionLogin(usuario, password,0);
 						rol = user.getRol();
+						id = user.getId();
 						
 						if (login  == 1) {
 							frmPrincipal window = new frmPrincipal();
