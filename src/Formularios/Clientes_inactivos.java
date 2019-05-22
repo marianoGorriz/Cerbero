@@ -106,6 +106,11 @@ public class Clientes_inactivos extends JPanel {
 		modelo.addColumn("Estado");
 		modelo.addColumn("Ultima Compra");
 		table_2.setModel(modelo);
+		
+		JLabel lblEnEsteModulo = new JLabel("En este modulo las busquedas se realizan por el N\u00BA de Tarjeta");
+		lblEnEsteModulo.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		lblEnEsteModulo.setBounds(62, 41, 335, 20);
+		add(lblEnEsteModulo);
 		ResultSet rs;
 		Cliente cliente = new Cliente();
 		rs = cliente.clientesInactivos();
