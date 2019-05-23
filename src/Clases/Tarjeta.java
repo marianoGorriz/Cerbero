@@ -87,12 +87,12 @@ public class Tarjeta {
 			System.out.println("SQLException: " + e2.getMessage());	
 		}
 	}
-	public ResultSet perdidaTarjeta() {
+	public ResultSet perdidaTarjeta(String tarjeta) {
 		try{ 
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery( "SELECT * FROM clientes INNER JOIN tarjetas ON clientes.id = tarjetas.id_tarjeta_cliente WHERE tarjetas.estado = 1");
+			ResultSet rs = st.executeQuery( "SELECT * FROM clientes INNER JOIN tarjetas ON clientes.id = tarjetas.id_tarjeta_cliente WHERE clientes.dni = '"+tarjeta+"'");
 			return rs;
 		}
 		catch (SQLException e2) {

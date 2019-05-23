@@ -95,7 +95,8 @@ public class perdidaTarjeta extends JPanel {
 				}else
 				{
 					Tarjeta buscarTarjeta = new Tarjeta();
-					ResultSet tarjetaEncontrada = buscarTarjeta.buscarTarjetasActivas(numeroTarjeta);
+					
+					ResultSet tarjetaEncontrada = buscarTarjeta.perdidaTarjeta(numeroTarjeta);
 					
 					DefaultTableModel modelo;
 					modelo = new DefaultTableModel();
@@ -282,7 +283,7 @@ public class perdidaTarjeta extends JPanel {
 		table.setModel(modelo);
 		ResultSet rs;
 		Tarjeta perdida = new Tarjeta();
-		rs = perdida.perdidaTarjeta();
+		rs = perdida.tarjetasActivas();
 		try {
 			while(rs.next()) {
 				modelo.addRow(new Object[]{
@@ -326,7 +327,7 @@ public class perdidaTarjeta extends JPanel {
 					table.setModel(modelo);
 					ResultSet rs;
 					Tarjeta perdida = new Tarjeta();
-					rs = perdida.perdidaTarjeta();
+					rs = perdida.tarjetasActivas();
 					try {
 						while(rs.next()) {
 							modelo.addRow(new Object[]{
