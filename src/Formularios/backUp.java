@@ -64,17 +64,18 @@ public class backUp extends JFrame {
 					
 					
 					String dbUser = "root";
-					String dbPass = "root";
+					String dbPass = "12345";
 					String dbName = "cerbero";
 				
 					Process p = Runtime.getRuntime().exec("C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump  -u "+ dbUser + " -p"+ dbPass + " " + dbName);					
 					InputStream is = p.getInputStream();
-					File file = new File("C:\\Users\\Maxi\\Desktop\\"+fechaActual+".sql");
+					File file = new File("C:\\Users\\mariano\\Desktop\\"+fechaActual+".sql");
 					FileOutputStream fos = new FileOutputStream(file);
 					byte[] buffer = new byte[1000];
 					int leido = is.read(buffer);
 					
-					while (leido > 0) {				
+					while (leido > 0) {		
+						
 						fos.write(buffer, 0, leido);
 						leido = is.read(buffer);	
 					}			

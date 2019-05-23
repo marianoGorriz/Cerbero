@@ -55,14 +55,18 @@ public class VentaRealizadas extends JPanel {
 		txtBusqueda.setBounds(161, 47, 125, 20);
 		add(txtBusqueda);
 		txtBusqueda.setColumns(10);
+		
+		llenartabla();
 	}
+	
 	public void llenartabla() {
 		DefaultTableModel model;
 		model = new DefaultTableModel();
-		model.addColumn("ID");
-		model.addColumn("Fecha de la venta");
-		model.addColumn("Puntos vendidos");
+		model.addColumn("Fecha Venta");
+		model.addColumn("Producto");
+		model.addColumn("Cantidad");
 		model.addColumn("Usuario");
+		model.addColumn("DNI");
 		
 		table_1.setModel(model);
 		ResultSet rs;

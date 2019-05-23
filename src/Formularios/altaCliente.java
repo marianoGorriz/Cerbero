@@ -262,10 +262,9 @@ public class altaCliente extends JPanel {
 									{
 										if (mather.find() == true) {
 											Cliente cliente = new Cliente();
-											int id = Integer.parseInt(textField.getText());
+											
 											//MODIFICAR FUNCION
-											cliente.modificarCliente(
-													id,
+											int id = cliente.altaCliente(
 													textField_1.getText(),
 													textField_2.getText(),
 													textField_3.getText(),						//envio de los datos 
