@@ -109,7 +109,7 @@ public class Tarjeta {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery( "SELECT * FROM clientes INNER JOIN tarjetas ON clientes.id = tarjetas.id_tarjeta_cliente WHERE tarjetas.estado = 0");
+			ResultSet rs = st.executeQuery( "SELECT * FROM clientes INNER JOIN tarjetas ON clientes.id = tarjetas.id_tarjeta_cliente WHERE tarjetas.estado = 1");
 			return rs;
 		}
 		catch (SQLException e2) {
@@ -142,7 +142,7 @@ public class Tarjeta {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery( "SELECT * FROM clientes INNER JOIN tarjetas ON clientes.id = tarjetas.id_tarjeta_cliente WHERE tarjetas.n_tarjeta LIKE '%" + busquedatarjeta +"%' AND tarjetas.estado = 0;");
+			ResultSet rs = st.executeQuery( "SELECT * FROM clientes INNER JOIN tarjetas ON clientes.id = tarjetas.id_tarjeta_cliente WHERE tarjetas.n_tarjeta LIKE '%" + busquedatarjeta +"%' AND tarjetas.estado = 1;");
 			return rs;
 		}
 		catch (SQLException e2) {
@@ -153,6 +153,26 @@ public class Tarjeta {
 	}
 		return null;
 	}
+	
+	public int modificarDatos(String numeroTarjeta,String nuevaTarjeta) 
+	{
+		try {
+			Conexion cn = new Conexion();
+			Connection con = cn.conectarDB();	
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery( "SELECT * FROM tarjetas WHERE `ultima_tarjeta` ='"+numeroTarjeta+"'");			
+			if(rs.next()) {
+				int id = rs.getInt("id");
+				st.executeUpdate("UPDATE tarjetas SET `ultima_tarjeta` = `n_tarjeta` , n_tarjeta="+nuevaTarjeta+", cantidad_tarjeta = `cantidad_tarjeta` +"+1+" WHERE id="+id);			
+				return 1;
+			}			
+		} catch (Exception e) {
+			System.out.println("SQLException: " + e.getMessage());	
+		}
+		
+		return 0;
+	}
+	
 
 
 }

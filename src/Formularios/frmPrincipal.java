@@ -15,13 +15,19 @@ import javax.swing.JMenu;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.SwingConstants;
 
-
+import Clases.Usuario;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Date;
+
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
@@ -242,16 +248,15 @@ public class frmPrincipal extends JFrame {
 		}
 		mnMantenimiento.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));				//Tipo de letra y tamaño
 		menuBar.add(mnMantenimiento);
-		
-		JMenuItem mntmCambiosDeDias = new JMenuItem("Cambios de dias de bajas");		//Submenu del menu MANTENIMIENTO
-		mntmCambiosDeDias.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));			//Tipo de letra y tamaño
-		mnMantenimiento.add(mntmCambiosDeDias);
-		
-		JMenuItem mntmCambiosDePorsentaje = new JMenuItem("Cambios de porsentaje de puntos");	//Submenu del menu MANTENIMIENTO
-		mntmCambiosDePorsentaje.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));			//Tipo de letra y tamaño
-		mnMantenimiento.add(mntmCambiosDePorsentaje);
-		
+	
 		JMenuItem mntmNewMenuItem = new JMenuItem("Backup de los datos");						//Submenu del menu MANTENIMIENTO
+		mntmNewMenuItem.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				backUp back = new backUp();
+				back.setVisible(true);
+			}
+		});
 		mntmNewMenuItem.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));					//Tipo de letra y tamaño
 		mnMantenimiento.add(mntmNewMenuItem);
 		
@@ -259,6 +264,28 @@ public class frmPrincipal extends JFrame {
 		mnSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {								//Evento de cerrar ventana 
+				try {
+					
+					String dbUser = "root";
+					String dbPass = "root";
+					String dbName = "cerbero";
+				
+					Process p = Runtime.getRuntime().exec("C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump  -u "+ dbUser + " -p"+ dbPass + " " + dbName);					
+					InputStream is = p.getInputStream();
+					File file = new File("C:\\Users\\Maxi\\Desktop\\backUpCerbero.sql");
+					FileOutputStream fos = new FileOutputStream(file);
+					byte[] buffer = new byte[1000];
+					int leido = is.read(buffer);
+					
+					while (leido > 0) {				
+						fos.write(buffer, 0, leido);
+						leido = is.read(buffer);	
+					}			
+					fos.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				System.exit(0);
 			}
 		});

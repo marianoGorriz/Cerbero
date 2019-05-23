@@ -95,7 +95,7 @@ public class frmLogin {
 							frame.setVisible(false);
 						
 						}else {
-								JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrecta");
+								JOptionPane.showMessageDialog(null, "Datos invalidos");
 							
 						}
 						
