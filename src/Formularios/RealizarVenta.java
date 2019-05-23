@@ -98,6 +98,7 @@ public class RealizarVenta extends JPanel {
 		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		DefaultTableModel modelo;
 		modelo = new DefaultTableModel();
+		modelo.addColumn("id");
 		modelo.addColumn("Producto");
 		modelo.addColumn("Cantidad");
 		modelo.addColumn("Precio");
@@ -117,7 +118,7 @@ public class RealizarVenta extends JPanel {
 				float puntos = (float) table.getModel().getValueAt(row, 2);
 				int cantidad = Integer.parseInt(txtCantidad.getText());
 				int precio = Integer.parseInt(table.getModel().getValueAt(row, 3).toString());
-				modelo.addRow(new Object[]{table.getModel().getValueAt(row, 1).toString(),txtCantidad.getText(), table.getModel().getValueAt(row, 3).toString(),cantidad*precio*puntos});
+				modelo.addRow(new Object[]{table.getModel().getValueAt(row, 0).toString(),table.getModel().getValueAt(row, 1).toString(),txtCantidad.getText(), table.getModel().getValueAt(row, 3).toString(),cantidad*precio*puntos});
 			}
 		});
 		
@@ -138,7 +139,7 @@ public class RealizarVenta extends JPanel {
 
 				for(int i = 0; i < filas_tabla_1;i++)
 				{
-					puntos_total = puntos_total + Float.parseFloat(table_1.getModel().getValueAt(i, 3).toString()) ;
+					puntos_total = puntos_total + Float.parseFloat(table_1.getModel().getValueAt(i, 4).toString()) ;
 				}
 				
 				frmLogin idUser = new frmLogin();
@@ -159,12 +160,20 @@ public class RealizarVenta extends JPanel {
 				
 				int total_puntos = (int) puntos_total;
 				Venta venta = new Venta();
-				venta.realizarVenta(id_ventas_usuarios, id_ventas_tarjetas, total_puntos);
+				int tipo = 0; //VENTA
+				venta.realizarVenta(id_ventas_usuarios, id_ventas_tarjetas, total_puntos, tipo);
 
 				lblNewLabel_2.setText("Total puntos: ");
 				lblNewLabel_2.setText(lblNewLabel_2.getText() + puntos_total);
 				
+				int filas = modelo.getRowCount();
+				for(int i = 0; i<filas; i++) {
+					int id_detalleVenta_venta = venta.ultimaVenta();
+					int id_detalleVenta_producto = Integer.parseInt(modelo.getValueAt(i, 0).toString());
+					int cantidad = Integer.parseInt(modelo.getValueAt(i, 2).toString());
+					venta.insertarDetalleVenta(id_detalleVenta_venta, id_detalleVenta_producto, cantidad);
 
+				}
 			}
 		});
 		btnRealizarVenta.setBounds(338, 345, 116, 23);
@@ -246,7 +255,7 @@ public class RealizarVenta extends JPanel {
 		modelo = new DefaultTableModel();
 		modelo.addColumn("ID");
 		modelo.addColumn("Producto");
-		modelo.addColumn("Puntos");
+		modelo.addColumn("Porcentaje");
 		modelo.addColumn("Precio");
 		table.setModel(modelo);
 		ResultSet rs;
@@ -254,7 +263,7 @@ public class RealizarVenta extends JPanel {
 		rs = busqueda.buscarProducto(textField.getText());
 		try {
 			while(rs.next()) {
-				modelo.addRow(new Object[]{rs.getObject("id"), rs.getObject("nombre"), rs.getObject("puntos_actual"), rs.getObject("precio")});
+				modelo.addRow(new Object[]{rs.getObject("id"), rs.getObject("nombre"), rs.getObject("porcentaje_puntos"), rs.getObject("precio")});
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();

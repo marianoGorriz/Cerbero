@@ -28,6 +28,7 @@ public class AltaProductos extends JPanel {
 	private JTable table;
 	private JTextField textField_2;
 	private JTextField txtPrecio;
+	private JTextField txtPromedio;
 
 	/**
 	 * Create the panel.
@@ -36,11 +37,16 @@ public class AltaProductos extends JPanel {
 		setLayout(null);
 		
 		JLabel lblProducto = new JLabel("Producto:");
-		lblProducto.setBounds(10, 11, 76, 14);
+		lblProducto.setBounds(10, 17, 76, 14);
 		add(lblProducto);
 		
+		txtPromedio = new JTextField();
+		txtPromedio.setBounds(74, 89, 96, 20);
+		add(txtPromedio);
+		txtPromedio.setColumns(10);
+		
 		textField = new JTextField();
-		textField.setBounds(74, 8, 96, 20);
+		textField.setBounds(74, 14, 96, 20);
 		add(textField);
 		textField.setColumns(10);
 		
@@ -59,12 +65,12 @@ public class AltaProductos extends JPanel {
 				int precio = Integer.parseInt(txtPrecio.getText());
 				Producto producto = new Producto();
 				if(btnCargar.getText() == "Cargar") {
-					producto.altaProducto(textField.getText(), Float.parseFloat(textField_1.getText()), precio);
+					producto.altaProducto(textField.getText(), Float.parseFloat(textField_1.getText()), precio, Float.parseFloat(txtPromedio.getText()));
 				} else {
 					int column = 0;
 					int row = table.getSelectedRow();
 					int id = Integer.parseInt(table.getModel().getValueAt(row, column).toString());
-					producto.modificarProducto(textField.getText(), Float.parseFloat(textField_1.getText()), id, precio);
+					producto.modificarProducto(textField.getText(), Float.parseFloat(textField_1.getText()), id, precio,Float.parseFloat(txtPromedio.getText()));
 					btnCargar.setText("Cargar");
 					textField.setText("");
 					textField_1.setText("");
@@ -73,12 +79,12 @@ public class AltaProductos extends JPanel {
 				llenarTablaProductos();
 			}
 		});
-		btnCargar.setBounds(10, 110, 96, 23);
+		btnCargar.setBounds(10, 143, 96, 23);
 		add(btnCargar);
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 175, 401, 185);
+		scrollPane.setBounds(10, 230, 401, 185);
 		add(scrollPane);
 		
 		table = new JTable();
@@ -87,7 +93,7 @@ public class AltaProductos extends JPanel {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(10, 144, 271, 20);
+		textField_2.setBounds(10, 199, 271, 20);
 		add(textField_2);
 		textField_2.setColumns(10);
 		
@@ -123,13 +129,19 @@ public class AltaProductos extends JPanel {
 		add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("Precio");
-		lblNewLabel.setBounds(10, 73, 48, 14);
+		lblNewLabel.setBounds(10, 67, 48, 14);
 		add(lblNewLabel);
 		
 		txtPrecio = new JTextField();
-		txtPrecio.setBounds(74, 70, 96, 20);
+		txtPrecio.setBounds(74, 64, 96, 20);
 		add(txtPrecio);
 		txtPrecio.setColumns(10);
+		
+		JLabel lblPromedio = new JLabel("Promedio");
+		lblPromedio.setBounds(10, 92, 48, 14);
+		add(lblPromedio);
+		
+		
 		
 		table.addMouseListener(new MouseAdapter() {
 			@Override
@@ -138,16 +150,19 @@ public class AltaProductos extends JPanel {
 				int column2 = 2;
 				int column3 = 3;
 				int column4 = 4;
+				int column5 = 5;
 				btnCargar.setText("Actualizar");
 				int row = table.getSelectedRow();
 				String value1 = table.getModel().getValueAt(row, column1).toString();
 				String value2 = table.getModel().getValueAt(row, column2).toString();
 				String value3 = table.getModel().getValueAt(row, column3).toString();
 				String value4 = table.getModel().getValueAt(row, column4).toString();
+				String value5 = table.getModel().getValueAt(row, column5).toString();
 
 				textField.setText(value1);
 				textField_1.setText(value2);
 				txtPrecio.setText(value4);
+				txtPromedio.setText(value5);
 				if(value3 == "true") {
 					btnNewButton_1.setText("Deshabilitar");
 					btnNewButton_1.setEnabled(true);
@@ -169,13 +184,14 @@ public class AltaProductos extends JPanel {
 		modelo.addColumn("Puntos");
 		modelo.addColumn("Estado");
 		modelo.addColumn("Precio");
+		modelo.addColumn("Porcentaje");
 		table.setModel(modelo);
 		ResultSet rs;
 		Producto busqueda = new Producto();
 		rs = busqueda.buscarProducto(textField_2.getText());
 		try {
 			while(rs.next()) {
-				modelo.addRow(new Object[]{rs.getObject("id"), rs.getObject("nombre"), rs.getObject("puntos_actual"), rs.getObject("estado"), rs.getObject("precio")});
+				modelo.addRow(new Object[]{rs.getObject("id"), rs.getObject("nombre"), rs.getObject("puntos_actual"), rs.getObject("estado"), rs.getObject("precio"), rs.getObject("porcentaje_puntos")});
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
