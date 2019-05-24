@@ -269,4 +269,6 @@ public class RealizarVenta extends JPanel {
 			e1.printStackTrace();
 		}
 	}
+	
+
 }

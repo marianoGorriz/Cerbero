@@ -89,5 +89,37 @@ public class Producto {
 		this.puntos_actual = puntos_actual;
 	}
 	
+	public ResultSet buscarProductoVenta(){
+		try {
+			Conexion cn = new Conexion();
+			Connection con = cn.conectarDB();
+			Statement st =con.createStatement();
+		    ResultSet rs = st.executeQuery("SELECT * FROM clientes INNER JOIN tarjetas ON clientes.id = tarjetas.id_tarjeta_cliente INNER JOIN ventas ON ventas.id_ventas_tarjetas = tarjetas.id INNER JOIN detalleventa ON ventas.id = detalleventa.id_detalleVenta_venta INNER JOIN productos ON productos.id = detalleventa.id_detalleVenta_producto INNER JOIN usuarios ON ventas.id_ventas_usuarios = usuarios.id ;");
+			return rs;
+
+		}		 
+		catch (SQLException e2) {
+			System.out.println("nope2");
+			System.out.println("SQLException: " + e2.getMessage());
+		}
+		return null;
+	}
+	
+	public ResultSet buscarProductoVenta(String producto) {
+		try {
+			Conexion cn = new Conexion();
+			Connection con = cn.conectarDB();
+			Statement st =con.createStatement();
+		    ResultSet rs = st.executeQuery("SELECT * FROM clientes INNER JOIN tarjetas ON clientes.id = tarjetas.id_tarjeta_cliente INNER JOIN ventas ON ventas.id_ventas_tarjetas = tarjetas.id INNER JOIN detalleventa ON ventas.id = detalleventa.id_detalleVenta_venta INNER JOIN productos ON productos.id = detalleventa.id_detalleVenta_producto INNER JOIN usuarios ON ventas.id_ventas_usuarios = usuarios.id WHERE productos.nombre LIKE '%" + producto +"%';");
+			return rs;
+
+		}		 
+		catch (SQLException e2) {
+			System.out.println("nope2");
+			System.out.println("SQLException: " + e2.getMessage());
+		}
+		return null;
+	}
+	
 	
 }

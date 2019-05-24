@@ -22,6 +22,8 @@ import java.sql.SQLException;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentaRealizadas extends JPanel {
 	private JTable table_1;
@@ -41,6 +43,13 @@ public class VentaRealizadas extends JPanel {
 		add(lblFiltrarDesde);
 		
 		JButton btnNewButton = new JButton("Filtrar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				llenartabla(txtBusqueda.getText());
+				
+			}
+		});
 		btnNewButton.setBounds(313, 46, 89, 23);
 		add(btnNewButton);
 		
@@ -67,15 +76,17 @@ public class VentaRealizadas extends JPanel {
 		model.addColumn("Cantidad");
 		model.addColumn("Usuario");
 		model.addColumn("DNI");
-		
+			
 		table_1.setModel(model);
 		ResultSet rs;
 		
 		Venta busqueda = new Venta();
-		rs = busqueda.buscarProducto(txtBusqueda.getText());
+	
+		rs = busqueda.buscarProductoVenta();
+
 		try {
 			while(rs.next()) {
-				model.addRow(new Object[]{rs.getObject("id"), rs.getObject("nombre"), rs.getObject("puntos_actual")});
+				model.addRow(new Object[]{rs.getObject("clientes.id"), rs.getObject("productos.nombre"),rs.getObject("detalleventa.cantidad"),rs.getObject("usuarios.usuario"),rs.getObject("clientes.dni")});
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
@@ -84,4 +95,34 @@ public class VentaRealizadas extends JPanel {
 				
 		
 	}
+	
+	public void llenartabla(String nombreProducto) {
+		DefaultTableModel model;
+		model = new DefaultTableModel();
+		model.addColumn("Fecha Venta");
+		model.addColumn("Producto");
+		model.addColumn("Cantidad");
+		model.addColumn("Usuario");
+		model.addColumn("DNI");
+			
+		table_1.setModel(model);
+		ResultSet rs;
+		
+		Venta busqueda = new Venta();
+	
+		rs = busqueda.buscarProductoVenta(nombreProducto);
+
+		try {
+			while(rs.next()) {
+				model.addRow(new Object[]{rs.getObject("clientes.id"), rs.getObject("productos.nombre"),rs.getObject("detalleventa.cantidad"),rs.getObject("usuarios.usuario"),rs.getObject("clientes.dni")});
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+				
+		
+	}
+	
+	
 }
