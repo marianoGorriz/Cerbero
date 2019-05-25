@@ -17,6 +17,8 @@ import java.io.InputStream;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class backUp extends JFrame {
 
@@ -25,8 +27,8 @@ public class backUp extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+	//public static void main(String[] args) {
+		//EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					backUp frame = new backUp();
@@ -35,13 +37,20 @@ public class backUp extends JFrame {
 					e.printStackTrace();
 				}
 			}
-		});
-	}
+		//});
+	//}
 
 	/**
 	 * Create the frame.
 	 */
 	public backUp() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosed(WindowEvent e) {
+				frmPrincipal principal = new frmPrincipal();
+				principal.setVisible(true);
+			}
+		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 340, 181);
 		contentPane = new JPanel();

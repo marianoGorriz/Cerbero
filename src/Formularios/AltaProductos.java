@@ -3,6 +3,7 @@ package Formularios;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Clases.Producto;
@@ -41,7 +42,7 @@ public class AltaProductos extends JPanel {
 		add(lblProducto);
 		
 		txtPromedio = new JTextField();
-		txtPromedio.setBounds(74, 89, 96, 20);
+		txtPromedio.setBounds(261, 42, 96, 20);
 		add(txtPromedio);
 		txtPromedio.setColumns(10);
 		
@@ -51,40 +52,156 @@ public class AltaProductos extends JPanel {
 		textField.setColumns(10);
 		
 		JLabel lblPuntos = new JLabel("Puntos:");
-		lblPuntos.setBounds(10, 42, 48, 14);
+		lblPuntos.setBounds(192, 17, 48, 14);
 		add(lblPuntos);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(74, 39, 96, 20);
+		textField_1.setBounds(261, 14, 96, 20);
 		add(textField_1);
 		textField_1.setColumns(10);
 		
 		JButton btnCargar = new JButton("Cargar");
-		btnCargar.addActionListener(new ActionListener() {
+		
+		JButton btnNewButton_1 = new JButton("Habilitar");
+		btnNewButton_1.setEnabled(false);
+		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int precio = Integer.parseInt(txtPrecio.getText());
-				Producto producto = new Producto();
-				if(btnCargar.getText() == "Cargar") {
-					producto.altaProducto(textField.getText(), Float.parseFloat(textField_1.getText()), precio, Float.parseFloat(txtPromedio.getText()));
-				} else {
-					int column = 0;
-					int row = table.getSelectedRow();
-					int id = Integer.parseInt(table.getModel().getValueAt(row, column).toString());
-					producto.modificarProducto(textField.getText(), Float.parseFloat(textField_1.getText()), id, precio,Float.parseFloat(txtPromedio.getText()));
+				
+				int column = 0;
+				int row = table.getSelectedRow();
+				int id = Integer.parseInt(table.getModel().getValueAt(row, column).toString());
+				String valor = btnNewButton_1.getText();
+				Producto habilitar = new Producto();		
+				
+				if(valor == "Deshabilitar") {
+					
+					habilitar.habilitarProducto(valor, id);
+					btnNewButton_1.setText("Habilitar");
+					btnNewButton_1.setEnabled(false);
 					btnCargar.setText("Cargar");
 					textField.setText("");
 					textField_1.setText("");
 					txtPrecio.setText("");
+					txtPromedio.setText("");
+				} else {
+					
+					habilitar.habilitarProducto(valor, id);
+					btnNewButton_1.setEnabled(false);
+					btnCargar.setText("Cargar");
+					textField.setText("");
+					textField_1.setText("");
+					txtPrecio.setText("");
+					txtPromedio.setText("");
 				}
 				llenarTablaProductos();
 			}
 		});
-		btnCargar.setBounds(10, 143, 96, 23);
+		btnNewButton_1.setBounds(472, 144, 89, 23);
+		add(btnNewButton_1);
+		
+		btnCargar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Producto producto = new Producto();
+				if(btnCargar.getText() == "Cargar") {							
+					int dialogButton = JOptionPane.YES_NO_OPTION;
+					int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea agregar un nuevo producto?","Precaución",dialogButton);
+					if(dialogResult == JOptionPane.YES_OPTION){
+						
+						if(textField.getText().equals("")) {
+							JOptionPane.showMessageDialog(null, "Falta el campo Producto");
+							textField_1.requestFocusInWindow();
+							return;
+						}else
+						{
+							if(textField_1.getText().equals("")) {
+								JOptionPane.showMessageDialog(null, "Falta el campo Puntos");
+								textField_2.requestFocusInWindow();
+								return;
+							}else {
+								if(txtPrecio.getText().equals("")) {
+									JOptionPane.showMessageDialog(null, "Falta el campo Precio"); 
+									txtPrecio.requestFocusInWindow();
+									return;
+								}else
+								{
+									if(txtPromedio.getText().equals("")) {
+										JOptionPane.showMessageDialog(null, "Falta el campo Promedio"); 
+										txtPromedio.requestFocusInWindow();
+										return;
+									} else {
+										int precio = Integer.parseInt(txtPrecio.getText());
+										producto.altaProducto(textField.getText(), Float.parseFloat(textField_1.getText()), precio, Float.parseFloat(txtPromedio.getText()));
+										textField.setText("");
+										textField_1.setText("");
+										txtPrecio.setText("");
+										txtPromedio.setText("");
+										btnNewButton_1.setText("Habilitar");
+										btnNewButton_1.setEnabled(false);
+										JOptionPane.showMessageDialog(null, "Carga realizada correctamente."); 
+									}
+								}
+							}
+						}
+					}	
+				} else {
+					
+					int dialogButton = JOptionPane.YES_NO_OPTION;
+					int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea actualizar el producto seleccionado?","Precaución",dialogButton);
+					if(dialogResult == JOptionPane.YES_OPTION){
+						
+						if(textField.getText().equals("")) {
+							JOptionPane.showMessageDialog(null, "Falta el campo Producto"); 
+							textField_1.requestFocusInWindow();
+							return;
+						}else
+						{
+							if(textField_1.getText().equals("")) {
+								JOptionPane.showMessageDialog(null, "Falta el campo Puntos");
+								textField_2.requestFocusInWindow();
+								return;
+							}else {
+								if(txtPrecio.getText().equals("")) {
+									JOptionPane.showMessageDialog(null, "Falta el campo Precio");
+									txtPrecio.requestFocusInWindow();
+									return;
+								}else
+								{
+									if(txtPromedio.getText().equals("")) {
+										JOptionPane.showMessageDialog(null, "Falta el campo Promedio"); 
+										txtPromedio.requestFocusInWindow();
+										return;
+									} else {
+										
+										btnNewButton_1.setText("Habilitar");
+										btnNewButton_1.setEnabled(false);
+										int precio = Integer.parseInt(txtPrecio.getText());
+										int column = 0;
+										int row = table.getSelectedRow();
+										int id = Integer.parseInt(table.getModel().getValueAt(row, column).toString());
+										producto.modificarProducto(textField.getText(), Float.parseFloat(textField_1.getText()), id, precio,Float.parseFloat(txtPromedio.getText()));
+										btnCargar.setText("Cargar");
+										textField.setText("");
+										textField_1.setText("");
+										txtPrecio.setText("");
+										txtPromedio.setText("");
+										JOptionPane.showMessageDialog(null, "Actualización realizada correctamente."); 
+									}
+								}
+							}
+						}
+					}
+
+				}
+				llenarTablaProductos();
+			}
+		});
+		btnCargar.setBounds(10, 70, 96, 23);
 		add(btnCargar);
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 230, 401, 185);
+		scrollPane.setBounds(10, 144, 452, 185);
 		add(scrollPane);
 		
 		table = new JTable();
@@ -93,31 +210,9 @@ public class AltaProductos extends JPanel {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(10, 199, 271, 20);
+		textField_2.setBounds(10, 113, 347, 20);
 		add(textField_2);
 		textField_2.setColumns(10);
-		
-
-		
-		JButton btnNewButton_1 = new JButton("Habilitar");
-		btnNewButton_1.setEnabled(false);
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int column = 0;
-				int row = table.getSelectedRow();
-				int id = Integer.parseInt(table.getModel().getValueAt(row, column).toString());
-				String valor = btnNewButton_1.getText();
-				Producto habilitar = new Producto();				
-				if(valor == "Deshabilitar") {
-					habilitar.habilitarProducto(valor, id);
-				} else {
-					habilitar.habilitarProducto(valor, id);
-				}
-				llenarTablaProductos();
-			}
-		});
-		btnNewButton_1.setBounds(421, 172, 89, 23);
-		add(btnNewButton_1);
 		
 		JButton btnNewButton = new JButton("Buscar");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -125,27 +220,45 @@ public class AltaProductos extends JPanel {
 				llenarTablaProductos();
 			}
 		});
-		btnNewButton.setBounds(291, 143, 89, 23);
+		btnNewButton.setBounds(373, 112, 89, 23);
 		add(btnNewButton);
 		
-		JLabel lblNewLabel = new JLabel("Precio");
-		lblNewLabel.setBounds(10, 67, 48, 14);
+		JLabel lblNewLabel = new JLabel("Precio:");
+		lblNewLabel.setBounds(10, 45, 48, 14);
 		add(lblNewLabel);
 		
 		txtPrecio = new JTextField();
-		txtPrecio.setBounds(74, 64, 96, 20);
+		txtPrecio.setBounds(74, 42, 96, 20);
 		add(txtPrecio);
 		txtPrecio.setColumns(10);
 		
-		JLabel lblPromedio = new JLabel("Promedio");
-		lblPromedio.setBounds(10, 92, 48, 14);
+		JLabel lblPromedio = new JLabel("Promedio:");
+		lblPromedio.setBounds(192, 45, 59, 14);
 		add(lblPromedio);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				btnNewButton_1.setText("Habilitar");
+				btnNewButton_1.setEnabled(false);
+				btnCargar.setText("Cargar");
+				textField.setText("");
+				textField_1.setText("");
+				txtPrecio.setText("");
+				txtPromedio.setText("");
+				
+			}
+		});
+		btnCancelar.setBounds(116, 70, 89, 23);
+		add(btnCancelar);
 		
 		
 		
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
 				int column1 = 1;
 				int column2 = 2;
 				int column3 = 3;
@@ -153,6 +266,7 @@ public class AltaProductos extends JPanel {
 				int column5 = 5;
 				btnCargar.setText("Actualizar");
 				int row = table.getSelectedRow();
+				
 				String value1 = table.getModel().getValueAt(row, column1).toString();
 				String value2 = table.getModel().getValueAt(row, column2).toString();
 				String value3 = table.getModel().getValueAt(row, column3).toString();
@@ -161,11 +275,13 @@ public class AltaProductos extends JPanel {
 
 				textField.setText(value1);
 				textField_1.setText(value2);
-				txtPrecio.setText(value4);
-				txtPromedio.setText(value5);
-				if(value3 == "true") {
+				txtPrecio.setText(value3);
+				txtPromedio.setText(value4);
+				
+				if(value5 == "true") {
 					btnNewButton_1.setText("Deshabilitar");
 					btnNewButton_1.setEnabled(true);
+					
 				}else {
 					btnNewButton_1.setText("Habilitar");
 					btnNewButton_1.setEnabled(true);
@@ -177,24 +293,27 @@ public class AltaProductos extends JPanel {
 	}
 	
 	public void llenarTablaProductos() {
+		
 		DefaultTableModel modelo;
 		modelo = new DefaultTableModel();
 		modelo.addColumn("ID");
 		modelo.addColumn("Producto");
 		modelo.addColumn("Puntos");
-		modelo.addColumn("Estado");
 		modelo.addColumn("Precio");
 		modelo.addColumn("Porcentaje");
+		modelo.addColumn("Estado");
 		table.setModel(modelo);
 		ResultSet rs;
 		Producto busqueda = new Producto();
 		rs = busqueda.buscarProducto(textField_2.getText());
+		
 		try {
 			while(rs.next()) {
-				modelo.addRow(new Object[]{rs.getObject("id"), rs.getObject("nombre"), rs.getObject("puntos_actual"), rs.getObject("estado"), rs.getObject("precio"), rs.getObject("porcentaje_puntos")});
+				
+				modelo.addRow(new Object[]{rs.getObject("id"), rs.getObject("nombre"), rs.getObject("puntos_actual"), rs.getObject("precio"), rs.getObject("porcentaje_puntos"), rs.getObject("estado")});
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}
 	}

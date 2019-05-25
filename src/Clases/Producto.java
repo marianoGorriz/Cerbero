@@ -76,6 +76,21 @@ public class Producto {
 		return null;
 	}
     
+	public ResultSet buscarProducto(int puntos_tarjeta) {
+		try {
+			Conexion cn = new Conexion();
+			Connection con = cn.conectarDB();
+			Statement st =con.createStatement();
+		    ResultSet rs = st.executeQuery("SELECT * FROM productos WHERE puntos_actual <= " + puntos_tarjeta + ";");
+			return rs;
+
+		}		 
+		catch (SQLException e2) {
+			System.out.println("nope2");
+			System.out.println("SQLException: " + e2.getMessage());
+		}
+		return null;
+	}
 	public String getNombre() {
 		return nombre;
 	}

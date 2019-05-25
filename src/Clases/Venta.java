@@ -47,12 +47,12 @@ public class Venta extends Producto {
 		this.cantidad = cantidad;
 	}
 	
-	public void realizarVenta(int id_ventas_usuarios, int id_ventas_tarjetas, int total_puntos, int tipo) {
+	public void realizarVenta(int id_ventas_usuarios, int id_ventas_tarjetas, int total_puntos, int tipo, String fecha) {
 		try {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
-			st.executeUpdate("INSERT INTO ventas (`id_ventas_usuarios`, `id_ventas_tarjetas`, `total_puntos`, `tipo_venta`) VALUES ('" + id_ventas_usuarios + "', '" + id_ventas_tarjetas + "', " + total_puntos + ", + " + tipo + ");");
+			st.executeUpdate("INSERT INTO ventas (`id_ventas_usuarios`, `id_ventas_tarjetas`, `total_puntos`, `id_tipo_venta`,`fecha_venta`) VALUES ('" + id_ventas_usuarios + "', '" + id_ventas_tarjetas + "', " + total_puntos + ", + " + tipo + ", '" + fecha + "');");
 			st.executeUpdate("UPDATE tarjetas SET puntos_acumulados = " + total_puntos + " + puntos_acumulados WHERE id = " + id_ventas_tarjetas + ";");
 		}		 
 		catch (SQLException e2) {
@@ -94,6 +94,20 @@ public class Venta extends Producto {
 			System.out.println("SQLException: " + e2.getMessage());
 		}
 		return id_ultima_venta;
+	}
+	
+	public void realizarCanje(int id_ventas_usuarios, int id_ventas_tarjetas, int total_puntos, int tipo, String fecha) {
+		try {
+			Conexion cn = new Conexion();
+			Connection con = cn.conectarDB();
+			Statement st =con.createStatement();
+			st.executeUpdate("INSERT INTO ventas (`id_ventas_usuarios`, `id_ventas_tarjetas`, `total_puntos`, `id_tipo_venta`,`fecha_venta`) VALUES ('" + id_ventas_usuarios + "', '" + id_ventas_tarjetas + "', " + total_puntos + ", + " + tipo + ", '" + fecha + "');");
+			st.executeUpdate("UPDATE tarjetas SET puntos_acumulados = puntos_acumulados - " + total_puntos + " WHERE id = " + id_ventas_tarjetas + ";");
+		}		 
+		catch (SQLException e2) {
+			System.out.println("nope2");
+			System.out.println("SQLException: " + e2.getMessage());
+		}
 	}
 
 }

@@ -112,20 +112,6 @@ public class frmPrincipal extends JFrame {
 		mntmRealizarCanjes.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
 		mnVentas.add(mntmRealizarCanjes);
 		
-		JMenuItem mntmCanjesRealizados = new JMenuItem("Canjes Realizados");			//submenu de la ventana ventas- historial del canjes realizados
-		mntmCanjesRealizados.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				canjesRealizados canjesR = new canjesRealizados();
-				canjesR.setBounds(10,11,620,413);
-				frame.getContentPane().removeAll();				//formula para la ventana de canjes 
-				frame.getContentPane().add(canjesR);
-				frame.repaint();
-			}
-		});
-		mntmCanjesRealizados.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
-		mnVentas.add(mntmCanjesRealizados);
-		
 		JMenu mnProductos = new JMenu("Productos"); 							//menú productos
 		mnProductos.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));			//tipo de letra y tamaño
 		menuBar.add(mnProductos);
@@ -253,7 +239,7 @@ public class frmPrincipal extends JFrame {
 		mntmNewMenuItem.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				backUp back = new backUp();
+				test back = new test();
 				back.setVisible(true);
 			}
 		});
