@@ -7,6 +7,7 @@ import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 
 public class canjesRealizados extends JPanel {
 	private JTable table;
@@ -53,6 +54,7 @@ public class canjesRealizados extends JPanel {
 		add(scrollPane);
 		
 		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setColumnHeaderView(table);
 
 	}

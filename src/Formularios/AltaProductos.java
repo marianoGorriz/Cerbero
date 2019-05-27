@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Clases.Producto;
+import Formularios.RealizarVenta.MiModelo;
 import Vistas.Conexion;
 
 import javax.swing.JButton;
@@ -22,6 +23,7 @@ import java.awt.event.MouseEvent;
 import java.awt.Color;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ListSelectionModel;
 
 public class AltaProductos extends JPanel {
 	private JTextField textField;
@@ -205,6 +207,7 @@ public class AltaProductos extends JPanel {
 		add(scrollPane);
 		
 		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		scrollPane.setViewportView(table);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -294,8 +297,7 @@ public class AltaProductos extends JPanel {
 	
 	public void llenarTablaProductos() {
 		
-		DefaultTableModel modelo;
-		modelo = new DefaultTableModel();
+		MiModelo modelo = new MiModelo();
 		modelo.addColumn("ID");
 		modelo.addColumn("Producto");
 		modelo.addColumn("Puntos");
@@ -315,6 +317,13 @@ public class AltaProductos extends JPanel {
 		} catch (SQLException e1) {
 			
 			e1.printStackTrace();
+		}
+	}
+	
+	public class MiModelo extends DefaultTableModel{
+		public boolean isCellEditable(int row, int column) {
+			
+			return false;
 		}
 	}
 }

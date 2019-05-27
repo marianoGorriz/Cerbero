@@ -88,8 +88,8 @@ public class RealizarVenta extends JPanel {
 		table_1 = new JTable();
 		scrollPane2.setViewportView(table_1);
 		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		DefaultTableModel modelo;
-		modelo = new DefaultTableModel();
+		
+		MiModelo modelo = new MiModelo();
 		modelo.addColumn("id");
 		modelo.addColumn("Producto");
 		modelo.addColumn("Cantidad");
@@ -192,6 +192,9 @@ public class RealizarVenta extends JPanel {
 								JOptionPane.showMessageDialog(null, "No has agregado ningún producto.");
 								return;
 							}else {
+								Tarjeta tarjeta = new Tarjeta();
+								ResultSet rs;
+								rs = tarjeta.busquedaTarjetaVenta(Integer.parseInt(txtNroTarjeta.getText()));
 								int filas_tabla_1 = modelo.getRowCount();
 								float puntos_total = 0;
 	
@@ -202,12 +205,10 @@ public class RealizarVenta extends JPanel {
 								
 								frmLogin idUser = new frmLogin();
 								
-								Tarjeta tarjeta = new Tarjeta();
-								ResultSet rs;
-								rs = tarjeta.busquedaTarjetaVenta(Integer.parseInt(txtNroTarjeta.getText()));
+								
 								int id_ventas_tarjetas = 0;
 								try {
-									while(rs.next()) {
+									if(rs.first()) {
 										id_ventas_tarjetas = (int) rs.getObject("tarjetas.id");
 									}
 								}catch (SQLException e1) {
@@ -222,7 +223,27 @@ public class RealizarVenta extends JPanel {
 								SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
 								Date date = new Date(System.currentTimeMillis());  
 								String fecha = formatter.format(date);
-								venta.realizarVenta(id_ventas_usuarios, id_ventas_tarjetas, total_puntos, tipo, fecha);
+								
+								long tsTime2 = 0;
+								try {
+									if(rs.first()) {
+									java.sql.Timestamp ts2 = java.sql.Timestamp.valueOf(rs.getString("ultima_compra"));
+									tsTime2 = ts2.getTime();
+									}
+									
+								}catch (SQLException e1) {
+									e1.printStackTrace();
+								}
+								
+								long x = 2592000000L;
+																
+								if (System.currentTimeMillis() >= tsTime2 + x ) {
+									JOptionPane.showMessageDialog(null, "No has realizado una compra en los últimos 30 días. Sus puntos se restablecieron a 0.");
+									venta.eliminarPuntos(id_ventas_usuarios, id_ventas_tarjetas, total_puntos, tipo, fecha);
+								} else {
+									venta.realizarVenta(id_ventas_usuarios, id_ventas_tarjetas, total_puntos, tipo, fecha);
+									JOptionPane.showMessageDialog(null, "Venta realizada exitosamente.");
+								}
 								
 								int filas = modelo.getRowCount();
 								for(int i = 0; i<filas; i++) {
@@ -231,7 +252,7 @@ public class RealizarVenta extends JPanel {
 									int cantidad = Integer.parseInt(modelo.getValueAt(i, 2).toString());
 									venta.insertarDetalleVenta(id_detalleVenta_venta, id_detalleVenta_producto, cantidad);
 								}
-								JOptionPane.showMessageDialog(null, "Venta realizada exitosamente.");
+								
 								btnRealizarVenta.setEnabled(false);
 								btnEliminarProducto.setEnabled(false);
 								for(int i = filas; i>0; i--) {
@@ -329,10 +350,32 @@ public class RealizarVenta extends JPanel {
 							txtDNI.setText("");
 						}else
 							if(rs.first()) {
+								if(rs.getObject("estado").equals(0)) {
+									
+									java.sql.Timestamp ts2 = java.sql.Timestamp.valueOf(rs.getString("fecha_alta"));
+									long tsTime2 = ts2.getTime();
+									
+									// Check time elapsed
+									if (System.currentTimeMillis() >= tsTime2 + 24 * 60 * 60 * 1000) {
+									    // time has elapsed
+										tarjeta.activarTarjeta(txtNroTarjeta.getText());
+										
+										txtNombre.setText(rs.getObject("nombre").toString());
+										txtDNI.setText(rs.getObject("dni").toString());
+										llenarTablaProductos();
+
+									} else {
+										JOptionPane.showMessageDialog(null, "Tarjeta inactiva. Deben transcurrir 24 horas desde el alta de la misma.");
+										txtNombre.setText("");
+										txtDNI.setText("");
+										return;
+									}
+								} else {
 							
-							txtNombre.setText(rs.getObject("nombre").toString());
-							txtDNI.setText(rs.getObject("dni").toString());
-							llenarTablaProductos();
+									txtNombre.setText(rs.getObject("nombre").toString());
+									txtDNI.setText(rs.getObject("dni").toString());
+									llenarTablaProductos();
+								}
 						}		
 
 					}catch (SQLException e1) {
@@ -353,8 +396,8 @@ public class RealizarVenta extends JPanel {
 	}
 	
 	public void llenarTablaProductos() {
-		DefaultTableModel modelo;
-		modelo = new DefaultTableModel();
+		
+		MiModelo modelo = new MiModelo();
 		modelo.addColumn("ID");
 		modelo.addColumn("Producto");
 		modelo.addColumn("Porcentaje");
@@ -369,6 +412,13 @@ public class RealizarVenta extends JPanel {
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
+		}
+	}
+	
+	public class MiModelo extends DefaultTableModel{
+		public boolean isCellEditable(int row, int column) {
+			
+			return false;
 		}
 	}
 	

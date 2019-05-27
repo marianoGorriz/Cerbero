@@ -18,6 +18,7 @@ import Clases.Cliente;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.ListSelectionModel;
 
 public class Clientes_inactivos extends JPanel {
 	private JTable table;
@@ -41,6 +42,7 @@ public class Clientes_inactivos extends JPanel {
 		add(scrollPane);
 		
 		table_2 = new JTable();
+		table_2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table_2);
 		
 		

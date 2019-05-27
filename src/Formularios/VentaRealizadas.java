@@ -24,6 +24,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ListSelectionModel;
 
 public class VentaRealizadas extends JPanel {
 	private JTable table_1;
@@ -58,6 +59,7 @@ public class VentaRealizadas extends JPanel {
 		add(scrollPane_1);
 		
 		table_1 = new JTable();
+		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane_1.setViewportView(table_1);
 		
 		txtBusqueda = new JTextField();

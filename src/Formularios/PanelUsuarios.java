@@ -122,6 +122,7 @@ public class PanelUsuarios extends JPanel {
 		scrollPane.setBounds(25, 235, 489, 155);
 		add(scrollPane);
 		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		
 		Choice choice = new Choice();

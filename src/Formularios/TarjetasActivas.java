@@ -23,6 +23,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.ListSelectionModel;
 
 public class TarjetasActivas extends JPanel{
 	private JTable table;
@@ -49,6 +50,7 @@ public class TarjetasActivas extends JPanel{
 
 		add(scrollPane);
 		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
        
 		scrollPane.setViewportView(table);
@@ -102,6 +104,7 @@ public class TarjetasActivas extends JPanel{
 		modelo.addColumn("DNI");
 		modelo.addColumn("N° de Tarjeta");
 		modelo.addColumn("Puntos Actuales");
+		modelo.addColumn("Puntos acumulados");
 		modelo.addColumn("Ultima Compra");
 		table.setModel(modelo);
 		//modelo.addRow(new Object[]{"ID", "Producto", "Puntos"});
@@ -110,7 +113,7 @@ public class TarjetasActivas extends JPanel{
 		rs = busqueda.buscarTarjetasActivas(busquedatarjeta);
 		try {
 			while(rs.next()) {
-				modelo.addRow(new Object[]{rs.getObject("dni"), rs.getObject("n_tarjeta"), rs.getObject("puntos_acumulados"),rs.getObject("ultima_compra")});
+				modelo.addRow(new Object[]{rs.getObject("dni"), rs.getObject("n_tarjeta"), rs.getObject("puntos_acumulados"), rs.getObject("puntos_historicos"),rs.getObject("ultima_compra")});
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

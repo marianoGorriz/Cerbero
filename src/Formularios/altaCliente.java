@@ -49,6 +49,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import javax.swing.ListSelectionModel;
 
 public class altaCliente extends JPanel {
 	private JTextField textField;
@@ -200,6 +201,7 @@ public class altaCliente extends JPanel {
 		scrollPane_1.setBounds(10, 272, 599, 151);
 		add(scrollPane_1);
 		table_1 = new JTable();
+		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 				
 		Choice choice = new Choice();
 		choice.setBounds(473, 134, 136, 20);
@@ -212,13 +214,15 @@ public class altaCliente extends JPanel {
 		btnGuardar.setBounds(231, 207, 89, 23);
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-			Date fecha = dateChooser.getDate();
-			long d = fecha.getTime();
-			java.sql.Date formatoFecha = new java.sql.Date(d);	
-			String fecha2 = formatoFecha.toString();
-			dateChooser.getCalendarButton().setText(fecha2);	
 			
+	
+			SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");  
+			Date date = new Date();  
+			String fechaInicial = formatter.format(date);
+			
+			dateChooser.setDate(date);
+			dateChooser.getCalendarButton().setText(fechaInicial);
+						
 
 			Pattern pattern = Pattern
 	                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -263,6 +267,12 @@ public class altaCliente extends JPanel {
 										if (mather.find() == true) {
 											Cliente cliente = new Cliente();
 											
+											Date fecha = dateChooser.getDate();
+											long d = fecha.getTime();
+											java.sql.Date formatoFecha = new java.sql.Date(d);	
+											String fecha2 = formatoFecha.toString();
+											dateChooser.getCalendarButton().setText(fecha2);
+											
 											//MODIFICAR FUNCION
 											int id = cliente.altaCliente(
 													textField_1.getText(),
@@ -305,7 +315,7 @@ public class altaCliente extends JPanel {
 			txtTarjeta.setEnabled(false);
 			textField_4.setEnabled(false);
 			textField_5.setEnabled(false);
-			textField_6.setEnabled(false);
+			textField_6.setEnabled(true);
 			btnGuardar.setEnabled(false);
 			
 			
@@ -327,7 +337,7 @@ public class altaCliente extends JPanel {
 				txtTarjeta.setEnabled(false);
 				textField_4.setEnabled(false);
 				textField_5.setEnabled(false);
-				textField_6.setEnabled(false);
+				textField_6.setEnabled(true);
 				
 				 
 				JOptionPane.showMessageDialog(null,"Alta de usuario CANCELADA");
@@ -423,8 +433,8 @@ public class altaCliente extends JPanel {
 					
 						 
 					
-					DefaultTableModel modelo;
-					modelo = new DefaultTableModel();
+					
+					MiModelo modelo = new MiModelo();
 					modelo.addColumn("ID");
 					modelo.addColumn("Nombre");
 					modelo.addColumn("Apellido");
@@ -468,7 +478,7 @@ public class altaCliente extends JPanel {
 					txtTarjeta.setEnabled(false);
 					textField_4.setEnabled(false);
 					textField_5.setEnabled(false);
-					textField_6.setEnabled(false);
+					textField_6.setEnabled(true);
 					btnActualizar.setEnabled(false);
 					choice.setEnabled(false);
 					
@@ -490,7 +500,7 @@ public class altaCliente extends JPanel {
 					txtTarjeta.setEnabled(false);
 					textField_4.setEnabled(false);
 					textField_5.setEnabled(false);
-					textField_6.setEnabled(false);
+					textField_6.setEnabled(true);
 					btnActualizar.setEnabled(false);
 					choice.setEnabled(false);
 					 
@@ -588,7 +598,7 @@ public class altaCliente extends JPanel {
 				txtTarjeta.setEnabled(false);
 				textField_4.setEnabled(false);
 				textField_5.setEnabled(false);
-				textField_6.setEnabled(false);
+				textField_6.setEnabled(true);
 				btnActualizar.setEnabled(false);
 				choice.setEnabled(false);
 				dateChooser.setEnabled(false);
@@ -606,8 +616,8 @@ public class altaCliente extends JPanel {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				DefaultTableModel modelo;
-				modelo = new DefaultTableModel();
+				
+				MiModelo modelo = new MiModelo();
 				modelo.addColumn("ID");
 				modelo.addColumn("Nombre");
 				modelo.addColumn("Apellido");
@@ -643,8 +653,8 @@ public class altaCliente extends JPanel {
 		add(btnBuscar);
 		
 	
-		DefaultTableModel modelo;
-		modelo = new DefaultTableModel();
+	
+		MiModelo modelo = new MiModelo();
 		modelo.addColumn("ID");
 		modelo.addColumn("Nombre");
 		modelo.addColumn("Apellido");
@@ -696,6 +706,7 @@ public class altaCliente extends JPanel {
 				textField_6.setEnabled(true); //habilitacion de los botones 
 				choice.setEnabled(true);
 				dateChooser.setEnabled(true);
+				dateChooser.getCalendarButton().setText("Agrega fecha");
 				
 				textField_1.setText("");
 				textField_2.setText("");
@@ -711,8 +722,8 @@ public class altaCliente extends JPanel {
 		add(btnNuevo);
 		add(btnActualizar);
 		
-		DefaultTableModel modelo2;
-		modelo = new DefaultTableModel();
+		
+	
 		modelo.addColumn("ID");
 		modelo.addColumn("Nombre");
 		modelo.addColumn("Apellido");
@@ -753,7 +764,7 @@ public class altaCliente extends JPanel {
 		txtTarjeta.setEnabled(false);
 		textField_4.setEnabled(false);
 		textField_5.setEnabled(false);
-		textField_6.setEnabled(false);
+		textField_6.setEnabled(true);
 		choice.setEnabled(false);
 		dateChooser.setEnabled(false);
 	
@@ -769,5 +780,15 @@ public class altaCliente extends JPanel {
 		
 		
 		
+		}
+		
+		public class MiModelo extends DefaultTableModel{
+			public boolean isCellEditable(int row, int column) {
+				
+				if (column == 0) {
+					return false;
+				}
+				return true;
+			}
 		}
 	}

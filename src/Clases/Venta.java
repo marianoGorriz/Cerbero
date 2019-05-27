@@ -53,10 +53,11 @@ public class Venta extends Producto {
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
 			st.executeUpdate("INSERT INTO ventas (`id_ventas_usuarios`, `id_ventas_tarjetas`, `total_puntos`, `id_tipo_venta`,`fecha_venta`) VALUES ('" + id_ventas_usuarios + "', '" + id_ventas_tarjetas + "', " + total_puntos + ", + " + tipo + ", '" + fecha + "');");
-			st.executeUpdate("UPDATE tarjetas SET puntos_acumulados = " + total_puntos + " + puntos_acumulados WHERE id = " + id_ventas_tarjetas + ";");
+			//st.executeUpdate("UPDATE tarjetas SET puntos_acumulados = " + total_puntos + " + puntos_acumulados WHERE id = " + id_ventas_tarjetas + ";");
+			st.executeUpdate("UPDATE tarjetas SET ultima_compra = '" + fecha + "', puntos_acumulados = " + total_puntos + " + puntos_acumulados, puntos_historicos = puntos_historicos + " + total_puntos + " WHERE id = " + id_ventas_tarjetas + ";");
 		}		 
 		catch (SQLException e2) {
-			System.out.println("nope2");
+			System.out.println("Error Venta:realizarVenta");
 			System.out.println("SQLException: " + e2.getMessage());
 		}
 	}
@@ -106,6 +107,20 @@ public class Venta extends Producto {
 		}		 
 		catch (SQLException e2) {
 			System.out.println("nope2");
+			System.out.println("SQLException: " + e2.getMessage());
+		}
+	}
+	
+	public void eliminarPuntos(int id_ventas_usuarios, int id_ventas_tarjetas, int total_puntos, int tipo, String fecha) {
+		try {
+			Conexion cn = new Conexion();
+			Connection con = cn.conectarDB();
+			Statement st =con.createStatement();
+			st.executeUpdate("INSERT INTO ventas (`id_ventas_usuarios`, `id_ventas_tarjetas`, `total_puntos`, `id_tipo_venta`,`fecha_venta`) VALUES ('" + id_ventas_usuarios + "', '" + id_ventas_tarjetas + "', " + total_puntos + ", + " + tipo + ", '" + fecha + "');");
+			st.executeUpdate("UPDATE tarjetas SET ultima_compra = '" + fecha + "', puntos_acumulados = 0 + " + total_puntos + ", puntos_historicos = puntos_historicos + " + total_puntos + " WHERE id = " + id_ventas_tarjetas + ";");
+		}		 
+		catch (SQLException e2) {
+			System.out.println("Error Ventas:eliminarPuntos");
 			System.out.println("SQLException: " + e2.getMessage());
 		}
 	}

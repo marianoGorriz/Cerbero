@@ -23,6 +23,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
+import javax.swing.ListSelectionModel;
 
 public class realizarCanje extends JPanel {
 	private JTextField txtNumeroTarjeta;
@@ -87,6 +88,7 @@ public class realizarCanje extends JPanel {
 		add(scrollPane);
 		
 		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		scrollPane.setViewportView(table);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -111,10 +113,12 @@ public class realizarCanje extends JPanel {
 		add(scrollPane_1);
 		
 		table_1 = new JTable();
+		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane_1.setViewportView(table_1);
 		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		DefaultTableModel modelo;
-		modelo = new DefaultTableModel();
+		
+		
+		MiModelo modelo = new MiModelo();
 		modelo.addColumn("id");
 		modelo.addColumn("Producto");
 		modelo.addColumn("Cantidad");
@@ -370,12 +374,15 @@ public class realizarCanje extends JPanel {
 	}
 	
 	public void llenarTablaProductos() {
-		DefaultTableModel modelo;
-		modelo = new DefaultTableModel();
+		
+		MiModelo modelo=new MiModelo();
+		
+		
 		modelo.addColumn("ID");
 		modelo.addColumn("Producto");
 		modelo.addColumn("Puntos");
 		table.setModel(modelo);
+		
 		ResultSet rs;
 		Producto busqueda = new Producto();
 		rs = busqueda.buscarProducto(Integer.parseInt(txtPuntos.getText()));
@@ -386,6 +393,14 @@ public class realizarCanje extends JPanel {
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}
+	}
+	
+	public class MiModelo extends DefaultTableModel{
+		public boolean isCellEditable(int row, int column) {
+			
+			
+			return false;
 		}
 	}
 }
