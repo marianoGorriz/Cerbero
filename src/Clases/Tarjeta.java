@@ -83,7 +83,7 @@ public class Tarjeta {
 			Conexion cn = new Conexion(); 
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
-			st.executeUpdate("INSERT INTO tarjetas (cantidad_tarjeta,`ultima_tarjeta`,`n_tarjeta`,`puntos_acumulados`,`fecha_alta`, id_tarjeta_cliente) VALUES ("+1+",'"+tarjeta+"','"+tarjeta+"',"+0 +", '"+ fechaActual+"',"+id+");");	
+			st.executeUpdate("INSERT INTO tarjetas (cantidad_tarjeta,`ultima_tarjeta`,`n_tarjeta`,`puntos_acumulados`,`fecha_alta`, id_tarjeta_cliente, `ultima_compra`) VALUES ("+1+",'"+tarjeta+"','"+tarjeta+"',"+0 +", '"+ fechaActual+"',"+id+",'"+fechaActual+"');");	
 		} catch (Exception e2) {
 			JOptionPane.showMessageDialog(null, "Error al dar de alta tarjeta!");
 			System.out.println("SQLException: " + e2.getMessage());	

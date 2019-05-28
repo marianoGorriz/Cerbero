@@ -214,22 +214,14 @@ public class altaCliente extends JPanel {
 		btnGuardar.setBounds(231, 207, 89, 23);
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			
-	
-			SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");  
-			Date date = new Date();  
-			String fechaInicial = formatter.format(date);
-			
-			dateChooser.setDate(date);
-			dateChooser.getCalendarButton().setText(fechaInicial);
 						
-
 			Pattern pattern = Pattern
 	                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 	                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 			
 		    String emailValidar = textField_4.getText();
 		    Matcher mather = pattern.matcher(emailValidar);
+		    String cantidadTarjeta = txtTarjeta.getText();
 	
 			int dialogButton = JOptionPane.YES_NO_OPTION;
 			int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea agregar un nuevo Cliente?","Precaución",dialogButton);
@@ -265,27 +257,35 @@ public class altaCliente extends JPanel {
 									}else
 									{
 										if (mather.find() == true) {
-											Cliente cliente = new Cliente();
-											
-											Date fecha = dateChooser.getDate();
-											long d = fecha.getTime();
-											java.sql.Date formatoFecha = new java.sql.Date(d);	
-											String fecha2 = formatoFecha.toString();
-											dateChooser.getCalendarButton().setText(fecha2);
-											
-											//MODIFICAR FUNCION
-											int id = cliente.altaCliente(
-													textField_1.getText(),
-													textField_2.getText(),
-													textField_3.getText(),						//envio de los datos 
-													textField_4.getText(),
-													textField_5.getText(),
-												    choice.getSelectedItem(), //sexo persona
-												    formatoFecha
-													);	
-											Tarjeta tarjeta = new Tarjeta();
-											String t = txtTarjeta.getText();
-											tarjeta.altaTarjeta(id, t);
+											if (cantidadTarjeta.length() > 4 && cantidadTarjeta.length() < 3  ) {
+												JOptionPane.showMessageDialog(null, "Ingrese 4 caracteres en total ");
+											} else {
+												if (dateChooser.getDate() == null) {
+													JOptionPane.showMessageDialog(null, "Ingrese una fecha de nacimiento ");
+												} else {
+													Cliente cliente = new Cliente();
+													
+													Date fecha = dateChooser.getDate();
+													long d = fecha.getTime();
+													java.sql.Date formatoFecha = new java.sql.Date(d);	
+													String fecha2 = formatoFecha.toString();
+													dateChooser.getCalendarButton().setText(fecha2);
+													
+													//MODIFICAR FUNCION
+													int id = cliente.altaCliente(
+															textField_1.getText(),
+															textField_2.getText(),
+															textField_3.getText(),						//envio de los datos 
+															textField_4.getText(),
+															textField_5.getText(),
+														    choice.getSelectedItem(), //sexo persona
+														    formatoFecha
+															);	
+													Tarjeta tarjeta = new Tarjeta();
+													String t = txtTarjeta.getText();
+													tarjeta.altaTarjeta(id, t);
+												}
+											}
 											
 										} else {
 											JOptionPane.showMessageDialog(null, "Forma de email incorrecto"); //validacion de formulario
@@ -295,51 +295,44 @@ public class altaCliente extends JPanel {
 							}
 						}
 					}
-				}	
+				}
+				
+				MiModelo modelo = new MiModelo();
+				modelo.addColumn("ID");
+				modelo.addColumn("Nombre");
+				modelo.addColumn("Apellido");
+				modelo.addColumn("DNI");
+				modelo.addColumn("Correo");
+				modelo.addColumn("Telefono");
+				modelo.addColumn("Sexo");
+				modelo.addColumn("Fecha Nacimiento");
+				table_1.setModel(modelo);
+				
+				//	recarga de los datos de la tabla
+				ResultSet rs;
+				Cliente clientes = new Cliente();
+				rs = clientes.buscarCliente(textField_6.getText());
+				try {
+					while(rs.next()) {
+						modelo.addRow(new Object[]{rs.getObject("id"), 
+								rs.getObject("nombre"),
+								rs.getObject("apellido"),
+								rs.getObject("DNI"),
+								rs.getObject("correo"),
+								rs.getObject("telefono"),
+								rs.getObject("sexo"),
+								rs.getObject("fecha_nacimiento")});
+					}
+				} catch (SQLException e1) {
+				e1.printStackTrace();
+				}
 				
 				
-			
-				
-		
-			
-			textField.setText("");
-			textField_1.setText("");
-			textField_2.setText("");
-			textField_3.setText("");    //limpieza del formulario en opcion "no"
-			textField_4.setText("");
-			textField_5.setText("");
-			txtTarjeta.setText("");
-			textField_1.setEnabled(false);
-			textField_2.setEnabled(false);
-			textField_3.setEnabled(false);
-			txtTarjeta.setEnabled(false);
-			textField_4.setEnabled(false);
-			textField_5.setEnabled(false);
-			textField_6.setEnabled(true);
-			btnGuardar.setEnabled(false);
-			
-			
+																							
 						
 			}
 			
-			if(dialogResult == JOptionPane.NO_OPTION) {
-				
-				textField.setText("");
-				textField_1.setText("");
-				textField_2.setText("");
-				textField_3.setText("");    //limpieza del formulario en opcion "no"
-				textField_4.setText("");
-				textField_5.setText("");
-				txtTarjeta.setText("");
-				textField_1.setEnabled(false);
-				textField_2.setEnabled(false);
-				textField_3.setEnabled(false);
-				txtTarjeta.setEnabled(false);
-				textField_4.setEnabled(false);
-				textField_5.setEnabled(false);
-				textField_6.setEnabled(true);
-				
-				 
+			if(dialogResult == JOptionPane.NO_OPTION) {														 
 				JOptionPane.showMessageDialog(null,"Alta de usuario CANCELADA");
 				
 				btnGuardar.setEnabled(false);
@@ -354,22 +347,16 @@ public class altaCliente extends JPanel {
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-				Date fecha = dateChooser.getDate();
-				long d = fecha.getTime();		
-				java.sql.Date formatoFecha = new java.sql.Date(d);	
-				String fecha2 = formatoFecha.toString();
-				dateChooser.getCalendarButton().setText(fecha2);
-				dateChooser.setDate(formatoFecha);
-				
 				Pattern pattern = Pattern
 		                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 		                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 				
 			    String emailValidar = textField_4.getText();
 			    Matcher mather = pattern.matcher(emailValidar);
-				
+			    String cantidadTarjeta = txtTarjeta.getText();
+		
 				int dialogButton = JOptionPane.YES_NO_OPTION;
-				int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea actualizar a este cliente?","Precaución",dialogButton); //pregunta 
+				int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea agregar un nuevo Cliente?","Precaución",dialogButton);
 				if(dialogResult == JOptionPane.YES_OPTION){
 					
 					if(textField_1.getText().equals("")) {
@@ -402,19 +389,38 @@ public class altaCliente extends JPanel {
 										}else
 										{
 											if (mather.find() == true) {
-												Cliente cliente = new Cliente();
-												int id = Integer.parseInt(textField.getText());
-												//MODIFICAR FUNCION
-												cliente.modificarCliente(
-														id,
-														textField_1.getText(),
-														textField_2.getText(),
-														textField_3.getText(),						//envio de los datos 
-														textField_4.getText(),
-														textField_5.getText(),
-													    choice.getSelectedItem(), //sexo persona
-													    formatoFecha
-														);	
+												if (cantidadTarjeta.length() > 4 && cantidadTarjeta.length() < 3  ) {
+													JOptionPane.showMessageDialog(null, "Ingrese 4 caracteres en total ");
+												} else {
+													if (dateChooser.getDate() == null) {
+														JOptionPane.showMessageDialog(null, "Ingrese una fecha de nacimiento ");
+													} else {														
+														Date fecha = dateChooser.getDate();
+														long d = fecha.getTime();
+														java.sql.Date formatoFecha = new java.sql.Date(d);	
+														String fecha2 = formatoFecha.toString();
+														dateChooser.getCalendarButton().setText(fecha2);
+														
+														//MODIFICAR FUNCION
+														Cliente cliente = new Cliente();
+														int id = Integer.parseInt(textField.getText());
+														//MODIFICAR FUNCION
+														cliente.modificarCliente(
+																id,
+																textField_1.getText(),
+																textField_2.getText(),
+																textField_3.getText(),						//envio de los datos 
+																textField_4.getText(),
+																textField_5.getText(),
+															    choice.getSelectedItem(), //sexo persona
+															    formatoFecha
+																);	
+													//	Tarjeta tarjeta = new Tarjeta();
+													//	String t = txtTarjeta.getText();
+													//	tarjeta.altaTarjeta(id, t);
+													}
+												}
+												
 											} else {
 												JOptionPane.showMessageDialog(null, "Forma de email incorrecto"); //validacion de formulario
 											
@@ -423,7 +429,7 @@ public class altaCliente extends JPanel {
 								}
 							}
 						}
-					}	
+					}
 					
 					
 					
@@ -609,7 +615,7 @@ public class altaCliente extends JPanel {
 		);
 		
 		scrollPane_1.setViewportView(table_1);
-		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.setBounds(441, 243, 89, 23);

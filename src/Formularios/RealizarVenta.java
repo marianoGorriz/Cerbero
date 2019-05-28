@@ -47,16 +47,17 @@ public class RealizarVenta extends JPanel {
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Productos:");
-		lblNewLabel.setBounds(10, 92, 75, 14);
+		lblNewLabel.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblNewLabel.setBounds(26, 95, 75, 14);
 		add(lblNewLabel);
 		
 		textField = new JTextField();
-		textField.setBounds(72, 89, 133, 20);
+		textField.setBounds(101, 92, 127, 20);
 		add(textField);
 		textField.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 117, 308, 120);		
+		scrollPane.setBounds(26, 143, 308, 120);		
 
 		add(scrollPane);
 		
@@ -65,7 +66,8 @@ public class RealizarVenta extends JPanel {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
 		JButton btnNewButton = new JButton("Buscar");
-		btnNewButton.setBounds(215, 88, 103, 23);
+		btnNewButton.setFont(new Font("Unispace", Font.BOLD, 11));
+		btnNewButton.setBounds(231, 91, 103, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				llenarTablaProductos();
@@ -75,14 +77,14 @@ public class RealizarVenta extends JPanel {
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		lblNewLabel_1.setBounds(477, 117, 133, 14);
+		lblNewLabel_1.setBounds(183, 120, 151, 14);
 		add(lblNewLabel_1);
 
 
 
 		
 		JScrollPane scrollPane2 = new JScrollPane();
-		scrollPane2.setBounds(10, 248, 308, 120);
+		scrollPane2.setBounds(26, 274, 308, 120);
 		add(scrollPane2);
 				
 		table_1 = new JTable();
@@ -98,17 +100,21 @@ public class RealizarVenta extends JPanel {
 		table_1.setModel(modelo);
 		
 		txtCantidad = new JTextField();
-		txtCantidad.setBounds(390, 140, 37, 20);
+		txtCantidad.setBounds(408, 208, 37, 20);
 		add(txtCantidad);
 		txtCantidad.setColumns(10);
 		
 		JButton btnRealizarVenta = new JButton("Realizar venta");
+		btnRealizarVenta.setFont(new Font("Unispace", Font.BOLD, 11));
 		
 		JButton btnEliminarProducto = new JButton("Eliminar");
+		btnEliminarProducto.setFont(new Font("Unispace", Font.BOLD, 11));
 		
 		JLabel lblNewLabel_2 = new JLabel("Total puntos:");
+		lblNewLabel_2.setFont(new Font("Unispace", Font.BOLD, 11));
 
 		JButton btnAgregar = new JButton("Agregar");
+		btnAgregar.setFont(new Font("Unispace", Font.BOLD, 11));
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -143,7 +149,7 @@ public class RealizarVenta extends JPanel {
 		});
 		
 
-		btnAgregar.setBounds(437, 139, 96, 23);
+		btnAgregar.setBounds(453, 207, 96, 23);
 		add(btnAgregar);
 		
 		table.addMouseListener(new MouseAdapter() {
@@ -165,7 +171,7 @@ public class RealizarVenta extends JPanel {
 			}
 		});
 		
-		lblNewLabel_2.setBounds(328, 258, 184, 14);
+		lblNewLabel_2.setBounds(344, 303, 184, 14);
 		add(lblNewLabel_2);
 		
 		
@@ -268,20 +274,22 @@ public class RealizarVenta extends JPanel {
 				}
 			}
 		});
-		btnRealizarVenta.setBounds(328, 283, 116, 23);
+		btnRealizarVenta.setBounds(344, 328, 133, 23);
 		add(btnRealizarVenta);
 		
 		txtNroTarjeta = new JTextField();
-		txtNroTarjeta.setBounds(72, 11, 147, 20);
+		txtNroTarjeta.setBounds(152, 36, 147, 20);
 		add(txtNroTarjeta);
 		txtNroTarjeta.setColumns(10);
 		
 		JLabel lblNTarjeta = new JLabel("N\u00B0 Tarjeta:");
-		lblNTarjeta.setBounds(10, 11, 64, 14);
+		lblNTarjeta.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblNTarjeta.setBounds(26, 39, 116, 14);
 		add(lblNTarjeta);
 		
 		JLabel lblProductoSeleccionado = new JLabel("Producto seleccionado:");
-		lblProductoSeleccionado.setBounds(328, 118, 139, 14);
+		lblProductoSeleccionado.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblProductoSeleccionado.setBounds(26, 120, 184, 14);
 		add(lblProductoSeleccionado);
 		
 		
@@ -300,34 +308,38 @@ public class RealizarVenta extends JPanel {
 				lblNewLabel_2.setText("Total puntos: " + puntos_total);
 			}
 		});
-		btnEliminarProducto.setBounds(328, 317, 111, 23);
+		btnEliminarProducto.setBounds(344, 362, 133, 23);
 		add(btnEliminarProducto);
 		
 		JLabel lblCantidad = new JLabel("Cantidad:");
-		lblCantidad.setBounds(328, 143, 66, 14);
+		lblCantidad.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblCantidad.setBounds(344, 211, 66, 14);
 		add(lblCantidad);
 		
 		JLabel lblDni = new JLabel("DNI:");
-		lblDni.setBounds(10, 45, 48, 14);
+		lblDni.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblDni.setBounds(26, 70, 48, 14);
 		add(lblDni);
 		
 		txtDNI = new JTextField();
-		txtDNI.setBounds(41, 42, 96, 20);
+		txtDNI.setBounds(60, 67, 96, 20);
 		txtDNI.setEnabled(false);
 		add(txtDNI);
 		txtDNI.setColumns(10);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(150, 45, 62, 14);
+		lblNombre.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblNombre.setBounds(166, 67, 62, 14);
 		add(lblNombre);
 		
 		txtNombre = new JTextField();
-		txtNombre.setBounds(205, 42, 113, 20);
+		txtNombre.setBounds(231, 67, 113, 20);
 		txtNombre.setEnabled(false);
 		add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setFont(new Font("Unispace", Font.BOLD, 11));
 		btnBuscar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -385,12 +397,17 @@ public class RealizarVenta extends JPanel {
 				}
 			}
 		});
-		btnBuscar.setBounds(229, 10, 89, 23);
+		btnBuscar.setBounds(309, 35, 89, 23);
 		add(btnBuscar);
 		
 		btnAgregar.setEnabled(false);
 		btnRealizarVenta.setEnabled(false);
 		btnEliminarProducto.setEnabled(false);
+		
+		JLabel lblRealizarVenta = new JLabel("Realizar Venta");
+		lblRealizarVenta.setFont(new Font("Unispace", Font.BOLD, 14));
+		lblRealizarVenta.setBounds(26, 11, 173, 14);
+		add(lblRealizarVenta);
 		
 		
 	}

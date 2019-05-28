@@ -37,16 +37,16 @@ public class TarjetasActivas extends JPanel{
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Numero de Tarjetas:");
-		lblNewLabel.setBounds(10, 53, 133, 14);
+		lblNewLabel.setBounds(87, 82, 133, 14);
 		add(lblNewLabel);
 		
 		textField = new JTextField();
-		textField.setBounds(153, 50, 86, 20);
+		textField.setBounds(196, 79, 150, 20);
 		add(textField);
 		textField.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 95, 328, 184);
+		scrollPane.setBounds(87, 107, 400, 184);
 
 		add(scrollPane);
 		table = new JTable();
@@ -54,7 +54,7 @@ public class TarjetasActivas extends JPanel{
 
        
 		scrollPane.setViewportView(table);
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         
 		llenarTablaTarjetas("");
 		
@@ -63,7 +63,7 @@ public class TarjetasActivas extends JPanel{
 			public void mousePressed(MouseEvent arg0) {
 			}
 		});
-		btnBuscar.setBounds(249, 49, 89, 23);
+		btnBuscar.setBounds(356, 78, 89, 23);
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				llenarTablaTarjetas(textField.getText());
@@ -76,6 +76,11 @@ public class TarjetasActivas extends JPanel{
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		lblNewLabel_1.setBounds(449, 143, 88, 14);
 		add(lblNewLabel_1);
+		
+		JLabel lblTarjetaActicas = new JLabel("Tarjeta activas");
+		lblTarjetaActicas.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblTarjetaActicas.setBounds(87, 11, 133, 14);
+		add(lblTarjetaActicas);
 
 		/**table.addMouseListener(new MouseAdapter() {
 			@Override
@@ -118,6 +123,13 @@ public class TarjetasActivas extends JPanel{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	public class MiModelo extends DefaultTableModel{
+		public boolean isCellEditable(int row, int column) {
+				
+				return false;	
 		}
 	}
 }

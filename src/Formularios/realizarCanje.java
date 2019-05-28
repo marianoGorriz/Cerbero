@@ -41,45 +41,46 @@ public class realizarCanje extends JPanel {
 		setLayout(null);
 		
 		JLabel lblTotalPuntos = new JLabel("Total Puntos: ");
+		lblTotalPuntos.setFont(new Font("Unispace", Font.PLAIN, 11));
 		lblTotalPuntos.setBounds(369, 306, 127, 14);
 		add(lblTotalPuntos);
 		
 		JLabel lblTitulo = new JLabel("Realizar Canjes de puntos");
-		lblTitulo.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblTitulo.setBounds(10, 11, 167, 29);
+		lblTitulo.setFont(new Font("Unispace", Font.BOLD, 14));
+		lblTitulo.setBounds(10, 11, 262, 29);
 		add(lblTitulo);
 		
 		JLabel lblNumeroDeTarjeta = new JLabel("Numero de tarjeta:");
-		lblNumeroDeTarjeta.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		lblNumeroDeTarjeta.setBounds(20, 51, 102, 20);
+		lblNumeroDeTarjeta.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblNumeroDeTarjeta.setBounds(10, 51, 142, 20);
 		add(lblNumeroDeTarjeta);
 		
 		txtNumeroTarjeta = new JTextField();
-		txtNumeroTarjeta.setBounds(122, 51, 127, 20);
+		txtNumeroTarjeta.setBounds(140, 51, 113, 20);
 		add(txtNumeroTarjeta);
 		txtNumeroTarjeta.setColumns(10);
 		
 		JLabel lblDni = new JLabel("DNI:");
-		lblDni.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		lblDni.setBounds(30, 82, 35, 20);
+		lblDni.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblDni.setBounds(10, 82, 35, 20);
 		add(lblDni);
 		
 		txtDni = new JTextField();
 		txtDni.setEnabled(false);
 		txtDni.setEditable(false);
-		txtDni.setBounds(58, 82, 119, 20);
+		txtDni.setBounds(43, 82, 119, 20);
 		add(txtDni);
 		txtDni.setColumns(10);
 		
 		JLabel lblPuntos = new JLabel("Puntos:");
-		lblPuntos.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		lblPuntos.setBounds(203, 85, 46, 14);
+		lblPuntos.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblPuntos.setBounds(172, 85, 67, 14);
 		add(lblPuntos);
 		
 		txtPuntos = new JTextField();
 		txtPuntos.setEnabled(false);
 		txtPuntos.setEditable(false);
-		txtPuntos.setBounds(259, 82, 119, 20);
+		txtPuntos.setBounds(224, 82, 119, 20);
 		add(txtPuntos);
 		txtPuntos.setColumns(10);
 		
@@ -91,20 +92,20 @@ public class realizarCanje extends JPanel {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		scrollPane.setViewportView(table);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		
 		JLabel lblProductosDisponibles = new JLabel("Productos disponibles:");
-		lblProductosDisponibles.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		lblProductosDisponibles.setBounds(10, 113, 127, 14);
+		lblProductosDisponibles.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblProductosDisponibles.setBounds(10, 113, 186, 14);
 		add(lblProductosDisponibles);
 		
 		JLabel lblCantidad = new JLabel("Cantidad:");
-		lblCantidad.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		lblCantidad.setBounds(354, 157, 60, 14);
+		lblCantidad.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblCantidad.setBounds(354, 157, 86, 14);
 		add(lblCantidad);
 		
 		txtCantidad = new JTextField();
-		txtCantidad.setBounds(413, 154, 46, 20);
+		txtCantidad.setBounds(422, 154, 46, 20);
 		add(txtCantidad);
 		txtCantidad.setColumns(10);
 			
@@ -115,7 +116,7 @@ public class realizarCanje extends JPanel {
 		table_1 = new JTable();
 		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane_1.setViewportView(table_1);
-		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		
 		
 		MiModelo modelo = new MiModelo();
@@ -126,10 +127,13 @@ public class realizarCanje extends JPanel {
 		table_1.setModel(modelo);
 		
 		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.setFont(new Font("Unispace", Font.PLAIN, 11));
 		
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setFont(new Font("Unispace", Font.PLAIN, 11));
 
 		JButton btnRealizar = new JButton("Realizar canje");
+		btnRealizar.setFont(new Font("Unispace", Font.PLAIN, 11));
 		btnRealizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -210,12 +214,12 @@ public class realizarCanje extends JPanel {
 				}
 			}
 		});
-		btnRealizar.setBounds(369, 331, 127, 23);
+		btnRealizar.setBounds(369, 331, 142, 23);
 		add(btnRealizar);
 		
 		JLabel lblProductosAgrados = new JLabel("Productos Agregados:");
-		lblProductosAgrados.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		lblProductosAgrados.setBounds(10, 263, 127, 14);
+		lblProductosAgrados.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblProductosAgrados.setBounds(10, 263, 207, 14);
 		add(lblProductosAgrados);
 		
 		DefaultTableModel modelo_1;
@@ -261,10 +265,11 @@ public class realizarCanje extends JPanel {
 				}
 			}
 		});
-		btnBuscar.setBounds(259, 50, 89, 23);
+		btnBuscar.setBounds(263, 51, 80, 23);
 		add(btnBuscar);
 		
 		JLabel lblProducto = new JLabel("Producto: ");
+		lblProducto.setFont(new Font("Unispace", Font.PLAIN, 11));
 		lblProducto.setBounds(354, 134, 71, 14);
 		add(lblProducto);
 		
@@ -274,6 +279,7 @@ public class realizarCanje extends JPanel {
 		
 
 		JButton btnAgregar = new JButton("Agregar");
+		btnAgregar.setFont(new Font("Unispace", Font.PLAIN, 11));
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int puntos_total_2 = 0;
@@ -326,7 +332,7 @@ public class realizarCanje extends JPanel {
 				}
 			}
 		});
-		btnAgregar.setBounds(469, 153, 89, 23);
+		btnAgregar.setBounds(478, 153, 89, 23);
 		add(btnAgregar);
 		
 		btnEliminar.addActionListener(new ActionListener() {

@@ -32,6 +32,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import com.toedter.calendar.JDateChooser;
+import javax.swing.UIManager;
 
 public class PanelUsuarios extends JPanel {
 	private JTextField textField;
@@ -43,6 +44,7 @@ public class PanelUsuarios extends JPanel {
 	private JButton btnEliminar,btnNuevo,btnCancelar,btnActualizar,btnNewButton;
 	
 	public PanelUsuarios() {
+		setFont(new Font("Unispace", Font.BOLD, 14));
 	
 		addComponentListener(new ComponentAdapter() {
 			
@@ -59,53 +61,53 @@ public class PanelUsuarios extends JPanel {
 		
 		
 		JLabel lblIdDelUsuario = new JLabel("Id del Usuario:");
-		lblIdDelUsuario.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblIdDelUsuario.setBounds(29, 26, 98, 14);
+		lblIdDelUsuario.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblIdDelUsuario.setBounds(27, 77, 118, 14);
 		add(lblIdDelUsuario);
 		
 		JLabel lblNombre = new JLabel("Usuario:");
-		lblNombre.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblNombre.setBounds(29, 60, 82, 14);
+		lblNombre.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblNombre.setBounds(27, 108, 82, 14);
 		add(lblNombre);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
-		lblContrasea.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblContrasea.setBounds(29, 96, 82, 14);
+		lblContrasea.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblContrasea.setBounds(27, 142, 82, 14);
 		add(lblContrasea);
 		
 		JLabel lblRepetirContrasea = new JLabel("Repetir Contrase\u00F1a:");
-		lblRepetirContrasea.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblRepetirContrasea.setBounds(29, 132, 130, 14);
+		lblRepetirContrasea.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblRepetirContrasea.setBounds(27, 173, 152, 14);
 		add(lblRepetirContrasea);
 		
 		JLabel lblRol = new JLabel("Rol:");
-		lblRol.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblRol.setBounds(29, 166, 82, 14);
+		lblRol.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblRol.setBounds(27, 206, 82, 14);
 		add(lblRol);
 
 				
 		JLabel lblBuscar = new JLabel("Buscar:");
-		lblBuscar.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblBuscar.setBounds(58, 207, 53, 17);
+		lblBuscar.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblBuscar.setBounds(56, 231, 53, 17);
 		add(lblBuscar);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(154, 93, 130, 20);
+		passwordField.setBounds(210, 139, 130, 20);
 		add(passwordField);
 		
 		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(154, 129, 130, 20);
+		passwordField_1.setBounds(210, 170, 130, 20);
 		add(passwordField_1);
 		
 		textField = new JTextField();
 		textField.setEnabled(false);
-		textField.setBounds(154, 23, 130, 20);
+		textField.setBounds(210, 74, 130, 20);
 		add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(154, 57, 130, 20);
+		textField_1.setBounds(210, 105, 130, 20);
 		add(textField_1);
 		
 		JList list = new JList();
@@ -113,20 +115,20 @@ public class PanelUsuarios extends JPanel {
 		add(list);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(119, 206, 201, 20);
+		textField_4.setBounds(119, 229, 201, 20);
 		add(textField_4);
 		textField_4.setColumns(10);
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(25, 235, 489, 155);
+		scrollPane.setBounds(27, 259, 489, 155);
 		add(scrollPane);
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		
 		Choice choice = new Choice();
-		choice.setBounds(154, 160, 130, 20);
+		choice.setBounds(210, 196, 130, 20);
 		add(choice);
 		
 		choice.add("Administrador");
@@ -206,7 +208,7 @@ public class PanelUsuarios extends JPanel {
 			}
 		});
 		
-		btnEliminar.setBounds(410, 56, 104, 23);
+		btnEliminar.setBounds(408, 96, 104, 23);
 		add(btnEliminar);
 				
 		JButton btnActualizar = new JButton("Actualizar");
@@ -249,7 +251,7 @@ public class PanelUsuarios extends JPanel {
 		}
 		);
 		
-		btnActualizar.setBounds(410, 123, 104, 23);
+		btnActualizar.setBounds(408, 163, 104, 23);
 		add(btnActualizar);
 		
 		JButton btnNewButton = new JButton("Habilitar");
@@ -284,7 +286,7 @@ public class PanelUsuarios extends JPanel {
 			}
 		
 		);
-		btnNewButton.setBounds(410, 157, 104, 23);
+		btnNewButton.setBounds(408, 197, 104, 23);
 		add(btnNewButton);
 		
 		table.addMouseListener(new MouseAdapter() {
@@ -328,7 +330,7 @@ public class PanelUsuarios extends JPanel {
 		);
 				
 		scrollPane.setViewportView(table);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		JButton btnBuscar = new JButton("Buscar");
 		
 		btnBuscar.addActionListener(new ActionListener() {
@@ -337,7 +339,7 @@ public class PanelUsuarios extends JPanel {
 				}
 			}
 		);
-		btnBuscar.setBounds(351, 205, 89, 23);
+		btnBuscar.setBounds(348, 228, 89, 23);
 		add(btnBuscar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -361,7 +363,7 @@ public class PanelUsuarios extends JPanel {
 				}
 			}
 		);
-		btnCancelar.setBounds(410, 90, 104, 23);
+		btnCancelar.setBounds(408, 130, 104, 23);
 		add(btnCancelar);
 		
 		JButton btnNuevo = new JButton("Nuevo");
@@ -385,7 +387,7 @@ public class PanelUsuarios extends JPanel {
 			}
 		);
 		
-		btnNuevo.setBounds(410, 26, 104, 23);
+		btnNuevo.setBounds(408, 66, 104, 23);
 		add(btnNuevo);
 				
 
@@ -430,6 +432,11 @@ public class PanelUsuarios extends JPanel {
 		textField_1.setText("");
 		passwordField.setText("");
 		passwordField_1.setText("");
+		
+		JLabel lblAltamodificacinUsuarios = new JLabel("Alta/Modificaci\u00F3n usuarios");
+		lblAltamodificacinUsuarios.setFont(new Font("Unispace", Font.BOLD, 14));
+		lblAltamodificacinUsuarios.setBounds(27, 23, 238, 14);
+		add(lblAltamodificacinUsuarios);
 		
 	
 	}

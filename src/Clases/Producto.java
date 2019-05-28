@@ -65,7 +65,7 @@ public class Producto {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
-		    ResultSet rs = st.executeQuery("SELECT * FROM productos WHERE nombre LIKE '%" + producto +"%';");
+		    ResultSet rs = st.executeQuery("SELECT * FROM productos WHERE nombre LIKE '%" + producto +"%' and estado = 1;");
 			return rs;
 
 		}		 
@@ -109,7 +109,7 @@ public class Producto {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
-		    ResultSet rs = st.executeQuery("SELECT * FROM clientes INNER JOIN tarjetas ON clientes.id = tarjetas.id_tarjeta_cliente INNER JOIN ventas ON ventas.id_ventas_tarjetas = tarjetas.id INNER JOIN detalleventa ON ventas.id = detalleventa.id_detalleVenta_venta INNER JOIN productos ON productos.id = detalleventa.id_detalleVenta_producto INNER JOIN usuarios ON ventas.id_ventas_usuarios = usuarios.id ;");
+		    ResultSet rs = st.executeQuery("SELECT * FROM clientes INNER JOIN tarjetas ON clientes.id = tarjetas.id_tarjeta_cliente INNER JOIN ventas ON ventas.id_ventas_tarjetas = tarjetas.id INNER JOIN detalleventa ON ventas.id = detalleventa.id_detalleVenta_venta INNER JOIN productos ON productos.id = detalleventa.id_detalleVenta_producto INNER JOIN usuarios ON ventas.id_ventas_usuarios = usuarios.id INNER JOIN tipo_venta ON ventas.id_tipo_venta = tipo_venta.id ;");
 			return rs;
 
 		}		 
@@ -125,7 +125,7 @@ public class Producto {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();
 			Statement st =con.createStatement();
-		    ResultSet rs = st.executeQuery("SELECT * FROM clientes INNER JOIN tarjetas ON clientes.id = tarjetas.id_tarjeta_cliente INNER JOIN ventas ON ventas.id_ventas_tarjetas = tarjetas.id INNER JOIN detalleventa ON ventas.id = detalleventa.id_detalleVenta_venta INNER JOIN productos ON productos.id = detalleventa.id_detalleVenta_producto INNER JOIN usuarios ON ventas.id_ventas_usuarios = usuarios.id WHERE productos.nombre LIKE '%" + producto +"%';");
+		    ResultSet rs = st.executeQuery("SELECT * FROM clientes INNER JOIN tarjetas ON clientes.id = tarjetas.id_tarjeta_cliente INNER JOIN ventas ON ventas.id_ventas_tarjetas = tarjetas.id INNER JOIN detalleventa ON ventas.id = detalleventa.id_detalleVenta_venta INNER JOIN productos ON productos.id = detalleventa.id_detalleVenta_producto INNER JOIN usuarios ON ventas.id_ventas_usuarios = usuarios.id INNER JOIN tipo_venta ON ventas.id_tipo_venta = tipo_venta.id WHERE productos.nombre LIKE '%" + producto +"%';");
 			return rs;
 
 		}		 

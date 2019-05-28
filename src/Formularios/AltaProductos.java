@@ -98,7 +98,7 @@ public class AltaProductos extends JPanel {
 				llenarTablaProductos();
 			}
 		});
-		btnNewButton_1.setBounds(472, 144, 89, 23);
+		btnNewButton_1.setBounds(495, 184, 89, 23);
 		add(btnNewButton_1);
 		
 		btnCargar.addActionListener(new ActionListener() {
@@ -203,14 +203,14 @@ public class AltaProductos extends JPanel {
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 144, 452, 185);
+		scrollPane.setBounds(10, 144, 475, 185);
 		add(scrollPane);
 		
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		scrollPane.setViewportView(table);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		
 		textField_2 = new JTextField();
 		textField_2.setBounds(10, 113, 347, 20);
@@ -299,12 +299,13 @@ public class AltaProductos extends JPanel {
 		
 		MiModelo modelo = new MiModelo();
 		modelo.addColumn("ID");
-		modelo.addColumn("Producto");
-		modelo.addColumn("Puntos");
+		modelo.addColumn("Nombre");
+		modelo.addColumn("Puntos canje");
 		modelo.addColumn("Precio");
 		modelo.addColumn("Porcentaje");
 		modelo.addColumn("Estado");
 		table.setModel(modelo);
+		
 		ResultSet rs;
 		Producto busqueda = new Producto();
 		rs = busqueda.buscarProducto(textField_2.getText());
