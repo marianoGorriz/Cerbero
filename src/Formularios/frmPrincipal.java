@@ -34,6 +34,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import javax.swing.JLabel;
 import java.awt.Toolkit;
+import javax.swing.UIManager;
 
 public class frmPrincipal extends JFrame {
 
@@ -52,11 +53,12 @@ public class frmPrincipal extends JFrame {
 		String rol = rolUser.rol;
 		
 		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\faku6\\Documents\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\reserva.png")); //imagen local 
+		frame.setForeground(UIManager.getColor("textHighlight"));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("E:\\Users\\jesus\\Desktop\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\login3.png")); //imagen local 
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 675, 502);
+		frame.setBounds(100, 100, 710, 522);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("...:Sistema de ventas de puntos:..."); //titulo de la ventana 
+		frame.setTitle("...:CERBERO RESTOBAR:..."); //titulo de la ventana 
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 23));
@@ -64,8 +66,8 @@ public class frmPrincipal extends JFrame {
 		frame.setJMenuBar(menuBar);
 		
 		JMenu mnVentas = new JMenu("Ventas"); //mnMenu- ventana del menu 
-		mnVentas.setIcon(new ImageIcon("C:\\Users\\faku6\\git\\Cerbero\\bin\\Iconos\\productos.png")); //imagen local 
-		mnVentas.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14)); //tipo de formato
+		mnVentas.setIcon(new ImageIcon("E:\\Users\\jesus\\Desktop\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\material-design-icons-1.0.0\\maps\\1x_ios\\ventas.png")); //imagen local 
+		mnVentas.setFont(new Font("Trebuchet MS", Font.BOLD, 14)); //tipo de formato
 		mnVentas.setHorizontalAlignment(SwingConstants.CENTER); //alineacion 
 		menuBar.add(mnVentas);
 		
@@ -80,7 +82,7 @@ public class frmPrincipal extends JFrame {
 				frame.repaint();
 			}
 		});
-		mntmRealizarVenta.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14)); //mntmMenu- submenu del menu VENTAS
+		mntmRealizarVenta.setFont(new Font("Trebuchet MS", Font.BOLD, 13)); //mntmMenu- submenu del menu VENTAS
 		mnVentas.add(mntmRealizarVenta);
 		
 		JMenuItem mntmVentasRealizadas = new JMenuItem("Ventas Realizadas");   //mntmMenu- submenu del menu VENTAS
@@ -95,7 +97,7 @@ public class frmPrincipal extends JFrame {
 			}
 		});
 
-		mntmVentasRealizadas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14)); //tipo de letra y tamaño
+		mntmVentasRealizadas.setFont(new Font("Trebuchet MS", Font.BOLD, 13)); //tipo de letra y tamaño
 		mnVentas.add(mntmVentasRealizadas);
 		
 		JMenuItem mntmRealizarCanjes = new JMenuItem("Realizar Canjes ");//mntmMenu- submenu del menu VENTAS-Canjes de puntos 
@@ -109,11 +111,12 @@ public class frmPrincipal extends JFrame {
 				frame.repaint();		
 			}
 		});
-		mntmRealizarCanjes.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+		mntmRealizarCanjes.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		mnVentas.add(mntmRealizarCanjes);
 		
 		JMenu mnProductos = new JMenu("Productos"); 							//menú productos
-		mnProductos.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));			//tipo de letra y tamaño
+		mnProductos.setIcon(new ImageIcon("E:\\Users\\jesus\\Desktop\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\material-design-icons-1.0.0\\maps\\1x_ios\\producto.png")); //imagen local 
+		mnProductos.setFont(new Font("Trebuchet MS", Font.BOLD, 14));			//tipo de letra y tamaño
 		menuBar.add(mnProductos);
 		if (rol.equals("Administrador")) {
 			mnProductos.setVisible(true);
@@ -131,11 +134,12 @@ public class frmPrincipal extends JFrame {
 				frame.repaint();
 			}
 		});
-		mntmAltaDeProductos.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14)); //mntmMenu- submenu del menu productos 
+		mntmAltaDeProductos.setFont(new Font("Trebuchet MS", Font.BOLD, 13)); //mntmMenu- submenu del menu productos 
 		mnProductos.add(mntmAltaDeProductos);
 		
 		JMenu mnTarjetas = new JMenu("Tarjetas");							 	//MNMENU- Menu de TARJETAS
-		mnTarjetas.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));			//Tipo de letra y orientacion
+		mnTarjetas.setIcon(new ImageIcon("E:\\Users\\jesus\\Desktop\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\material-design-icons-1.0.0\\av\\1x_ios\\tarjeta.png")); //imagen local
+		mnTarjetas.setFont(new Font("Trebuchet MS", Font.BOLD, 14));			//Tipo de letra y orientacion
 		mnTarjetas.setHorizontalAlignment(SwingConstants.CENTER);
 		menuBar.add(mnTarjetas);
 		
@@ -150,7 +154,7 @@ public class frmPrincipal extends JFrame {
 				frame.repaint();
 			}
 		});
-		mntmAltasDeTarjetas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));	//tipo de letra y tamaño
+		mntmAltasDeTarjetas.setFont(new Font("Trebuchet MS", Font.BOLD, 13));	//tipo de letra y tamaño
 		mnTarjetas.add(mntmAltasDeTarjetas);
 		
 		JMenuItem mntmTarjetasActivas = new JMenuItem("Tarjetas Activas");			//MNTM MENU- Submenu del menu TARJETAS
@@ -164,11 +168,12 @@ public class frmPrincipal extends JFrame {
 				frame.repaint();
 			}
 		});
-		mntmTarjetasActivas.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+		mntmTarjetasActivas.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		mnTarjetas.add(mntmTarjetasActivas);
 		
 		JMenu mnClientes = new JMenu("Clientes");									//MNMenu- Menu de clientes
-		mnClientes.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));				//Tipo de letra y tamaño
+		mnClientes.setIcon(new ImageIcon("E:\\Users\\jesus\\Desktop\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\material-design-icons-1.0.0\\social\\1x_ios\\clientes.png")); //imagen local
+		mnClientes.setFont(new Font("Trebuchet MS", Font.BOLD, 14));				//Tipo de letra y tamaño
 		menuBar.add(mnClientes);
 		
 		JMenuItem mntmAltaDeClientes = new JMenuItem("Alta de Clientes");			//Submenu del menu CLIENTES
@@ -182,7 +187,7 @@ public class frmPrincipal extends JFrame {
 				frame.repaint();
 			}
 		});
-		mntmAltaDeClientes.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+		mntmAltaDeClientes.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		mnClientes.add(mntmAltaDeClientes);
 		
 		JMenuItem mntmClientesInactivos = new JMenuItem("Clientes Inactivos");			//Submenu del menu CLIENTES
@@ -197,16 +202,18 @@ public class frmPrincipal extends JFrame {
 					
 			}
 		});
-		mntmClientesInactivos.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));		//Tipo de letra y tamaño
+		mntmClientesInactivos.setFont(new Font("Trebuchet MS", Font.BOLD, 13));		//Tipo de letra y tamaño
 		mnClientes.add(mntmClientesInactivos);
 		
 		JMenu mnUsuarios = new JMenu("Usuarios");										//Menu de usuarios
+		mnUsuarios.setIcon(new ImageIcon("E:\\Users\\jesus\\Desktop\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\material-design-icons-1.0.0\\file\\1x_ios\\usuario.png")); //imagen local
 		if (rol.equals("Administrador")) {
 			mnUsuarios.setVisible(true);
 		} else {
 			mnUsuarios.setVisible(false);
 		}
-		mnUsuarios.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));					//Tipo de letra y tamaño 
+		mnUsuarios.setFont(new Font("Trebuchet MS", Font.BOLD, 14));					//Tipo de letra y tamaño 
+		
 		menuBar.add(mnUsuarios);
 		
 		JMenuItem mntmAdminUsuarios = new JMenuItem("Admin Usuarios");			//Submenu del menu Usuarios
@@ -223,16 +230,17 @@ public class frmPrincipal extends JFrame {
 			
 		});
 		
-		mntmAdminUsuarios.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14)); 			//Tipo de letra y tamaño 
+		mntmAdminUsuarios.setFont(new Font("Trebuchet MS", Font.BOLD, 13)); 			//Tipo de letra y tamaño 
 		mnUsuarios.add(mntmAdminUsuarios);
 		
 		JMenu mnMantenimiento = new JMenu("Mantenimiento"); 							//Menu Mantenimiento.
+		
 		if (rol.equals("Administrador")) {
 			mnMantenimiento.setVisible(true);
 		} else {
 			mnMantenimiento.setVisible(false);
 		}
-		mnMantenimiento.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));				//Tipo de letra y tamaño
+		mnMantenimiento.setFont(new Font("Trebuchet MS", Font.BOLD, 14));				//Tipo de letra y tamaño
 		menuBar.add(mnMantenimiento);
 	
 		JMenuItem mntmNewMenuItem = new JMenuItem("Backup de los datos");						//Submenu del menu MANTENIMIENTO
@@ -243,10 +251,12 @@ public class frmPrincipal extends JFrame {
 				back.setVisible(true);
 			}
 		});
-		mntmNewMenuItem.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));					//Tipo de letra y tamaño
+		mntmNewMenuItem.setFont(new Font("Trebuchet MS", Font.BOLD, 13));					//Tipo de letra y tamaño
+		mnMantenimiento.setIcon(new ImageIcon("E:\\Users\\jesus\\Desktop\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\material-design-icons-1.0.0\\file\\1x_ios\\backup2.png")); //imagen local
 		mnMantenimiento.add(mntmNewMenuItem);
 		
 		JMenu mnSalir = new JMenu("Cerrar Sesion");									//Menu para cerrar sesion
+		mnSalir.setIcon(new ImageIcon("E:\\Users\\jesus\\Desktop\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\material-design-icons-1.0.0\\action\\1x_ios\\cerrar.png")); //imagen local
 		mnSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {								//Evento de cerrar ventana 
@@ -275,7 +285,7 @@ public class frmPrincipal extends JFrame {
 				System.exit(0);
 			}
 		});
-		mnSalir.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));				//tipo de letra y tamaño
+		mnSalir.setFont(new Font("Trebuchet MS", Font.BOLD, 14));				//tipo de letra y tamaño
 		menuBar.add(mnSalir);
 		frame.getContentPane().setLayout(null);
 

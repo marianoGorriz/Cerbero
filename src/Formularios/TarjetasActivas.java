@@ -37,16 +37,17 @@ public class TarjetasActivas extends JPanel{
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Numero de Tarjetas:");
-		lblNewLabel.setBounds(87, 82, 133, 14);
+		lblNewLabel.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		lblNewLabel.setBounds(30, 82, 133, 14);
 		add(lblNewLabel);
 		
 		textField = new JTextField();
-		textField.setBounds(196, 79, 150, 20);
+		textField.setBounds(191, 80, 181, 20);
 		add(textField);
 		textField.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(87, 107, 400, 184);
+		scrollPane.setBounds(30, 107, 540, 184);
 
 		add(scrollPane);
 		table = new JTable();
@@ -59,11 +60,12 @@ public class TarjetasActivas extends JPanel{
 		llenarTablaTarjetas("");
 		
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		btnBuscar.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent arg0) {
 			}
 		});
-		btnBuscar.setBounds(356, 78, 89, 23);
+		btnBuscar.setBounds(437, 78, 133, 23);
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				llenarTablaTarjetas(textField.getText());
@@ -78,8 +80,8 @@ public class TarjetasActivas extends JPanel{
 		add(lblNewLabel_1);
 		
 		JLabel lblTarjetaActicas = new JLabel("Tarjeta activas");
-		lblTarjetaActicas.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblTarjetaActicas.setBounds(87, 11, 133, 14);
+		lblTarjetaActicas.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
+		lblTarjetaActicas.setBounds(20, 11, 133, 14);
 		add(lblTarjetaActicas);
 
 		/**table.addMouseListener(new MouseAdapter() {

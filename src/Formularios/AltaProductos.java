@@ -24,6 +24,7 @@ import java.awt.Color;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.ListSelectionModel;
+import java.awt.Font;
 
 public class AltaProductos extends JPanel {
 	private JTextField textField;
@@ -40,31 +41,35 @@ public class AltaProductos extends JPanel {
 		setLayout(null);
 		
 		JLabel lblProducto = new JLabel("Producto:");
-		lblProducto.setBounds(10, 17, 76, 14);
+		lblProducto.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		lblProducto.setBounds(10, 62, 76, 14);
 		add(lblProducto);
 		
 		txtPromedio = new JTextField();
-		txtPromedio.setBounds(261, 42, 96, 20);
+		txtPromedio.setBounds(271, 90, 96, 20);
 		add(txtPromedio);
 		txtPromedio.setColumns(10);
 		
 		textField = new JTextField();
-		textField.setBounds(74, 14, 96, 20);
+		textField.setBounds(74, 59, 96, 20);
 		add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblPuntos = new JLabel("Puntos:");
-		lblPuntos.setBounds(192, 17, 48, 14);
+		lblPuntos.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		lblPuntos.setBounds(192, 62, 48, 14);
 		add(lblPuntos);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(261, 14, 96, 20);
+		textField_1.setBounds(271, 60, 96, 20);
 		add(textField_1);
 		textField_1.setColumns(10);
 		
 		JButton btnCargar = new JButton("Cargar");
+		btnCargar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		JButton btnNewButton_1 = new JButton("Habilitar");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_1.setEnabled(false);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -98,7 +103,7 @@ public class AltaProductos extends JPanel {
 				llenarTablaProductos();
 			}
 		});
-		btnNewButton_1.setBounds(495, 184, 89, 23);
+		btnNewButton_1.setBounds(495, 229, 89, 23);
 		add(btnNewButton_1);
 		
 		btnCargar.addActionListener(new ActionListener() {
@@ -198,12 +203,12 @@ public class AltaProductos extends JPanel {
 				llenarTablaProductos();
 			}
 		});
-		btnCargar.setBounds(10, 70, 96, 23);
+		btnCargar.setBounds(10, 115, 96, 23);
 		add(btnCargar);
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 144, 475, 185);
+		scrollPane.setBounds(10, 189, 475, 185);
 		add(scrollPane);
 		
 		table = new JTable();
@@ -213,33 +218,37 @@ public class AltaProductos extends JPanel {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(10, 113, 347, 20);
+		textField_2.setBounds(10, 158, 347, 20);
 		add(textField_2);
 		textField_2.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Buscar");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				llenarTablaProductos();
 			}
 		});
-		btnNewButton.setBounds(373, 112, 89, 23);
+		btnNewButton.setBounds(373, 157, 89, 23);
 		add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("Precio:");
-		lblNewLabel.setBounds(10, 45, 48, 14);
+		lblNewLabel.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		lblNewLabel.setBounds(10, 90, 48, 14);
 		add(lblNewLabel);
 		
 		txtPrecio = new JTextField();
-		txtPrecio.setBounds(74, 42, 96, 20);
+		txtPrecio.setBounds(74, 87, 96, 20);
 		add(txtPrecio);
 		txtPrecio.setColumns(10);
 		
 		JLabel lblPromedio = new JLabel("Promedio:");
-		lblPromedio.setBounds(192, 45, 59, 14);
+		lblPromedio.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		lblPromedio.setBounds(192, 90, 69, 14);
 		add(lblPromedio);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -253,8 +262,13 @@ public class AltaProductos extends JPanel {
 				
 			}
 		});
-		btnCancelar.setBounds(116, 70, 89, 23);
+		btnCancelar.setBounds(116, 115, 89, 23);
 		add(btnCancelar);
+		
+		JLabel lblAltaProducto = new JLabel("Alta producto");
+		lblAltaProducto.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
+		lblAltaProducto.setBounds(10, 11, 145, 23);
+		add(lblAltaProducto);
 		
 		
 		

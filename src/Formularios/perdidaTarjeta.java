@@ -48,15 +48,18 @@ public class perdidaTarjeta extends JPanel {
 		setLayout(null);
 		
 		JButton btnModificarTarjeta = new JButton("Modificar Tarjeta");
+		btnModificarTarjeta.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		
-		btnModificarTarjeta.setBounds(166, 148, 132, 23);
+		btnModificarTarjeta.setBounds(166, 148, 147, 23);
 		add(btnModificarTarjeta);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		btnCancelar.setBounds(337, 148, 132, 23);
 		add(btnCancelar);
 		
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 					String numeroTarjeta = txtBuscarTarjeta.getText().toString();
@@ -134,32 +137,32 @@ public class perdidaTarjeta extends JPanel {
 		add(btnBuscar);
 		
 		JLabel lblCantidadDeTarjetas = new JLabel("Cantidad de Tarjetas:");
-		lblCantidadDeTarjetas.setBounds(10, 42, 147, 14);
-		lblCantidadDeTarjetas.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblCantidadDeTarjetas.setBounds(10, 57, 147, 14);
+		lblCantidadDeTarjetas.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		add(lblCantidadDeTarjetas);
 		
 		txtCantidadTarjetas = new JTextField();
-		txtCantidadTarjetas.setBounds(149, 40, 109, 20);
+		txtCantidadTarjetas.setBounds(149, 55, 109, 20);
 		txtCantidadTarjetas.setEnabled(false);
 		txtCantidadTarjetas.setEditable(false);
 		add(txtCantidadTarjetas);
 		txtCantidadTarjetas.setColumns(10);
 		
 		JLabel lblUltimaTarjeta = new JLabel("Ultima Tarjeta:");
-		lblUltimaTarjeta.setBounds(10, 71, 104, 14);
-		lblUltimaTarjeta.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblUltimaTarjeta.setBounds(10, 86, 104, 14);
+		lblUltimaTarjeta.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		add(lblUltimaTarjeta);
 		
 		txtUltimaTarjeta = new JTextField();
-		txtUltimaTarjeta.setBounds(149, 71, 109, 20);
+		txtUltimaTarjeta.setBounds(149, 86, 109, 20);
 		txtUltimaTarjeta.setEnabled(false);
 		txtUltimaTarjeta.setEditable(false);
 		add(txtUltimaTarjeta);
 		txtUltimaTarjeta.setColumns(10);
 		
 		JLabel lblNumeroTarjeta = new JLabel("Numero de tarjeta:");
-		lblNumeroTarjeta.setBounds(10, 104, 129, 14);
-		lblNumeroTarjeta.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblNumeroTarjeta.setBounds(10, 119, 129, 14);
+		lblNumeroTarjeta.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		add(lblNumeroTarjeta);
 		
 		txtNuemeroTarjeta = new JTextField();
@@ -171,54 +174,54 @@ public class perdidaTarjeta extends JPanel {
 				if (c<'0' || c>'9') e.consume();  //validacion de que solo se escriban número 
 			}
 		});
-		txtNuemeroTarjeta.setBounds(149, 102, 109, 20);
+		txtNuemeroTarjeta.setBounds(149, 117, 109, 20);
 		add(txtNuemeroTarjeta);
 		txtNuemeroTarjeta.setColumns(10);
 		
 		txtPuntos = new JTextField();
-		txtPuntos.setBounds(472, 69, 109, 20);
+		txtPuntos.setBounds(472, 84, 109, 20);
 		txtPuntos.setEnabled(false);
 		txtPuntos.setEditable(false);
 		add(txtPuntos);
 		txtPuntos.setColumns(10);
 		
 		txtFechaAlta = new JTextField();
-		txtFechaAlta.setBounds(472, 102, 109, 20);
+		txtFechaAlta.setBounds(472, 117, 109, 20);
 		txtFechaAlta.setEnabled(false);
 		txtFechaAlta.setEditable(false);
 		add(txtFechaAlta);
 		txtFechaAlta.setColumns(10);
 		
 		JLabel lblPuntos = new JLabel("Puntos:");
-		lblPuntos.setBounds(352, 71, 70, 14);
-		lblPuntos.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblPuntos.setBounds(352, 86, 70, 14);
+		lblPuntos.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		add(lblPuntos);
 		
 		JLabel lblFechaAlta = new JLabel("Fecha alta:");
-		lblFechaAlta.setBounds(352, 104, 70, 14);
-		lblFechaAlta.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblFechaAlta.setBounds(352, 119, 70, 14);
+		lblFechaAlta.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		add(lblFechaAlta);
 		
 		txtUltimaCompra = new JTextField();
-		txtUltimaCompra.setBounds(472, 40, 109, 20);
+		txtUltimaCompra.setBounds(472, 55, 109, 20);
 		txtUltimaCompra.setEnabled(false);
 		txtUltimaCompra.setEditable(false);
 		add(txtUltimaCompra);
 		txtUltimaCompra.setColumns(10);
 		
 		JLabel lblUltimaCompra = new JLabel("Ultima compra:");
-		lblUltimaCompra.setBounds(352, 42, 104, 14);
-		lblUltimaCompra.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblUltimaCompra.setBounds(352, 57, 104, 14);
+		lblUltimaCompra.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		add(lblUltimaCompra);
 		
 		JLabel lblPerdidasDeTarjetas = new JLabel("Perdidas de Tarjetas");
-		lblPerdidasDeTarjetas.setBounds(25, 11, 132, 20);
-		lblPerdidasDeTarjetas.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblPerdidasDeTarjetas.setBounds(10, 11, 171, 20);
+		lblPerdidasDeTarjetas.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
 		add(lblPerdidasDeTarjetas);
 		
 		JLabel lblBucarClientePor = new JLabel("Buscar cliente con DNI:");
 		lblBucarClientePor.setBounds(25, 188, 155, 14);
-		lblBucarClientePor.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblBucarClientePor.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		add(lblBucarClientePor);
 		
 		txtBuscarTarjeta = new JTextField();

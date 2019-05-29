@@ -69,60 +69,64 @@ public class altaCliente extends JPanel {
 		setLayout(null);
 		
 		JLabel lblIdDeCliente = new JLabel("ID de Cliente:");
-		lblIdDeCliente.setBounds(10, 26, 102, 25);
-		lblIdDeCliente.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblIdDeCliente.setBounds(21, 36, 102, 25);
+		lblIdDeCliente.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		add(lblIdDeCliente);
 		
 		JLabel lblNDeTarjeta = new JLabel("N\u00BA de tarjeta:");
-		lblNDeTarjeta.setBounds(10, 174, 102, 25);
-		lblNDeTarjeta.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblNDeTarjeta.setBounds(21, 180, 102, 20);
+		lblNDeTarjeta.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		add(lblNDeTarjeta);
 		
 				
 		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(10, 62, 102, 25);
-		lblNombre.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblNombre.setBounds(21, 72, 102, 25);
+		lblNombre.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		add(lblNombre);
 		
 		JLabel lblApellido = new JLabel("Apellido:");
-		lblApellido.setBounds(10, 98, 102, 25);
-		lblApellido.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblApellido.setBounds(21, 108, 102, 25);
+		lblApellido.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		add(lblApellido);
 		
 		JLabel lblDni = new JLabel("D.N.I");
-		lblDni.setBounds(10, 134, 102, 25);
-		lblDni.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblDni.setBounds(21, 144, 102, 25);
+		lblDni.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		add(lblDni);
 		
 		JLabel lblCorreo = new JLabel("Correo");
-		lblCorreo.setBounds(343, 62, 132, 25);
-		lblCorreo.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblCorreo.setBounds(343, 72, 132, 25);
+		lblCorreo.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		add(lblCorreo);
 		
 		JLabel lblTelfono = new JLabel("Tel\u00E9fono");
-		lblTelfono.setBounds(343, 98, 120, 25);
-		lblTelfono.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblTelfono.setBounds(343, 108, 120, 25);
+		lblTelfono.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		add(lblTelfono);
 		
 		JLabel lblSexo = new JLabel("Sexo");
-		lblSexo.setBounds(343, 134, 120, 25);
-		lblSexo.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblSexo.setBounds(343, 144, 81, 25);
+		lblSexo.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		add(lblSexo);
 		
 		JLabel lblEdad = new JLabel("Fecha de Nacimiento:");
-		lblEdad.setBounds(339, 170, 136, 25);
-		lblEdad.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblEdad.setBounds(331, 180, 144, 25);
+		lblEdad.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		add(lblEdad);
 		
 
 		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		
 		
 		String fechaEstatica = "Seleccionar";
 		dateChooser.getCalendarButton().setText(fechaEstatica);
 	
-		dateChooser.getCalendarButton().setBounds(0, 0, 136, 20);
-		dateChooser.setBounds(473, 174, 136, 20);
+		dateChooser.getCalendarButton().setBounds(0, 0, 144, 20);
+		dateChooser.setBounds(470, 184, 144, 20);
 		add(dateChooser);
 		dateChooser.setLayout(null);
 		String a = "";
@@ -132,23 +136,23 @@ public class altaCliente extends JPanel {
 		lblNewLabel.setEnabled(false);
 		
 		textField = new JTextField();
-		textField.setBounds(122, 29, 136, 20);
+		textField.setBounds(133, 39, 161, 20);
 		textField.setEditable(false);
 		add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(122, 65, 136, 20);
+		textField_1.setBounds(133, 75, 161, 20);
 		add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(122, 101, 136, 20);
+		textField_2.setBounds(133, 111, 161, 20);
 		add(textField_2);
 		textField_2.setColumns(10);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(122, 137, 136, 20);
+		textField_3.setBounds(133, 147, 161, 20);
 		textField_3.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -165,13 +169,13 @@ public class altaCliente extends JPanel {
 		textField_3.setColumns(10);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(473, 65, 136, 20);
+		textField_4.setBounds(448, 75, 161, 20);
 		textField_4.setToolTipText("ejemplo@ejemplo.com");
 		add(textField_4);
 		textField_4.setColumns(10);
 		
 		textField_5 = new JTextField();
-		textField_5.setBounds(473, 101, 136, 20);
+		textField_5.setBounds(448, 111, 161, 20);
 		textField_5.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -182,7 +186,7 @@ public class altaCliente extends JPanel {
 		}
 	);
 		txtTarjeta = new JTextField();
-		txtTarjeta.setBounds(122, 177, 136, 20);
+		txtTarjeta.setBounds(133, 183, 161, 20);
 		txtTarjeta.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -198,20 +202,21 @@ public class altaCliente extends JPanel {
 		textField_5.setColumns(10);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 272, 599, 151);
+		scrollPane_1.setBounds(15, 280, 599, 151);
 		add(scrollPane_1);
 		table_1 = new JTable();
 		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 				
 		Choice choice = new Choice();
-		choice.setBounds(473, 134, 136, 20);
+		choice.setBounds(448, 149, 161, 20);
 		add(choice);
 		
 		choice.add("Masculino");
 		choice.add("Femenino");
 				
 		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.setBounds(231, 207, 89, 23);
+		btnGuardar.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+		btnGuardar.setBounds(232, 220, 89, 23);
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 						
@@ -343,7 +348,8 @@ public class altaCliente extends JPanel {
 		add(btnGuardar);
 		
 		JButton btnActualizar = new JButton("Actualizar");
-		btnActualizar.setBounds(430, 207, 102, 23);
+		btnActualizar.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+		btnActualizar.setBounds(431, 220, 102, 23);
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
@@ -518,7 +524,8 @@ public class altaCliente extends JPanel {
 		);
 		
 		JButton btnModificar = new JButton("Modificar");
-		btnModificar.setBounds(330, 207, 89, 23);
+		btnModificar.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+		btnModificar.setBounds(331, 220, 89, 23);
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -540,12 +547,12 @@ public class altaCliente extends JPanel {
 		add(btnModificar);
 				
 		JLabel lblBuscar = new JLabel("Buscar:");
-		lblBuscar.setBounds(80, 236, 47, 20);
-		lblBuscar.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblBuscar.setBounds(81, 249, 47, 20);
+		lblBuscar.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		add(lblBuscar);
 		
 		textField_6 = new JTextField();
-		textField_6.setBounds(138, 242, 284, 20);
+		textField_6.setBounds(139, 255, 284, 20);
 		add(textField_6);
 		textField_6.setColumns(10);
 		
@@ -618,7 +625,8 @@ public class altaCliente extends JPanel {
 		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		
 		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(441, 243, 89, 23);
+		btnBuscar.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+		btnBuscar.setBounds(433, 253, 89, 23);
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -694,7 +702,8 @@ public class altaCliente extends JPanel {
 		
 		
 		JButton btnNuevo = new JButton("Nuevo");
-		btnNuevo.setBounds(132, 207, 89, 23);
+		btnNuevo.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+		btnNuevo.setBounds(133, 220, 89, 23);
 		btnNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -773,6 +782,11 @@ public class altaCliente extends JPanel {
 		textField_6.setEnabled(true);
 		choice.setEnabled(false);
 		dateChooser.setEnabled(false);
+		
+		JLabel lblAltaCliente = new JLabel("Alta cliente");
+		lblAltaCliente.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
+		lblAltaCliente.setBounds(21, 11, 120, 14);
+		add(lblAltaCliente);
 	
 		
 		

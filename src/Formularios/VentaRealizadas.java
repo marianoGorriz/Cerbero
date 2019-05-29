@@ -41,11 +41,11 @@ public class VentaRealizadas extends JPanel {
 		
 		JLabel lblFiltrarDesde = new JLabel("Filtrar por productos vendidos:");
 		lblFiltrarDesde.setBounds(20, 67, 220, 14);
-		lblFiltrarDesde.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblFiltrarDesde.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		add(lblFiltrarDesde);
 		
 		JButton btnNewButton = new JButton("Filtrar");
-		btnNewButton.setFont(new Font("Unispace", Font.PLAIN, 11));
+		btnNewButton.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -73,7 +73,7 @@ public class VentaRealizadas extends JPanel {
 		txtBusqueda.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Ventas realizadas");
-		lblNewLabel.setFont(new Font("Unispace", Font.BOLD, 14));
+		lblNewLabel.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
 		lblNewLabel.setBounds(20, 22, 196, 14);
 		add(lblNewLabel);
 		

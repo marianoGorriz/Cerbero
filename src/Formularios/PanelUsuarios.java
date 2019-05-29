@@ -61,33 +61,33 @@ public class PanelUsuarios extends JPanel {
 		
 		
 		JLabel lblIdDelUsuario = new JLabel("Id del Usuario:");
-		lblIdDelUsuario.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblIdDelUsuario.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		lblIdDelUsuario.setBounds(27, 77, 118, 14);
 		add(lblIdDelUsuario);
 		
 		JLabel lblNombre = new JLabel("Usuario:");
-		lblNombre.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblNombre.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		lblNombre.setBounds(27, 108, 82, 14);
 		add(lblNombre);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
-		lblContrasea.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblContrasea.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		lblContrasea.setBounds(27, 142, 82, 14);
 		add(lblContrasea);
 		
 		JLabel lblRepetirContrasea = new JLabel("Repetir Contrase\u00F1a:");
-		lblRepetirContrasea.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblRepetirContrasea.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		lblRepetirContrasea.setBounds(27, 173, 152, 14);
 		add(lblRepetirContrasea);
 		
 		JLabel lblRol = new JLabel("Rol:");
-		lblRol.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblRol.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		lblRol.setBounds(27, 206, 82, 14);
 		add(lblRol);
 
 				
 		JLabel lblBuscar = new JLabel("Buscar:");
-		lblBuscar.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblBuscar.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		lblBuscar.setBounds(56, 231, 53, 17);
 		add(lblBuscar);
 		
@@ -135,6 +135,7 @@ public class PanelUsuarios extends JPanel {
 		choice.add("Moza");
 		
 		JButton btnEliminar = new JButton("Guardar");
+		btnEliminar.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		btnEliminar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent arg0) {
@@ -212,6 +213,7 @@ public class PanelUsuarios extends JPanel {
 		add(btnEliminar);
 				
 		JButton btnActualizar = new JButton("Actualizar");
+		btnActualizar.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -255,6 +257,7 @@ public class PanelUsuarios extends JPanel {
 		add(btnActualizar);
 		
 		JButton btnNewButton = new JButton("Habilitar");
+		btnNewButton.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -332,6 +335,7 @@ public class PanelUsuarios extends JPanel {
 		scrollPane.setViewportView(table);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		
 		btnBuscar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -343,6 +347,7 @@ public class PanelUsuarios extends JPanel {
 		add(btnBuscar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		btnCancelar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent evt) {
@@ -367,6 +372,7 @@ public class PanelUsuarios extends JPanel {
 		add(btnCancelar);
 		
 		JButton btnNuevo = new JButton("Nuevo");
+		btnNuevo.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		btnNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textField_1.setEnabled(true);
@@ -434,7 +440,7 @@ public class PanelUsuarios extends JPanel {
 		passwordField_1.setText("");
 		
 		JLabel lblAltamodificacinUsuarios = new JLabel("Alta/Modificaci\u00F3n usuarios");
-		lblAltamodificacinUsuarios.setFont(new Font("Unispace", Font.BOLD, 14));
+		lblAltamodificacinUsuarios.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
 		lblAltamodificacinUsuarios.setBounds(27, 23, 238, 14);
 		add(lblAltamodificacinUsuarios);
 		

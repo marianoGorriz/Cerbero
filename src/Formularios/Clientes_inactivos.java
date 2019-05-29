@@ -34,7 +34,7 @@ public class Clientes_inactivos extends JPanel {
 		
 		JLabel lblClientesInactivos = new JLabel("Clientes inactivos");
 		lblClientesInactivos.setBounds(25, 11, 223, 20);
-		lblClientesInactivos.setFont(new Font("Unispace", Font.PLAIN, 14));
+		lblClientesInactivos.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
 		add(lblClientesInactivos);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -48,7 +48,7 @@ public class Clientes_inactivos extends JPanel {
 		
 		JLabel lblBuscar = new JLabel("Buscar:");
 		lblBuscar.setBounds(58, 87, 50, 14);
-		lblBuscar.setFont(new Font("Unispace", Font.PLAIN, 11));
+		lblBuscar.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		add(lblBuscar);
 		
 		txtBuscar = new JTextField();
@@ -57,7 +57,7 @@ public class Clientes_inactivos extends JPanel {
 		txtBuscar.setColumns(10);
 		
 		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.setFont(new Font("Unispace", Font.PLAIN, 11));
+		btnBuscar.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		btnBuscar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -111,7 +111,7 @@ public class Clientes_inactivos extends JPanel {
 		table_2.setModel(modelo);
 		
 		JLabel lblEnEsteModulo = new JLabel("En este modulo las busquedas se realizan por el N\u00BA de Tarjeta");
-		lblEnEsteModulo.setFont(new Font("Unispace", Font.PLAIN, 11));
+		lblEnEsteModulo.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		lblEnEsteModulo.setBounds(25, 42, 447, 20);
 		add(lblEnEsteModulo);
 		ResultSet rs;

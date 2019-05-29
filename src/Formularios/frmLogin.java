@@ -67,6 +67,7 @@ public class frmLogin {
 		//INGRESAR Y COMPARAR USUARIO		
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
@@ -118,31 +119,32 @@ public class frmLogin {
 			}
 		});
 		
-		btnLogin.setBounds(190, 121, 89, 23);
+		btnLogin.setBounds(176, 121, 100, 23);
 		frame.getContentPane().add(btnLogin);
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblUsuario.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
 		lblUsuario.setBounds(176, 29, 75, 14);
 		frame.getContentPane().add(lblUsuario);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
-		lblContrasea.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblContrasea.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
 		lblContrasea.setBounds(176, 83, 87, 14);
 		frame.getContentPane().add(lblContrasea);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
 			}
 		});
-		btnCancelar.setBounds(289, 121, 89, 23);
+		btnCancelar.setBounds(289, 121, 100, 23);
 		frame.getContentPane().add(btnCancelar);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:\\Users\\faku6\\Documents\\Proyectos JAVA\\prue\\bin\\Imgenes\\login.png"));
-		label.setBounds(38, 27, 128, 129);
+		label.setIcon(new ImageIcon("E:\\Users\\jesus\\Desktop\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\login 9.png"));
+		label.setBounds(22, 11, 144, 133);
 		frame.getContentPane().add(label);
 	}
 	

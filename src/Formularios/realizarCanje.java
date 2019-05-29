@@ -41,17 +41,17 @@ public class realizarCanje extends JPanel {
 		setLayout(null);
 		
 		JLabel lblTotalPuntos = new JLabel("Total Puntos: ");
-		lblTotalPuntos.setFont(new Font("Unispace", Font.PLAIN, 11));
+		lblTotalPuntos.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		lblTotalPuntos.setBounds(369, 306, 127, 14);
 		add(lblTotalPuntos);
 		
 		JLabel lblTitulo = new JLabel("Realizar Canjes de puntos");
-		lblTitulo.setFont(new Font("Unispace", Font.BOLD, 14));
+		lblTitulo.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
 		lblTitulo.setBounds(10, 11, 262, 29);
 		add(lblTitulo);
 		
 		JLabel lblNumeroDeTarjeta = new JLabel("Numero de tarjeta:");
-		lblNumeroDeTarjeta.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblNumeroDeTarjeta.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		lblNumeroDeTarjeta.setBounds(10, 51, 142, 20);
 		add(lblNumeroDeTarjeta);
 		
@@ -61,7 +61,7 @@ public class realizarCanje extends JPanel {
 		txtNumeroTarjeta.setColumns(10);
 		
 		JLabel lblDni = new JLabel("DNI:");
-		lblDni.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblDni.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		lblDni.setBounds(10, 82, 35, 20);
 		add(lblDni);
 		
@@ -73,7 +73,7 @@ public class realizarCanje extends JPanel {
 		txtDni.setColumns(10);
 		
 		JLabel lblPuntos = new JLabel("Puntos:");
-		lblPuntos.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblPuntos.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		lblPuntos.setBounds(172, 85, 67, 14);
 		add(lblPuntos);
 		
@@ -95,13 +95,13 @@ public class realizarCanje extends JPanel {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		
 		JLabel lblProductosDisponibles = new JLabel("Productos disponibles:");
-		lblProductosDisponibles.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblProductosDisponibles.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		lblProductosDisponibles.setBounds(10, 113, 186, 14);
 		add(lblProductosDisponibles);
 		
 		JLabel lblCantidad = new JLabel("Cantidad:");
-		lblCantidad.setFont(new Font("Unispace", Font.BOLD, 11));
-		lblCantidad.setBounds(354, 157, 86, 14);
+		lblCantidad.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+		lblCantidad.setBounds(354, 156, 86, 14);
 		add(lblCantidad);
 		
 		txtCantidad = new JTextField();
@@ -127,13 +127,13 @@ public class realizarCanje extends JPanel {
 		table_1.setModel(modelo);
 		
 		JButton btnEliminar = new JButton("Eliminar");
-		btnEliminar.setFont(new Font("Unispace", Font.PLAIN, 11));
+		btnEliminar.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		
 		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.setFont(new Font("Unispace", Font.PLAIN, 11));
+		btnBuscar.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 
 		JButton btnRealizar = new JButton("Realizar canje");
-		btnRealizar.setFont(new Font("Unispace", Font.PLAIN, 11));
+		btnRealizar.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		btnRealizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -218,7 +218,7 @@ public class realizarCanje extends JPanel {
 		add(btnRealizar);
 		
 		JLabel lblProductosAgrados = new JLabel("Productos Agregados:");
-		lblProductosAgrados.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblProductosAgrados.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		lblProductosAgrados.setBounds(10, 263, 207, 14);
 		add(lblProductosAgrados);
 		
@@ -269,7 +269,7 @@ public class realizarCanje extends JPanel {
 		add(btnBuscar);
 		
 		JLabel lblProducto = new JLabel("Producto: ");
-		lblProducto.setFont(new Font("Unispace", Font.PLAIN, 11));
+		lblProducto.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		lblProducto.setBounds(354, 134, 71, 14);
 		add(lblProducto);
 		
@@ -279,7 +279,7 @@ public class realizarCanje extends JPanel {
 		
 
 		JButton btnAgregar = new JButton("Agregar");
-		btnAgregar.setFont(new Font("Unispace", Font.PLAIN, 11));
+		btnAgregar.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int puntos_total_2 = 0;
