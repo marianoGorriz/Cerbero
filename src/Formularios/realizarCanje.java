@@ -116,14 +116,14 @@ public class realizarCanje extends JPanel {
 		table_1 = new JTable();
 		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane_1.setViewportView(table_1);
-		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		
 		
 		MiModelo modelo = new MiModelo();
 		modelo.addColumn("id");
 		modelo.addColumn("Producto");
 		modelo.addColumn("Cantidad");
-		modelo.addColumn("Cantidad puntos");
+		modelo.addColumn("Puntos");
 		table_1.setModel(modelo);
 		
 		JButton btnEliminar = new JButton("Eliminar");

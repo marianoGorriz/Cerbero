@@ -54,9 +54,9 @@ public class frmPrincipal extends JFrame {
 		
 		frame = new JFrame();
 		frame.setForeground(UIManager.getColor("textHighlight"));
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("E:\\Users\\jesus\\Desktop\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\login3.png")); //imagen local 
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\jesus\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.core.resources\\.projects\\CerberoBar\\images\\login3.png")); //imagen local 
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 710, 522);
+		frame.setBounds(100, 100, 719, 528);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("...:CERBERO RESTOBAR:..."); //titulo de la ventana 
 		
@@ -66,7 +66,7 @@ public class frmPrincipal extends JFrame {
 		frame.setJMenuBar(menuBar);
 		
 		JMenu mnVentas = new JMenu("Ventas"); //mnMenu- ventana del menu 
-		mnVentas.setIcon(new ImageIcon("E:\\Users\\jesus\\Desktop\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\material-design-icons-1.0.0\\maps\\1x_ios\\ventas.png")); //imagen local 
+		mnVentas.setIcon(new ImageIcon("C:\\\\Users\\\\jesus\\\\eclipse-workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.core.resources\\\\.projects\\\\CerberoBar\\\\images\\\\ventas.png")); //imagen local 
 		mnVentas.setFont(new Font("Trebuchet MS", Font.BOLD, 14)); //tipo de formato
 		mnVentas.setHorizontalAlignment(SwingConstants.CENTER); //alineacion 
 		menuBar.add(mnVentas);
@@ -115,7 +115,7 @@ public class frmPrincipal extends JFrame {
 		mnVentas.add(mntmRealizarCanjes);
 		
 		JMenu mnProductos = new JMenu("Productos"); 							//menú productos
-		mnProductos.setIcon(new ImageIcon("E:\\Users\\jesus\\Desktop\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\material-design-icons-1.0.0\\maps\\1x_ios\\producto.png")); //imagen local 
+		mnProductos.setIcon(new ImageIcon("C:\\\\Users\\\\jesus\\\\eclipse-workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.core.resources\\\\.projects\\\\CerberoBar\\\\images\\\\producto.png")); //imagen local 
 		mnProductos.setFont(new Font("Trebuchet MS", Font.BOLD, 14));			//tipo de letra y tamaño
 		menuBar.add(mnProductos);
 		if (rol.equals("Administrador")) {
@@ -138,7 +138,7 @@ public class frmPrincipal extends JFrame {
 		mnProductos.add(mntmAltaDeProductos);
 		
 		JMenu mnTarjetas = new JMenu("Tarjetas");							 	//MNMENU- Menu de TARJETAS
-		mnTarjetas.setIcon(new ImageIcon("E:\\Users\\jesus\\Desktop\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\material-design-icons-1.0.0\\av\\1x_ios\\tarjeta.png")); //imagen local
+		mnTarjetas.setIcon(new ImageIcon("C:\\\\Users\\\\jesus\\\\eclipse-workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.core.resources\\\\.projects\\\\CerberoBar\\\\images\\\\tarjeta.png")); //imagen local
 		mnTarjetas.setFont(new Font("Trebuchet MS", Font.BOLD, 14));			//Tipo de letra y orientacion
 		mnTarjetas.setHorizontalAlignment(SwingConstants.CENTER);
 		menuBar.add(mnTarjetas);
@@ -172,13 +172,12 @@ public class frmPrincipal extends JFrame {
 		mnTarjetas.add(mntmTarjetasActivas);
 		
 		JMenu mnClientes = new JMenu("Clientes");									//MNMenu- Menu de clientes
-		mnClientes.setIcon(new ImageIcon("E:\\Users\\jesus\\Desktop\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\material-design-icons-1.0.0\\social\\1x_ios\\clientes.png")); //imagen local
+		mnClientes.setIcon(new ImageIcon("C:\\\\Users\\\\jesus\\\\eclipse-workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.core.resources\\\\.projects\\\\CerberoBar\\\\images\\\\clientes.png")); //imagen local
 		mnClientes.setFont(new Font("Trebuchet MS", Font.BOLD, 14));				//Tipo de letra y tamaño
 		menuBar.add(mnClientes);
 		
 		JMenuItem mntmAltaDeClientes = new JMenuItem("Alta de Clientes");			//Submenu del menu CLIENTES
 		mntmAltaDeClientes.addMouseListener(new MouseAdapter() {
-				
 			public void mousePressed(MouseEvent arg0) {								//Evento para poder traer la ventana 
 				altaCliente alta = new altaCliente();
 				alta.setBounds(10,11,620,413);
@@ -206,7 +205,7 @@ public class frmPrincipal extends JFrame {
 		mnClientes.add(mntmClientesInactivos);
 		
 		JMenu mnUsuarios = new JMenu("Usuarios");										//Menu de usuarios
-		mnUsuarios.setIcon(new ImageIcon("E:\\Users\\jesus\\Desktop\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\material-design-icons-1.0.0\\file\\1x_ios\\usuario.png")); //imagen local
+		mnUsuarios.setIcon(new ImageIcon("C:\\\\Users\\\\jesus\\\\eclipse-workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.core.resources\\\\.projects\\\\CerberoBar\\\\images\\\\\\usuario.png")); //imagen local
 		if (rol.equals("Administrador")) {
 			mnUsuarios.setVisible(true);
 		} else {
@@ -252,11 +251,11 @@ public class frmPrincipal extends JFrame {
 			}
 		});
 		mntmNewMenuItem.setFont(new Font("Trebuchet MS", Font.BOLD, 13));					//Tipo de letra y tamaño
-		mnMantenimiento.setIcon(new ImageIcon("E:\\Users\\jesus\\Desktop\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\material-design-icons-1.0.0\\file\\1x_ios\\backup2.png")); //imagen local
+		mnMantenimiento.setIcon(new ImageIcon("C:\\\\Users\\\\jesus\\\\eclipse-workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.core.resources\\\\.projects\\\\CerberoBar\\\\images\\\\\\backup2.png")); //imagen local
 		mnMantenimiento.add(mntmNewMenuItem);
 		
 		JMenu mnSalir = new JMenu("Cerrar Sesion");									//Menu para cerrar sesion
-		mnSalir.setIcon(new ImageIcon("E:\\Users\\jesus\\Desktop\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\material-design-icons-1.0.0\\action\\1x_ios\\cerrar.png")); //imagen local
+		mnSalir.setIcon(new ImageIcon("C:\\\\Users\\\\jesus\\\\eclipse-workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.core.resources\\\\.projects\\\\CerberoBar\\\\images\\\\\\cerrar.png")); //imagen local
 		mnSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {								//Evento de cerrar ventana 
@@ -266,9 +265,9 @@ public class frmPrincipal extends JFrame {
 					String dbPass = "12345";
 					String dbName = "cerbero";
 				
-					Process p = Runtime.getRuntime().exec("C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump  -u "+ dbUser + " -p"+ dbPass + " " + dbName);					
+					Process p = Runtime.getRuntime().exec("C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysqldump  -u "+ dbUser + " -p"+ dbPass + " " + dbName);					
 					InputStream is = p.getInputStream();
-					File file = new File("C:\\Users\\mariano\\Desktop\\backUpCerbero.sql");
+					File file = new File("C:\\Users\\jesus\\backup\\backUpCerbero.sql");
 					FileOutputStream fos = new FileOutputStream(file);
 					byte[] buffer = new byte[1000];
 					int leido = is.read(buffer);

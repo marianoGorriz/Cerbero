@@ -143,7 +143,7 @@ public class frmLogin {
 		frame.getContentPane().add(btnCancelar);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("E:\\Users\\jesus\\Desktop\\Proyectos JAVA\\sis reserva res\\bin\\Imgenes\\login 9.png"));
+		label.setIcon(new ImageIcon("C:\\\\Users\\\\jesus\\\\eclipse-workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.core.resources\\\\.projects\\\\CerberoBar\\\\images\\\\login 12.png"));
 		label.setBounds(22, 11, 144, 133);
 		frame.getContentPane().add(label);
 	}
