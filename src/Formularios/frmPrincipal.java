@@ -54,7 +54,7 @@ public class frmPrincipal extends JFrame {
 		
 		frame = new JFrame();
 		frame.setForeground(UIManager.getColor("textHighlight"));
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\jesus\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.core.resources\\.projects\\CerberoBar\\images\\login3.png")); //imagen local 
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("Iconos\\login3.png")); //imagen local 
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 719, 528);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
