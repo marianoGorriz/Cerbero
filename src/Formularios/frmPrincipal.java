@@ -54,7 +54,7 @@ public class frmPrincipal extends JFrame {
 		
 		frame = new JFrame();
 		frame.setForeground(UIManager.getColor("textHighlight"));
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("Iconos\\login3.png")); //imagen local 
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("login3.png")); //imagen local 
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 719, 528);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,7 +66,7 @@ public class frmPrincipal extends JFrame {
 		frame.setJMenuBar(menuBar);
 		
 		JMenu mnVentas = new JMenu("Ventas"); //mnMenu- ventana del menu 
-		mnVentas.setIcon(new ImageIcon("C:\\\\Users\\\\jesus\\\\eclipse-workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.core.resources\\\\.projects\\\\CerberoBar\\\\images\\\\ventas.png")); //imagen local 
+		mnVentas.setIcon(new ImageIcon("ventas.png")); //imagen local 
 		mnVentas.setFont(new Font("Trebuchet MS", Font.BOLD, 14)); //tipo de formato
 		mnVentas.setHorizontalAlignment(SwingConstants.CENTER); //alineacion 
 		menuBar.add(mnVentas);
@@ -115,7 +115,7 @@ public class frmPrincipal extends JFrame {
 		mnVentas.add(mntmRealizarCanjes);
 		
 		JMenu mnProductos = new JMenu("Productos"); 							//menú productos
-		mnProductos.setIcon(new ImageIcon("C:\\\\Users\\\\jesus\\\\eclipse-workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.core.resources\\\\.projects\\\\CerberoBar\\\\images\\\\producto.png")); //imagen local 
+		mnProductos.setIcon(new ImageIcon("producto.png")); //imagen local 
 		mnProductos.setFont(new Font("Trebuchet MS", Font.BOLD, 14));			//tipo de letra y tamaño
 		menuBar.add(mnProductos);
 		if (rol.equals("Administrador")) {
@@ -138,7 +138,7 @@ public class frmPrincipal extends JFrame {
 		mnProductos.add(mntmAltaDeProductos);
 		
 		JMenu mnTarjetas = new JMenu("Tarjetas");							 	//MNMENU- Menu de TARJETAS
-		mnTarjetas.setIcon(new ImageIcon("C:\\\\Users\\\\jesus\\\\eclipse-workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.core.resources\\\\.projects\\\\CerberoBar\\\\images\\\\tarjeta.png")); //imagen local
+		mnTarjetas.setIcon(new ImageIcon("tarjeta.png")); //imagen local
 		mnTarjetas.setFont(new Font("Trebuchet MS", Font.BOLD, 14));			//Tipo de letra y orientacion
 		mnTarjetas.setHorizontalAlignment(SwingConstants.CENTER);
 		menuBar.add(mnTarjetas);
@@ -172,7 +172,7 @@ public class frmPrincipal extends JFrame {
 		mnTarjetas.add(mntmTarjetasActivas);
 		
 		JMenu mnClientes = new JMenu("Clientes");									//MNMenu- Menu de clientes
-		mnClientes.setIcon(new ImageIcon("C:\\\\Users\\\\jesus\\\\eclipse-workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.core.resources\\\\.projects\\\\CerberoBar\\\\images\\\\clientes.png")); //imagen local
+		mnClientes.setIcon(new ImageIcon("clientes.png")); //imagen local
 		mnClientes.setFont(new Font("Trebuchet MS", Font.BOLD, 14));				//Tipo de letra y tamaño
 		menuBar.add(mnClientes);
 		
@@ -205,7 +205,7 @@ public class frmPrincipal extends JFrame {
 		mnClientes.add(mntmClientesInactivos);
 		
 		JMenu mnUsuarios = new JMenu("Usuarios");										//Menu de usuarios
-		mnUsuarios.setIcon(new ImageIcon("C:\\\\Users\\\\jesus\\\\eclipse-workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.core.resources\\\\.projects\\\\CerberoBar\\\\images\\\\\\usuario.png")); //imagen local
+		mnUsuarios.setIcon(new ImageIcon("usuario.png")); //imagen local
 		if (rol.equals("Administrador")) {
 			mnUsuarios.setVisible(true);
 		} else {
@@ -251,11 +251,11 @@ public class frmPrincipal extends JFrame {
 			}
 		});
 		mntmNewMenuItem.setFont(new Font("Trebuchet MS", Font.BOLD, 13));					//Tipo de letra y tamaño
-		mnMantenimiento.setIcon(new ImageIcon("C:\\\\Users\\\\jesus\\\\eclipse-workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.core.resources\\\\.projects\\\\CerberoBar\\\\images\\\\\\backup2.png")); //imagen local
+		mnMantenimiento.setIcon(new ImageIcon("backup2.png")); //imagen local
 		mnMantenimiento.add(mntmNewMenuItem);
 		
 		JMenu mnSalir = new JMenu("Cerrar Sesion");									//Menu para cerrar sesion
-		mnSalir.setIcon(new ImageIcon("C:\\\\Users\\\\jesus\\\\eclipse-workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.core.resources\\\\.projects\\\\CerberoBar\\\\images\\\\\\cerrar.png")); //imagen local
+		mnSalir.setIcon(new ImageIcon("cerrar.png")); //imagen local
 		mnSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {								//Evento de cerrar ventana 

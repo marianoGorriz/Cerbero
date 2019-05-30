@@ -25,6 +25,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 
@@ -50,6 +52,7 @@ public class frmLogin {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("login3.png")); //imagen local
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 425, 207);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -143,7 +146,7 @@ public class frmLogin {
 		frame.getContentPane().add(btnCancelar);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("Iconos\\login 12.png"));
+		label.setIcon(new ImageIcon("login 12.png"));
 		label.setBounds(22, 11, 144, 133);
 		frame.getContentPane().add(label);
 	}
