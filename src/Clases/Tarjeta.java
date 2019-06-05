@@ -89,6 +89,20 @@ public class Tarjeta {
 			System.out.println("SQLException: " + e2.getMessage());	
 		}
 	}
+	
+	public void hacerVip(int id)
+	{
+		try {
+			Conexion cn = new Conexion(); 
+			Connection con = cn.conectarDB();
+			Statement st =con.createStatement();
+			st.executeUpdate("UPDATE tarjetas SET vip = 1 where id = " + id);
+		} catch (Exception e2) {
+			JOptionPane.showMessageDialog(null, "Error al modificar la tarjeta");
+			System.out.println("SQLException: " + e2.getMessage());	
+		}
+	}
+	
 	public ResultSet perdidaTarjeta(String tarjeta) {
 		try{ 
 			Conexion cn = new Conexion();

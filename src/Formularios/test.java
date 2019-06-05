@@ -65,9 +65,9 @@ public class test extends JDialog {
 							String dbPass = "12345";
 							String dbName = "cerbero";
 						
-							Process p = Runtime.getRuntime().exec("C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysqldump  -u "+ dbUser + " -p"+ dbPass + " " + dbName);					
+							Process p = Runtime.getRuntime().exec("C:\\\\Program Files\\\\MySQL\\\\MySQL Server 8.0\\\\bin\\\\mysqldump  -u "+ dbUser + " -p"+ dbPass + " " + dbName);					
 							InputStream is = p.getInputStream();
-							File file = new File("C:\\\\Users\\\\jesus\\\\backup\\\\backUpCerbero.sql"+fechaActual+".sql");
+							File file = new File("C:\\\\Users\\\\mariano\\\\Desktop\\\\backUpCerbero.sql"+fechaActual+".sql");
 							FileOutputStream fos = new FileOutputStream(file);
 							byte[] buffer = new byte[1000];
 							int leido = is.read(buffer);

@@ -83,36 +83,52 @@ public class TarjetasActivas extends JPanel{
 		lblTarjetaActicas.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
 		lblTarjetaActicas.setBounds(20, 11, 133, 14);
 		add(lblTarjetaActicas);
-
-		/**table.addMouseListener(new MouseAdapter() {
+		
+		JLabel lblTarjetaSeleccionada = new JLabel("Tarjeta seleccionada: ");
+		lblTarjetaSeleccionada.setBounds(30, 302, 200, 14);
+		add(lblTarjetaSeleccionada);
+		
+		JButton btnActivarVip = new JButton("Activar VIP");
+		btnActivarVip.setEnabled(false);
+		btnActivarVip.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int row = table.getSelectedRow();
+				int id = Integer.parseInt(table.getModel().getValueAt(row, 0).toString());
+				Tarjeta tarjeta = new Tarjeta();
+				tarjeta.hacerVip(id);
+				System.out.println(id);
+				llenarTablaTarjetas("");
+				btnActivarVip.setEnabled(false);
+				lblTarjetaSeleccionada.setText("Tarjeta seleccionada: ");
+			}
+		});
+		btnActivarVip.setBounds(240, 298, 132, 23);
+		add(btnActivarVip);
+		
+		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int column1 = 0;
-				int column2 = 1;
-				int column3 = 2;
-				int column4 = 3; 
-				int row = table.getSelectedRow();
 				
-				String value1 = table.getModel().getValueAt(row, column1).toString();
-				String value2 = table.getModel().getValueAt(row, column2).toString();
-				String value3 = table.getModel().getValueAt(row, column3).toString();
-				String value4 = table.getModel().getValueAt(row, column3).toString();
-
-
-				lblNewLabel_1.setText(value2); 
+				btnActivarVip.setEnabled(true);
+				int row = table.getSelectedRow();
+				String nroTarjeta = table.getModel().getValueAt(row, 2).toString();
+				lblTarjetaSeleccionada.setText("Tarjeta seleccionada: " + nroTarjeta);				
 				
 			}
-		});**/
+		});
+
 		
 	}
 	public void llenarTablaTarjetas(String busquedatarjeta) {
 		DefaultTableModel modelo;
 		modelo = new DefaultTableModel();
+		modelo.addColumn("Id");
 		modelo.addColumn("DNI");
 		modelo.addColumn("N° de Tarjeta");
 		modelo.addColumn("Puntos Actuales");
 		modelo.addColumn("Puntos acumulados");
 		modelo.addColumn("Ultima Compra");
+		modelo.addColumn("Vip");
 		table.setModel(modelo);
 		//modelo.addRow(new Object[]{"ID", "Producto", "Puntos"});
 		ResultSet rs;
@@ -120,7 +136,7 @@ public class TarjetasActivas extends JPanel{
 		rs = busqueda.buscarTarjetasActivas(busquedatarjeta);
 		try {
 			while(rs.next()) {
-				modelo.addRow(new Object[]{rs.getObject("dni"), rs.getObject("n_tarjeta"), rs.getObject("puntos_acumulados"), rs.getObject("puntos_historicos"),rs.getObject("ultima_compra")});
+				modelo.addRow(new Object[]{rs.getObject("tarjetas.id"),rs.getObject("dni"), rs.getObject("n_tarjeta"), rs.getObject("puntos_acumulados"), rs.getObject("puntos_historicos"),rs.getObject("ultima_compra"),rs.getObject("vip")});
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -47,7 +47,7 @@ public class RealizarVenta extends JPanel {
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Productos:");
-		lblNewLabel.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblNewLabel.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		lblNewLabel.setBounds(26, 95, 75, 14);
 		add(lblNewLabel);
 		
@@ -66,7 +66,7 @@ public class RealizarVenta extends JPanel {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
 		JButton btnNewButton = new JButton("Buscar");
-		btnNewButton.setFont(new Font("Unispace", Font.BOLD, 11));
+		btnNewButton.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		btnNewButton.setBounds(231, 91, 103, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -76,7 +76,7 @@ public class RealizarVenta extends JPanel {
 		add(btnNewButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblNewLabel_1.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		lblNewLabel_1.setBounds(183, 120, 151, 14);
 		add(lblNewLabel_1);
 
@@ -105,16 +105,16 @@ public class RealizarVenta extends JPanel {
 		txtCantidad.setColumns(10);
 		
 		JButton btnRealizarVenta = new JButton("Realizar venta");
-		btnRealizarVenta.setFont(new Font("Unispace", Font.BOLD, 11));
+		btnRealizarVenta.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		
 		JButton btnEliminarProducto = new JButton("Eliminar");
-		btnEliminarProducto.setFont(new Font("Unispace", Font.BOLD, 11));
+		btnEliminarProducto.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		
 		JLabel lblNewLabel_2 = new JLabel("Total puntos:");
-		lblNewLabel_2.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblNewLabel_2.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 
 		JButton btnAgregar = new JButton("Agregar");
-		btnAgregar.setFont(new Font("Unispace", Font.BOLD, 11));
+		btnAgregar.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -242,8 +242,21 @@ public class RealizarVenta extends JPanel {
 								}
 								
 								long x = 2592000000L;
-																
-								if (System.currentTimeMillis() >= tsTime2 + x ) {
+														
+								Tarjeta tarjeta2 = new Tarjeta();
+								ResultSet rs2;
+								rs2 = tarjeta2.buscarTarjetasActivas(txtNroTarjeta.getText());
+								String vip = "nada";
+								try {
+									while(rs2.next()) {
+										vip = rs2.getObject("tarjetas.vip").toString();
+									}
+								} catch (SQLException e1) {
+									
+									e1.printStackTrace();
+								}
+								
+								if (System.currentTimeMillis() >= tsTime2 + x && vip.equals("0")) {
 									JOptionPane.showMessageDialog(null, "No has realizado una compra en los últimos 30 días. Sus puntos se restablecieron a 0.");
 									venta.eliminarPuntos(id_ventas_usuarios, id_ventas_tarjetas, total_puntos, tipo, fecha);
 								} else {
@@ -283,12 +296,12 @@ public class RealizarVenta extends JPanel {
 		txtNroTarjeta.setColumns(10);
 		
 		JLabel lblNTarjeta = new JLabel("N\u00B0 Tarjeta:");
-		lblNTarjeta.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblNTarjeta.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		lblNTarjeta.setBounds(26, 39, 116, 14);
 		add(lblNTarjeta);
 		
 		JLabel lblProductoSeleccionado = new JLabel("Producto seleccionado:");
-		lblProductoSeleccionado.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblProductoSeleccionado.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		lblProductoSeleccionado.setBounds(26, 120, 184, 14);
 		add(lblProductoSeleccionado);
 		
@@ -312,12 +325,12 @@ public class RealizarVenta extends JPanel {
 		add(btnEliminarProducto);
 		
 		JLabel lblCantidad = new JLabel("Cantidad:");
-		lblCantidad.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblCantidad.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		lblCantidad.setBounds(344, 211, 66, 14);
 		add(lblCantidad);
 		
 		JLabel lblDni = new JLabel("DNI:");
-		lblDni.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblDni.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		lblDni.setBounds(26, 70, 48, 14);
 		add(lblDni);
 		
@@ -328,7 +341,7 @@ public class RealizarVenta extends JPanel {
 		txtDNI.setColumns(10);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setFont(new Font("Unispace", Font.BOLD, 11));
+		lblNombre.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		lblNombre.setBounds(166, 67, 62, 14);
 		add(lblNombre);
 		
@@ -339,7 +352,7 @@ public class RealizarVenta extends JPanel {
 		txtNombre.setColumns(10);
 		
 		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.setFont(new Font("Unispace", Font.BOLD, 11));
+		btnBuscar.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		btnBuscar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -405,7 +418,7 @@ public class RealizarVenta extends JPanel {
 		btnEliminarProducto.setEnabled(false);
 		
 		JLabel lblRealizarVenta = new JLabel("Realizar Venta");
-		lblRealizarVenta.setFont(new Font("Unispace", Font.BOLD, 14));
+		lblRealizarVenta.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
 		lblRealizarVenta.setBounds(26, 11, 173, 14);
 		add(lblRealizarVenta);
 		
