@@ -8,6 +8,8 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import Clases.Cliente;
+import Clases.Impresion;
 import Clases.Producto;
 import Clases.Tarjeta;
 import Clases.Venta;
@@ -201,6 +203,37 @@ public class realizarCanje extends JPanel {
 									venta.insertarDetalleVenta(id_detalleVenta_venta, id_detalleVenta_producto, cantidad);
 								}
 								JOptionPane.showMessageDialog(null, "Canje realizado exitosamente.");
+								int dialogButton2 = JOptionPane.YES_NO_OPTION;
+								int dialogResult2 = JOptionPane.showConfirmDialog (null, "¿Desea imprimir el canje?","Precaución",dialogButton2);
+								if(dialogResult2 == JOptionPane.YES_OPTION){
+									int puntos_acumulados = Integer.parseInt(txtPuntos.getText());
+									
+									Cliente cliente = new Cliente();
+									ResultSet rs2;
+									rs2 = cliente.buscarCliente(txtNumeroTarjeta.getText());
+									String nombre = "";
+									String apellido = "";
+									try {
+										while(rs2.next()) {
+											nombre = rs2.getObject("clientes.nombre").toString();
+											apellido = rs2.getObject("clientes.apellido").toString();
+										}
+									}catch (SQLException e1) {
+										e1.printStackTrace();
+									}
+									//ENVIAR ESTOS DATOS A imprimirTicket()
+									Impresion imp = new Impresion();										
+									imp.imprimirTicket(nombre, apellido, txtNumeroTarjeta.getText(), puntos_acumulados, total_puntos, 1);
+									/**System.out.println("Gilada de cerbero " );
+									System.out.println("CUIL " );
+									
+									System.out.println(nombre + " " + apellido);
+									System.out.println("Tarjeta N° " + txtNumeroTarjeta.getText() );
+									
+									System.out.println("Puntos acumulados: " + puntos_acumulados);
+									System.out.println("Puntos descontados: -" + total_puntos);
+									System.out.println("Total puntos: " + (puntos_acumulados - total_puntos));*/
+								}
 								btnBuscar.doClick();
 								btnRealizar.setEnabled(false);
 								btnEliminar.setEnabled(false);

@@ -109,6 +109,23 @@ public class Cliente {
 		return null;
 	}
 	
+	public ResultSet buscarCliente(String n_tarjeta) {
+		try {
+			Conexion cn = new Conexion();
+			Connection con = cn.conectarDB();
+			Statement st =con.createStatement();
+		    ResultSet rs = st.executeQuery("SELECT * FROM tarjetas INNER JOIN clientes ON tarjetas.id_tarjeta_cliente = clientes.id WHERE tarjetas.n_tarjeta = " + n_tarjeta +";");
+			return rs;
+
+		}		 
+		catch (SQLException e2) {
+			//System.out.println("nope2");
+			JOptionPane.showMessageDialog(null, "Error al buscar nombre y apellido cliente!");
+			System.out.println("SQLException: " + e2.getMessage());
+		}
+		return null;
+	}
+	
 }
   
 

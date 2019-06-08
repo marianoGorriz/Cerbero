@@ -7,9 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import Clases.Cliente;
 import Clases.Producto;
 import Clases.Tarjeta;
 import Clases.Venta;
+import Clases.Impresion;
 
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
@@ -213,9 +215,11 @@ public class RealizarVenta extends JPanel {
 								
 								
 								int id_ventas_tarjetas = 0;
+								int puntos_acumulados = 0;
 								try {
 									if(rs.first()) {
 										id_ventas_tarjetas = (int) rs.getObject("tarjetas.id");
+										puntos_acumulados = (int) rs.getObject("tarjetas.puntos_acumulados");
 									}
 								}catch (SQLException e1) {
 									e1.printStackTrace();
@@ -262,6 +266,38 @@ public class RealizarVenta extends JPanel {
 								} else {
 									venta.realizarVenta(id_ventas_usuarios, id_ventas_tarjetas, total_puntos, tipo, fecha);
 									JOptionPane.showMessageDialog(null, "Venta realizada exitosamente.");
+									int dialogButton2 = JOptionPane.YES_NO_OPTION;
+									int dialogResult2 = JOptionPane.showConfirmDialog (null, "¿Desea imprimir un ticket de venta?","Precaución",dialogButton2);
+									if(dialogResult2 == JOptionPane.YES_OPTION){
+										Cliente cliente = new Cliente();
+										ResultSet rs3;
+										rs3 = cliente.buscarCliente(txtNroTarjeta.getText());
+										String nombre = "";
+										String apellido = "";
+										try {
+											while(rs3.next()) {
+												nombre = rs3.getObject("clientes.nombre").toString();
+												apellido = rs3.getObject("clientes.apellido").toString();
+											}
+										}catch (SQLException e1) {
+											e1.printStackTrace();
+										}
+										//ENVIAR ESTOS DATOS A imprimirTicket()
+										Impresion imp = new Impresion();										
+										imp.imprimirTicket(nombre, apellido, txtNroTarjeta.getText(), puntos_acumulados, total_puntos, 0);
+										/**System.out.println("Gilada de cerbero " );
+										System.out.println("CUIL " );
+										
+										System.out.println(nombre + " " + apellido);
+										System.out.println("Tarjeta N° " + txtNroTarjeta.getText() );
+										
+										System.out.println("Puntos acumulados: " + puntos_acumulados);
+										System.out.println("Puntos por su compra: " + total_puntos);
+										System.out.println("Total puntos: " + (puntos_acumulados + total_puntos));*/
+										
+									} else {
+										
+									}
 								}
 								
 								int filas = modelo.getRowCount();
