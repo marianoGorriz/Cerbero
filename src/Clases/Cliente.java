@@ -109,7 +109,7 @@ public class Cliente {
 		return null;
 	}
 	
-	public ResultSet buscarCliente(String n_tarjeta) {
+	public ResultSet buscarCliente2(String n_tarjeta) {
 		try {
 			Conexion cn = new Conexion();
 			Connection con = cn.conectarDB();

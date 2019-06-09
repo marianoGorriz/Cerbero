@@ -96,7 +96,6 @@ public class TarjetasActivas extends JPanel{
 				int id = Integer.parseInt(table.getModel().getValueAt(row, 0).toString());
 				Tarjeta tarjeta = new Tarjeta();
 				tarjeta.hacerVip(id);
-				System.out.println(id);
 				llenarTablaTarjetas("");
 				btnActivarVip.setEnabled(false);
 				lblTarjetaSeleccionada.setText("Tarjeta seleccionada: ");

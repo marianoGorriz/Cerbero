@@ -210,7 +210,7 @@ public class realizarCanje extends JPanel {
 									
 									Cliente cliente = new Cliente();
 									ResultSet rs2;
-									rs2 = cliente.buscarCliente(txtNumeroTarjeta.getText());
+									rs2 = cliente.buscarCliente2(txtNumeroTarjeta.getText());
 									String nombre = "";
 									String apellido = "";
 									try {

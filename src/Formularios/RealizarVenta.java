@@ -271,7 +271,7 @@ public class RealizarVenta extends JPanel {
 									if(dialogResult2 == JOptionPane.YES_OPTION){
 										Cliente cliente = new Cliente();
 										ResultSet rs3;
-										rs3 = cliente.buscarCliente(txtNroTarjeta.getText());
+										rs3 = cliente.buscarCliente2(txtNroTarjeta.getText());
 										String nombre = "";
 										String apellido = "";
 										try {

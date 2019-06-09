@@ -202,7 +202,7 @@ public class altaCliente extends JPanel {
 		textField_5.setColumns(10);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(15, 280, 599, 151);
+		scrollPane_1.setBounds(15, 280, 599, 120);
 		add(scrollPane_1);
 		table_1 = new JTable();
 		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -739,15 +739,15 @@ public class altaCliente extends JPanel {
 		
 		
 	
-		modelo.addColumn("ID");
-		modelo.addColumn("Nombre");
-		modelo.addColumn("Apellido");
-		modelo.addColumn("DNI");
-		modelo.addColumn("Correo");
-		modelo.addColumn("Telefono");
-		modelo.addColumn("Sexo");
-		modelo.addColumn("Fecha Nacimiento");
-		table_1.setModel(modelo);
+	//	modelo.addColumn("ID");
+	//	modelo.addColumn("Nombre");
+	//	modelo.addColumn("Apellido");
+	//	modelo.addColumn("DNI");
+	//	modelo.addColumn("Correo");
+	//	modelo.addColumn("Telefono");
+	//	modelo.addColumn("Sexo");
+	//	modelo.addColumn("Fecha Nacimiento");
+	//	table_1.setModel(modelo);
 		
 		Cliente clientes = new Cliente();
 		rs = cliente.buscarCliente(textField_6.getText());
