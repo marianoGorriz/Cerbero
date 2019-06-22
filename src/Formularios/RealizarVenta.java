@@ -264,6 +264,38 @@ public class RealizarVenta extends JPanel {
 								if (System.currentTimeMillis() >= tsTime2 + x && vip.equals("0")) {
 									JOptionPane.showMessageDialog(null, "No has realizado una compra en los últimos 30 días. Sus puntos se restablecieron a 0.");
 									venta.eliminarPuntos(id_ventas_usuarios, id_ventas_tarjetas, total_puntos, tipo, fecha);
+									int dialogButton2 = JOptionPane.YES_NO_OPTION;
+									int dialogResult2 = JOptionPane.showConfirmDialog (null, "¿Desea imprimir un ticket de venta?","Precaución",dialogButton2);
+									if(dialogResult2 == JOptionPane.YES_OPTION){
+										Cliente cliente = new Cliente();
+										ResultSet rs3;
+										rs3 = cliente.buscarCliente2(txtNroTarjeta.getText());
+										String nombre = "";
+										String apellido = "";
+										try {
+											while(rs3.next()) {
+												nombre = rs3.getObject("clientes.nombre").toString();
+												apellido = rs3.getObject("clientes.apellido").toString();
+											}
+										}catch (SQLException e1) {
+											e1.printStackTrace();
+										}
+										//ENVIAR ESTOS DATOS A imprimirTicket()
+										Impresion2 imp = new Impresion2();										
+										imp.imprimirTicket(nombre, apellido, txtNroTarjeta.getText(), 0, total_puntos, 0);
+										/**System.out.println("Gilada de cerbero " );
+										System.out.println("CUIL " );
+										
+										System.out.println(nombre + " " + apellido);
+										System.out.println("Tarjeta N° " + txtNroTarjeta.getText() );
+										
+										System.out.println("Puntos acumulados: " + puntos_acumulados);
+										System.out.println("Puntos por su compra: " + total_puntos);
+										System.out.println("Total puntos: " + (puntos_acumulados + total_puntos));*/
+										
+									} else {
+										
+									}
 								} else {
 									venta.realizarVenta(id_ventas_usuarios, id_ventas_tarjetas, total_puntos, tipo, fecha);
 									JOptionPane.showMessageDialog(null, "Venta realizada exitosamente.");
