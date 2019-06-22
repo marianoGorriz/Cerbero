@@ -56,7 +56,7 @@ public class frmPrincipal extends JFrame {
 		frame.setForeground(UIManager.getColor("textHighlight"));
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("login3.png")); //imagen local 
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 719, 528);
+		frame.setBounds(100, 100, 780, 530);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("...:CERBERO RESTOBAR:..."); //titulo de la ventana 
 		

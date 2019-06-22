@@ -12,6 +12,7 @@ import Clases.Producto;
 import Clases.Tarjeta;
 import Clases.Venta;
 import Clases.Impresion;
+import Clases.Impresion2;
 
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
@@ -283,7 +284,7 @@ public class RealizarVenta extends JPanel {
 											e1.printStackTrace();
 										}
 										//ENVIAR ESTOS DATOS A imprimirTicket()
-										Impresion imp = new Impresion();										
+										Impresion2 imp = new Impresion2();										
 										imp.imprimirTicket(nombre, apellido, txtNroTarjeta.getText(), puntos_acumulados, total_puntos, 0);
 										/**System.out.println("Gilada de cerbero " );
 										System.out.println("CUIL " );

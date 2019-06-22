@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Clases.Cliente;
 import Clases.Impresion;
+import Clases.Impresion2;
 import Clases.Producto;
 import Clases.Tarjeta;
 import Clases.Venta;
@@ -222,7 +223,7 @@ public class realizarCanje extends JPanel {
 										e1.printStackTrace();
 									}
 									//ENVIAR ESTOS DATOS A imprimirTicket()
-									Impresion imp = new Impresion();										
+									Impresion2 imp = new Impresion2();										
 									imp.imprimirTicket(nombre, apellido, txtNumeroTarjeta.getText(), puntos_acumulados, total_puntos, 1);
 									/**System.out.println("Gilada de cerbero " );
 									System.out.println("CUIL " );
@@ -285,12 +286,44 @@ public class realizarCanje extends JPanel {
 							}
 							table.setModel(modelo_1);
 						}else {
-							if(rs.first()) {
 							
-								txtPuntos.setText(rs.getObject("puntos_acumulados").toString());
-								txtDni.setText(rs.getObject("dni").toString());
-								llenarTablaProductos();
-							}		
+							long tsTime2 = 0;
+							try {
+								if(rs.first()) {
+								java.sql.Timestamp ts2 = java.sql.Timestamp.valueOf(rs.getString("ultima_compra"));
+								tsTime2 = ts2.getTime();
+								}
+								
+							}catch (SQLException e1) {
+								e1.printStackTrace();
+							}
+							long x = 2592000000L;
+							
+							Tarjeta tarjeta2 = new Tarjeta();
+							ResultSet rs2;
+							rs2 = tarjeta2.buscarTarjetasActivas(txtNumeroTarjeta.getText());
+							String vip = "nada";
+							try {
+								while(rs2.next()) {
+									vip = rs2.getObject("tarjetas.vip").toString();
+								}
+							} catch (SQLException e1) {
+								
+								e1.printStackTrace();
+							}
+							
+							if (System.currentTimeMillis() >= tsTime2 + x && vip.equals("0")) {
+								JOptionPane.showMessageDialog(null, "No es posible realizar un canje. No has realizado una compra en los últimos 30 días.");
+								txtNumeroTarjeta.setText("");
+								return;
+								} 
+								else {
+									if(rs.first()) {
+								
+										txtPuntos.setText(rs.getObject("puntos_acumulados").toString());
+										txtDni.setText(rs.getObject("dni").toString());
+										llenarTablaProductos();
+							}	}	
 						}
 					}catch (SQLException e1) {
 						e1.printStackTrace();
